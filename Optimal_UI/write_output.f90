@@ -35,6 +35,7 @@ integer:: i,ix,iy,iz,is,ic
 integer:: ixp,iyp,izp,isp,ixpojs
 real(8), dimension(nx,ny)   :: Jtilde
 real(8):: Pojs,dp,PU
+real(8), dimension(nx+ny):: muvec
 
 if (nz==1) then
 Jtilde = J1(:,:,1)
@@ -97,5 +98,31 @@ open(105,file=root_dir//out_dir//'empfuns.csv',status='replace')
       theta(i,2),R(i,1),R(i,2),Ptilde(i,1),Ptilde(i,2),Jtilde(i,1),Jtilde(i,2)
     enddo
 close(105)
+
+!Stationary Distribution
+Call wri1file(ns*nx+ny,muss,root_dir//out_dir//"muss.txt")
+!Collapsed to Rows of length nx+1: U is 1st element of muvec
+muvec = zero
+do iy=1,ny
+  muvec(iy) = muss(ns*nx+iy)
+enddo
+
+do is=1,ns
+  do ix=1,nx
+  muvec(ny+ix) = muvec(ny+ix) + muss((is-1)*nx+ix)
+  enddo
+enddo
+
+open(106,file=root_dir//out_dir//'dist.csv',status='replace')
+write(106,30)
+30 format('V,','dist')
+do iy=1,ny
+write(106,'(2(f15.4,","))') U1(iy),muvec(iy)
+enddo
+do ix=1,nx
+write(106,'(2(f15.4,","))') x(ix+ny),muvec(ix+ny)
+enddo
+close(106)
+
 
 END SUBROUTINE write_output
