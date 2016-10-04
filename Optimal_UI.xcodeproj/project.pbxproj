@@ -1,0 +1,372 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		4750B18A1D9C016F00EFBDB7 /* contract.F90 in Sources */ = {isa = PBXBuildFile; fileRef = 4750B1891D9C016F00EFBDB7 /* contract.F90 */; };
+		476846F01D9C615000DF8A66 /* centergrid.f90 in Sources */ = {isa = PBXBuildFile; fileRef = 476846EF1D9C615000DF8A66 /* centergrid.f90 */; };
+		476846F41D9C73AE00DF8A66 /* spline.f90 in Sources */ = {isa = PBXBuildFile; fileRef = 476846F31D9C73AE00DF8A66 /* spline.f90 */; };
+		47C31B231D6E1C1F00A53C94 /* PARAM.f90 in Sources */ = {isa = PBXBuildFile; fileRef = 47C31B111D6E1C1F00A53C94 /* PARAM.f90 */; };
+		47C31B241D6E1C1F00A53C94 /* MAIN.F90 in Sources */ = {isa = PBXBuildFile; fileRef = 47C31B121D6E1C1F00A53C94 /* MAIN.F90 */; };
+		47C31B251D6E1C1F00A53C94 /* vfi.F90 in Sources */ = {isa = PBXBuildFile; fileRef = 47C31B131D6E1C1F00A53C94 /* vfi.F90 */; };
+		47C31B261D6E1C1F00A53C94 /* sdi.F90 in Sources */ = {isa = PBXBuildFile; fileRef = 47C31B141D6E1C1F00A53C94 /* sdi.F90 */; };
+		47C31B271D6E1C1F00A53C94 /* howard.f90 in Sources */ = {isa = PBXBuildFile; fileRef = 47C31B151D6E1C1F00A53C94 /* howard.f90 */; };
+		47C31B281D6E1C1F00A53C94 /* jprime.F90 in Sources */ = {isa = PBXBuildFile; fileRef = 47C31B161D6E1C1F00A53C94 /* jprime.F90 */; };
+		47C31B291D6E1C1F00A53C94 /* gbd.F90 in Sources */ = {isa = PBXBuildFile; fileRef = 47C31B171D6E1C1F00A53C94 /* gbd.F90 */; };
+		47C31B2B1D6E1C1F00A53C94 /* howardfull.f90 in Sources */ = {isa = PBXBuildFile; fileRef = 47C31B191D6E1C1F00A53C94 /* howardfull.f90 */; };
+		47C31B301D6E1C1F00A53C94 /* UTILITY.f90 in Sources */ = {isa = PBXBuildFile; fileRef = 47C31B1E1D6E1C1F00A53C94 /* UTILITY.f90 */; };
+		47C31B341D6E1C1F00A53C94 /* IOOP.f90 in Sources */ = {isa = PBXBuildFile; fileRef = 47C31B221D6E1C1F00A53C94 /* IOOP.f90 */; };
+		47D12B701DA305F700BEAB74 /* write_output.f90 in Sources */ = {isa = PBXBuildFile; fileRef = 47D12B6F1DA305F700BEAB74 /* write_output.f90 */; };
+		47DB57081D748E790018B48A /* stadist.f90 in Sources */ = {isa = PBXBuildFile; fileRef = 47DB57071D748E790018B48A /* stadist.f90 */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXBuildRule section */
+		47AB9D931D54E2BC00CC84BC /* PBXBuildRule */ = {
+			isa = PBXBuildRule;
+			compilerSpec = com.intel.compilers.ifort.16_0_0;
+			fileType = sourcecode.fortran;
+			isEditable = 1;
+			outputFiles = (
+			);
+		};
+/* End PBXBuildRule section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		47AB9D831D54E11300CC84BC /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		4750B1891D9C016F00EFBDB7 /* contract.F90 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.fortran.f90; path = contract.F90; sourceTree = "<group>"; };
+		476846EF1D9C615000DF8A66 /* centergrid.f90 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.fortran.f90; path = centergrid.f90; sourceTree = "<group>"; };
+		476846F31D9C73AE00DF8A66 /* spline.f90 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.fortran.f90; path = spline.f90; sourceTree = "<group>"; };
+		47AB9D851D54E11300CC84BC /* Optimal_UI */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Optimal_UI; sourceTree = BUILT_PRODUCTS_DIR; };
+		47C31B111D6E1C1F00A53C94 /* PARAM.f90 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.fortran.f90; path = PARAM.f90; sourceTree = "<group>"; };
+		47C31B121D6E1C1F00A53C94 /* MAIN.F90 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.fortran.f90; path = MAIN.F90; sourceTree = "<group>"; };
+		47C31B131D6E1C1F00A53C94 /* vfi.F90 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.fortran.f90; path = vfi.F90; sourceTree = "<group>"; };
+		47C31B141D6E1C1F00A53C94 /* sdi.F90 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.fortran.f90; path = sdi.F90; sourceTree = "<group>"; };
+		47C31B151D6E1C1F00A53C94 /* howard.f90 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.fortran.f90; path = howard.f90; sourceTree = "<group>"; };
+		47C31B161D6E1C1F00A53C94 /* jprime.F90 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.fortran.f90; path = jprime.F90; sourceTree = "<group>"; };
+		47C31B171D6E1C1F00A53C94 /* gbd.F90 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.fortran.f90; path = gbd.F90; sourceTree = "<group>"; };
+		47C31B191D6E1C1F00A53C94 /* howardfull.f90 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.fortran.f90; path = howardfull.f90; sourceTree = "<group>"; };
+		47C31B1E1D6E1C1F00A53C94 /* UTILITY.f90 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.fortran.f90; path = UTILITY.f90; sourceTree = "<group>"; };
+		47C31B221D6E1C1F00A53C94 /* IOOP.f90 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.fortran.f90; path = IOOP.f90; sourceTree = "<group>"; };
+		47D12B6F1DA305F700BEAB74 /* write_output.f90 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.fortran.f90; path = write_output.f90; sourceTree = "<group>"; };
+		47DB57071D748E790018B48A /* stadist.f90 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.fortran.f90; path = stadist.f90; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		47AB9D821D54E11300CC84BC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		47AB9D7C1D54E11300CC84BC = {
+			isa = PBXGroup;
+			children = (
+				47AB9D871D54E11300CC84BC /* Optimal_UI */,
+				47AB9D861D54E11300CC84BC /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		47AB9D861D54E11300CC84BC /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				47AB9D851D54E11300CC84BC /* Optimal_UI */,
+			);
+			name = Products;
+			path = /Users/fujio/Fortran/Optimal_UI/Optimal_UI;
+			sourceTree = "<absolute>";
+		};
+		47AB9D871D54E11300CC84BC /* Optimal_UI */ = {
+			isa = PBXGroup;
+			children = (
+				47C31B111D6E1C1F00A53C94 /* PARAM.f90 */,
+				47C31B1E1D6E1C1F00A53C94 /* UTILITY.f90 */,
+				47C31B221D6E1C1F00A53C94 /* IOOP.f90 */,
+				4750B1891D9C016F00EFBDB7 /* contract.F90 */,
+				47C31B131D6E1C1F00A53C94 /* vfi.F90 */,
+				47C31B171D6E1C1F00A53C94 /* gbd.F90 */,
+				47DB57071D748E790018B48A /* stadist.f90 */,
+				47C31B141D6E1C1F00A53C94 /* sdi.F90 */,
+				47C31B151D6E1C1F00A53C94 /* howard.f90 */,
+				47C31B161D6E1C1F00A53C94 /* jprime.F90 */,
+				47C31B191D6E1C1F00A53C94 /* howardfull.f90 */,
+				47C31B121D6E1C1F00A53C94 /* MAIN.F90 */,
+				476846EF1D9C615000DF8A66 /* centergrid.f90 */,
+				476846F31D9C73AE00DF8A66 /* spline.f90 */,
+				47D12B6F1DA305F700BEAB74 /* write_output.f90 */,
+			);
+			path = Optimal_UI;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		47AB9D841D54E11300CC84BC /* Optimal_UI */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 47AB9D8C1D54E11300CC84BC /* Build configuration list for PBXNativeTarget "Optimal_UI" */;
+			buildPhases = (
+				47AB9D811D54E11300CC84BC /* Sources */,
+				47AB9D821D54E11300CC84BC /* Frameworks */,
+				47AB9D831D54E11300CC84BC /* CopyFiles */,
+			);
+			buildRules = (
+				47AB9D931D54E2BC00CC84BC /* PBXBuildRule */,
+			);
+			dependencies = (
+			);
+			name = Optimal_UI;
+			productName = Menzio_Shi;
+			productReference = 47AB9D851D54E11300CC84BC /* Optimal_UI */;
+			productType = "com.apple.product-type.tool";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		47AB9D7D1D54E11300CC84BC /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0800;
+				ORGANIZATIONNAME = "Larry Warren";
+				TargetAttributes = {
+					47AB9D841D54E11300CC84BC = {
+						CreatedOnToolsVersion = 7.3.1;
+					};
+				};
+			};
+			buildConfigurationList = 47AB9D801D54E11300CC84BC /* Build configuration list for PBXProject "Optimal_UI" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 47AB9D7C1D54E11300CC84BC;
+			productRefGroup = 47AB9D861D54E11300CC84BC /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				47AB9D841D54E11300CC84BC /* Optimal_UI */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		47AB9D811D54E11300CC84BC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				47C31B231D6E1C1F00A53C94 /* PARAM.f90 in Sources */,
+				47C31B301D6E1C1F00A53C94 /* UTILITY.f90 in Sources */,
+				47C31B341D6E1C1F00A53C94 /* IOOP.f90 in Sources */,
+				4750B18A1D9C016F00EFBDB7 /* contract.F90 in Sources */,
+				476846F01D9C615000DF8A66 /* centergrid.f90 in Sources */,
+				47D12B701DA305F700BEAB74 /* write_output.f90 in Sources */,
+				47C31B241D6E1C1F00A53C94 /* MAIN.F90 in Sources */,
+				47DB57081D748E790018B48A /* stadist.f90 in Sources */,
+				47C31B261D6E1C1F00A53C94 /* sdi.F90 in Sources */,
+				47C31B251D6E1C1F00A53C94 /* vfi.F90 in Sources */,
+				47C31B291D6E1C1F00A53C94 /* gbd.F90 in Sources */,
+				476846F41D9C73AE00DF8A66 /* spline.f90 in Sources */,
+				47C31B281D6E1C1F00A53C94 /* jprime.F90 in Sources */,
+				47C31B271D6E1C1F00A53C94 /* howard.f90 in Sources */,
+				47C31B2B1D6E1C1F00A53C94 /* howardfull.f90 in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		47AB9D8A1D54E11300CC84BC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SCAN_ALL_SOURCE_FILES_FOR_INCLUDES = YES;
+				SDKROOT = macosx;
+				VALID_ARCHS = x86_64;
+			};
+			name = Debug;
+		};
+		47AB9D8B1D54E11300CC84BC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SCAN_ALL_SOURCE_FILES_FOR_INCLUDES = YES;
+				SDKROOT = macosx;
+				VALID_ARCHS = x86_64;
+			};
+			name = Release;
+		};
+		47AB9D8D1D54E11300CC84BC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = YES;
+				CLANG_USE_OPTIMIZATION_PROFILE = YES;
+				HEADER_SEARCH_PATHS = (
+					/opt/intel/compilers_and_libraries_2016.3.170/mac/mkl/include,
+					/Users/fujio/Fortran/Optimal_UI/Optimal_UI,
+				);
+				IFORT_DATA_HEAP_ARRAYS = 100;
+				IFORT_MKL = "-mkl=parallel";
+				IFORT_OPT_AUTOPARALLEL_THRESHOLD = 10;
+				IFORT_OPT_LEVEL = "-fast";
+				IFORT_OPT_VEC_THRESHOLD = 10;
+				IFORT_OTHER_FLAGS = "-parallel -par-report3 -ipo";
+				IFORT_RT_LIBRARY = "-Dynamic lib";
+				LD_RUNPATH_SEARCH_PATHS = "/opt/intel/compilers_and_libraries_2016.4.210/mac/mkl/lib /opt/intel/compilers_and_libraries_2016.4.210/mac/compiler/lib /Users/fujio/Fortran/Optimal_UI/Optimal_UI";
+				LIBRARY_SEARCH_PATHS = /opt/intel/compilers_and_libraries_2016.3.170/mac/mkl/lib;
+				OTHER_LDFLAGS = (
+					"-lmkl_intel_lp64",
+					"-lmkl_core",
+					"-lmkl_intel_thread",
+					"-lpthread",
+					"-liomp5",
+				);
+				PRODUCT_NAME = Optimal_UI;
+				SCAN_ALL_SOURCE_FILES_FOR_INCLUDES = YES;
+				VALID_ARCHS = "i386 x86_64";
+			};
+			name = Debug;
+		};
+		47AB9D8E1D54E11300CC84BC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = YES;
+				CLANG_USE_OPTIMIZATION_PROFILE = YES;
+				HEADER_SEARCH_PATHS = (
+					/opt/intel/compilers_and_libraries_2016.3.170/mac/mkl/include,
+					/Users/fujio/Fortran/Optimal_UI/Optimal_UI,
+				);
+				IFORT_DATA_HEAP_ARRAYS = 100;
+				IFORT_MKL = "-mkl=parallel";
+				IFORT_OPT_AUTOPARALLEL_THRESHOLD = 10;
+				IFORT_OPT_LEVEL = "-fast";
+				IFORT_OPT_VEC_THRESHOLD = 10;
+				IFORT_OTHER_FLAGS = "-parallel -par-report3 -ipo";
+				IFORT_RT_LIBRARY = "-Dynamic lib";
+				LD_RUNPATH_SEARCH_PATHS = "/opt/intel/compilers_and_libraries_2016.4.210/mac/mkl/lib /opt/intel/compilers_and_libraries_2016.4.210/mac/compiler/lib /Users/fujio/Fortran/Optimal_UI/Optimal_UI";
+				LIBRARY_SEARCH_PATHS = /opt/intel/compilers_and_libraries_2016.3.170/mac/mkl/lib;
+				OTHER_LDFLAGS = (
+					"-lmkl_intel_lp64",
+					"-lmkl_core",
+					"-lmkl_intel_thread",
+					"-lpthread",
+					"-liomp5",
+				);
+				PRODUCT_NAME = Optimal_UI;
+				SCAN_ALL_SOURCE_FILES_FOR_INCLUDES = YES;
+				VALID_ARCHS = "i386 x86_64";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		47AB9D801D54E11300CC84BC /* Build configuration list for PBXProject "Optimal_UI" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				47AB9D8A1D54E11300CC84BC /* Debug */,
+				47AB9D8B1D54E11300CC84BC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		47AB9D8C1D54E11300CC84BC /* Build configuration list for PBXNativeTarget "Optimal_UI" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				47AB9D8D1D54E11300CC84BC /* Debug */,
+				47AB9D8E1D54E11300CC84BC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 47AB9D7D1D54E11300CC84BC /* Project object */;
+}
