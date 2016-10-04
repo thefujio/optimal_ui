@@ -1,0 +1,120 @@
+
+#
+# Absoft Developer Tools Interface requires use of this makefile.
+#
+MKDIR=mkdir -p 
+RMDIR=rm -rf 
+
+#
+# Variables for the compiler(s) and linker
+#
+ABSOFT_F95=f95 
+ABSOFT_F77=f95
+VAST_PREPROCESSOR=vastfp
+RC=Rez
+GCC=gcc
+MAKE=amake2
+ABSOFT_F95_LINKER=f95
+DUMMY=
+
+#
+# Flags
+#
+ABSOFT_F95_FLAGS= -O3 -m64 -speed_math=10 -stack:3d090000
+ABSOFT_F77_FLAGS= -O3 -f77_compat -m64 -speed_math=10 -stack:3d090000
+RC_FLAGS=
+GCC_FLAGS= -O3 -m64
+MAKE_FLAGS= -k
+ABSOFT_F95_LINKER_FLAGS=-IPA:debug=on -IPA:source_pu_order=on       -stack:3d090000 -m64 -speed_math=10 -O3
+
+#
+# Name of the executable
+#
+TARGET=opt_ui
+OUTDIR=.
+OBJDIR=./Release
+
+#
+# Files for this executable
+#
+VAST_PREPROCESSOR_FILES=
+ABSOFT_F95_FILES="PARAM.f90" "MAIN.F90" "UTILITY.f90" "IOOP.f90" "contract.F90" "howard.f90" "../../fortran/stadist.f90" "vfi.F90" "jprime.F90" "howardfull.f90" "sdi.F90" "gbd.F90"
+ABSOFT_F77_FILES=
+GCC_FILES=
+ABSOFT_F95_LINKER_FILES=
+RC_FILES=
+MAKE_FILES=
+
+#
+# Rules and dependencies for the executable
+#
+SRCFILES=$(ABSOFT_F95_FILES)
+OBJFILES="$(OBJDIR)/PARAM.o" "$(OBJDIR)/MAIN.o" "$(OBJDIR)/UTILITY.o" "$(OBJDIR)/IOOP.o" "$(OBJDIR)/contract.o" "$(OBJDIR)/howard.o" "$(OBJDIR)/stadist.o" "$(OBJDIR)/vfi.o" "$(OBJDIR)/jprime.o" "$(OBJDIR)/howardfull.o" "$(OBJDIR)/sdi.o" "$(OBJDIR)/gbd.o"
+all: "$(OBJDIR)" "$(OUTDIR)/$(TARGET)"
+	
+
+"$(OUTDIR)/$(TARGET)":  $(OBJFILES) $(ABSOFT_F95_LINKER_FILES) $(MODFILES)
+	$(ABSOFT_F95_LINKER)  $(LPATHS) $(OBJFILES) $(ABSOFT_F95_LINKER_FILES) $(LIBS) -o "$(OUTDIR)/$(TARGET)" $(ABSOFT_F95_LINKER_FLAGS)
+
+
+
+"$(OBJDIR)/PARAM.o": "PARAM.f90"
+	$(ABSOFT_F95) -c -nowdir -YLOOP_ANALYZER -LNO:simd_verbose=on -LNO:apo_verbose=on -CG:filetable_verbose=on $(ABSOFT_F95_FLAGS) -o "$(OBJDIR)/PARAM.o" "PARAM.f90"
+
+"$(OBJDIR)/MAIN.o": "MAIN.F90"
+	$(ABSOFT_F95) -c -nowdir -YLOOP_ANALYZER -LNO:simd_verbose=on -LNO:apo_verbose=on -CG:filetable_verbose=on $(ABSOFT_F95_FLAGS) -o "$(OBJDIR)/MAIN.o" "MAIN.F90"
+
+"$(OBJDIR)/UTILITY.o": "UTILITY.f90"
+	$(ABSOFT_F95) -c -nowdir -YLOOP_ANALYZER -LNO:simd_verbose=on -LNO:apo_verbose=on -CG:filetable_verbose=on $(ABSOFT_F95_FLAGS) -o "$(OBJDIR)/UTILITY.o" "UTILITY.f90"
+
+"$(OBJDIR)/IOOP.o": "IOOP.f90"
+	$(ABSOFT_F95) -c -nowdir -YLOOP_ANALYZER -LNO:simd_verbose=on -LNO:apo_verbose=on -CG:filetable_verbose=on $(ABSOFT_F95_FLAGS) -o "$(OBJDIR)/IOOP.o" "IOOP.f90"
+
+"$(OBJDIR)/contract.o": "contract.F90"
+	$(ABSOFT_F95) -c -nowdir -YLOOP_ANALYZER -LNO:simd_verbose=on -LNO:apo_verbose=on -CG:filetable_verbose=on $(ABSOFT_F95_FLAGS) -o "$(OBJDIR)/contract.o" "contract.F90"
+
+"$(OBJDIR)/howard.o": "howard.f90"
+	$(ABSOFT_F95) -c -nowdir -YLOOP_ANALYZER -LNO:simd_verbose=on -LNO:apo_verbose=on -CG:filetable_verbose=on $(ABSOFT_F95_FLAGS) -o "$(OBJDIR)/howard.o" "howard.f90"
+
+"$(OBJDIR)/stadist.o": "../../fortran/stadist.f90"
+	$(ABSOFT_F95) -c -nowdir -YLOOP_ANALYZER -LNO:simd_verbose=on -LNO:apo_verbose=on -CG:filetable_verbose=on $(ABSOFT_F95_FLAGS) -o "$(OBJDIR)/stadist.o" "../../fortran/stadist.f90"
+
+"$(OBJDIR)/vfi.o": "vfi.F90"
+	$(ABSOFT_F95) -c -nowdir -YLOOP_ANALYZER -LNO:simd_verbose=on -LNO:apo_verbose=on -CG:filetable_verbose=on $(ABSOFT_F95_FLAGS) -o "$(OBJDIR)/vfi.o" "vfi.F90"
+
+"$(OBJDIR)/jprime.o": "jprime.F90"
+	$(ABSOFT_F95) -c -nowdir -YLOOP_ANALYZER -LNO:simd_verbose=on -LNO:apo_verbose=on -CG:filetable_verbose=on $(ABSOFT_F95_FLAGS) -o "$(OBJDIR)/jprime.o" "jprime.F90"
+
+"$(OBJDIR)/howardfull.o": "howardfull.f90"
+	$(ABSOFT_F95) -c -nowdir -YLOOP_ANALYZER -LNO:simd_verbose=on -LNO:apo_verbose=on -CG:filetable_verbose=on $(ABSOFT_F95_FLAGS) -o "$(OBJDIR)/howardfull.o" "howardfull.f90"
+
+"$(OBJDIR)/sdi.o": "sdi.F90"
+	$(ABSOFT_F95) -c -nowdir -YLOOP_ANALYZER -LNO:simd_verbose=on -LNO:apo_verbose=on -CG:filetable_verbose=on $(ABSOFT_F95_FLAGS) -o "$(OBJDIR)/sdi.o" "sdi.F90"
+
+"$(OBJDIR)/gbd.o": "gbd.F90"
+	$(ABSOFT_F95) -c -nowdir -YLOOP_ANALYZER -LNO:simd_verbose=on -LNO:apo_verbose=on -CG:filetable_verbose=on $(ABSOFT_F95_FLAGS) -o "$(OBJDIR)/gbd.o" "gbd.F90"
+
+"$(OBJDIR)":
+	$(MKDIR) "$(OBJDIR)"
+#
+# Clean Rules
+#
+clean:
+	$(RMDIR) "$(OBJDIR)"
+	$(RMDIR) "$(TARGET)"
+
+#
+# Define necessary macros for dependency scanning.
+#
+MKDEP=amakedepend
+MKDEP_FLAGS= -quiet "-pre$(OBJDIR)/" -Y -modInfo -errdel -f90 -f makefile.amake
+#
+# Generate dependencies for the project
+#
+ScanAll: "$(OUTDIR)" "$(OBJDIR)" MakeDepsAll
+
+#
+# Scan for all F77/F95, and c/c++ dependencies
+#
+MakeDepsAll:
+	$(MKDEP) -quiet "-pre./Release/" -Y -modInfo -errdel -f90 -f makefile.amake -a -info  -O3 -m64 -speed_math=10 -stack:3d090000 -info "PARAM.f90" "MAIN.F90" "UTILITY.f90" "IOOP.f90" "contract.F90" "howard.f90" "../../fortran/stadist.f90" "vfi.F90" "jprime.F90" "howardfull.f90" "sdi.F90" "gbd.F90" 

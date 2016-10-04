@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE Fx3>
+<Fx3 version="1.2.1">
+    <ProgramList>
+        <Name>/Users/mgervaisca/Documents/LaborTax/fortran/test/project</Name>
+        <Arguments></Arguments>
+        <WorkingDirectory>/Users/mgervaisca/Documents/LaborTax/fortran/test</WorkingDirectory>
+        <EnvironmentList></EnvironmentList>
+        <Script></Script>
+        <Type>append</Type>
+    </ProgramList>
+    <AddPaths>
+        <Path>&quot;/Users/mgervaisca/Documents/LaborTax/fortran/test&quot;</Path>
+    </AddPaths>
+    <WatchVariables>
+        <Variable>comb</Variable>
+        <Variable>comb(1)</Variable>
+        <Variable>comb(2)</Variable>
+    </WatchVariables>
+    <BreakpointList/>
+    <Memory>
+        <address></address>
+        <bytes>1</bytes>
+        <column>1</column>
+        <word>1</word>
+        <checked>N</checked>
+    </Memory>
+    <IgnoredSources>
+        <IgnoredList/>
+        <Unlocatable>N</Unlocatable>
+    </IgnoredSources>
+    <Arguments>
+        <Argument></Argument>
+    </Arguments>
+</Fx3>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0730"
+   LastUpgradeVersion = "0800"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "47AB9D841D54E11300CC84BC"
-               BuildableName = "Menzio_Shi"
-               BlueprintName = "Menzio_Shi"
-               ReferencedContainer = "container:Menzio_Shi.xcodeproj">
+               BuildableName = "Optimal_UI"
+               BlueprintName = "Optimal_UI"
+               ReferencedContainer = "container:Optimal_UI.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,12 +33,27 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "47AB9D841D54E11300CC84BC"
-            BuildableName = "Menzio_Shi"
-            BlueprintName = "Menzio_Shi"
-            ReferencedContainer = "container:Menzio_Shi.xcodeproj">
+            BuildableName = "Optimal_UI"
+            BlueprintName = "Optimal_UI"
+            ReferencedContainer = "container:Optimal_UI.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
+         <AdditionalOption
+            key = "MallocStackLogging"
+            value = ""
+            isEnabled = "YES">
+         </AdditionalOption>
+         <AdditionalOption
+            key = "NSZombieEnabled"
+            value = "YES"
+            isEnabled = "YES">
+         </AdditionalOption>
+         <AdditionalOption
+            key = "NSDOLoggingEnabled"
+            value = "YES"
+            isEnabled = "YES">
+         </AdditionalOption>
       </AdditionalOptions>
    </TestAction>
    <LaunchAction
@@ -46,7 +61,8 @@
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       launchStyle = "0"
-      useCustomWorkingDirectory = "NO"
+      useCustomWorkingDirectory = "YES"
+      customWorkingDirectory = "/Users/fujio/Fortran/Optimal_UI/Optimal_UI"
       ignoresPersistentStateOnLaunch = "NO"
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
@@ -56,28 +72,49 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "47AB9D841D54E11300CC84BC"
-            BuildableName = "Menzio_Shi"
-            BlueprintName = "Menzio_Shi"
-            ReferencedContainer = "container:Menzio_Shi.xcodeproj">
+            BuildableName = "Optimal_UI"
+            BlueprintName = "Optimal_UI"
+            ReferencedContainer = "container:Optimal_UI.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
+         <AdditionalOption
+            key = "MallocStackLogging"
+            value = ""
+            isEnabled = "YES">
+         </AdditionalOption>
+         <AdditionalOption
+            key = "USERBREAK"
+            value = "1"
+            isEnabled = "YES">
+         </AdditionalOption>
+         <AdditionalOption
+            key = "NSZombieEnabled"
+            value = "YES"
+            isEnabled = "YES">
+         </AdditionalOption>
+         <AdditionalOption
+            key = "NSDOLoggingEnabled"
+            value = "YES"
+            isEnabled = "YES">
+         </AdditionalOption>
       </AdditionalOptions>
    </LaunchAction>
    <ProfileAction
-      buildConfiguration = "Release"
+      buildConfiguration = "Debug"
       shouldUseLaunchSchemeArgsEnv = "YES"
       savedToolIdentifier = ""
-      useCustomWorkingDirectory = "NO"
+      useCustomWorkingDirectory = "YES"
+      customWorkingDirectory = "/Users/fujio/Fortran/Optimal_UI/Optimal_UI"
       debugDocumentVersioning = "YES">
       <BuildableProductRunnable
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "47AB9D841D54E11300CC84BC"
-            BuildableName = "Menzio_Shi"
-            BlueprintName = "Menzio_Shi"
-            ReferencedContainer = "container:Menzio_Shi.xcodeproj">
+            BuildableName = "Optimal_UI"
+            BlueprintName = "Optimal_UI"
+            ReferencedContainer = "container:Optimal_UI.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
