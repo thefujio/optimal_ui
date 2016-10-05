@@ -48,7 +48,6 @@ SUBROUTINE JPRIME(U1,J1)
   real(8), dimension(nx,ny,nz):: J0
   integer, dimension(nx,ny,nz):: iJ1
   real(8), dimension(nx,ny)   :: Jtilde
-  real(8), dimension(nx,ny)   :: dprimevec
   real(8), dimension(nc):: Jtemp,wage
   real(8):: EV,EJ,V,Vp,dp,c
   
@@ -115,7 +114,7 @@ SUBROUTINE JPRIME(U1,J1)
   
   !Given V (some x) and P, find optimal OJS market
   R = zero
-  M = zero
+  M = 0
   Ptilde = zero
   do iy=1,ny
     do ix=1,nx
@@ -135,7 +134,7 @@ SUBROUTINE JPRIME(U1,J1)
   do ix=1,nx
     do iy=1,ny
       if (U1(iy)>x(ix)+lambda*R(ix,iy)) then
-        dprimevec(ix,iy) = one
+        dprimevec(ix,iy) = 1.0d0
       end if
     end do
   end do

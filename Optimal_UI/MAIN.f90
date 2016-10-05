@@ -191,7 +191,9 @@ PROGRAM MAIN
   !Grid on PVU (x)
   xmin = Ufunc(bmin)/(one-betta)
   xmax = Ufunc(MAXVAL(y)+MAXVAL(z))/(one-betta)
-  
+xmax = -20.0d0
+  print*,'maximum output is: ',MAXVAL(y)+MAXVAL(z)
+
   x(1:nx) = (/ ( &
                 ((xmax-xmin)/(real(nx-1,8)))*(real(i-1,8)) + xmin, i=1,nx &
                 ) /)
@@ -211,14 +213,13 @@ PROGRAM MAIN
 !  call readfile(nx,1,x,root_dir//out_dir//"x.txt")
 !  call readfile(nx,1,J,root_dir//out_dir//"jfunc.txt")
    U = -18.929393939237876d0
-  
   !Set unemployment benefit
    b = bmin
   
   !Bisection on tax rate
-  taul = 0.035d0
+  taul = 0.015d0
 !  taul = 0.037890682220459d0
-  tauu = 0.05d0
+  tauu = 0.15d0
   tau = taul
   call vfi(J,U)
   call sdi

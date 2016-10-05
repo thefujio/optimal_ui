@@ -78,7 +78,7 @@ SUBROUTINE VFI(J1,U1)
     !print*, dprime(:,1,1)
     !print*, theta
     print*, 'U: ', U1
-    if (norm > 0.01d0) then
+    if (norm > 1.0d-3) then
     call centergrid(xnew,xmin,xmax,U1)
     !interpolate J on the new submarket grid
     do iz=1,nz

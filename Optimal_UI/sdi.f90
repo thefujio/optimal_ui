@@ -61,10 +61,10 @@ SUBROUTINE SDI
         ixpojs = M(ixp,iyp) !this is the market in which (ixp,iyp) searches
         Pojs   = lambda*Ptilde(ixpojs,iyp) !this is the prob of success of OJS
         !transits to contract Vprime
-        pimat((is-1)*nx+ix,(isp-1)*nx+ixp) = ps(is,isp)*(1-dp)*(1-Pojs)
+        pimat((is-1)*nx+ix,(isp-1)*nx+ixp) = ps(is,isp)*(1.0d0-dp)*(1.0d0-Pojs)
         !transits to OJS market
         pimat((is-1)*nx+ix,(isp-1)*nx+ixpojs) = &
-            pimat((is-1)*nx+ix,(isp-1)*nx+ixpojs) + ps(is,isp)*(1-dp)*Pojs
+            pimat((is-1)*nx+ix,(isp-1)*nx+ixpojs) + ps(is,isp)*(1.0d0-dp)*Pojs
         !transist to unemployment
         pimat((is-1)*nx+ix,ns*nx+iyp) = pimat((is-1)*nx+ix,ns*nx+iyp) + ps(is,isp)*dp
       end do

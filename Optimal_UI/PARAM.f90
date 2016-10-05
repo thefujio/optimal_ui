@@ -67,7 +67,7 @@ MODULE PARAM
   integer, allocatable:: cont(:,:)
   
   ! CURRENT VALUE FUNCTIONS AND POLICY RULES
-  real(8), dimension(nx,ny)   :: theta,P
+  real(8), dimension(nx,ny)   :: theta,P,dprimevec
 !  real(8), dimension(nx,ny,nz):: J
   real(8), dimension(nx,ny,nz):: w
   real(8), dimension(nx,ns,ns):: dprime
