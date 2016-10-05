@@ -92,7 +92,7 @@ SUBROUTINE JPRIME(U1,J1)
  	
   !Given U and P, find optimal market for unemployed
   RU = zero
-  MU = zero
+  MU = 0
   PUtilde = zero
   do iy=1,ny
     do ix=1,nx
@@ -102,7 +102,7 @@ SUBROUTINE JPRIME(U1,J1)
     MU(iy) = MAXLOC(ret,DIM=1)
     PUtilde(iy) = P(MU(iy),iy)
   end do
- 	
+
   !Update the value of unemployment
   do iy=1,ny
     U1(iy) = Ufunc(b) + betta*DOT_PRODUCT(py(iy,:),U0+RU)
@@ -114,17 +114,19 @@ SUBROUTINE JPRIME(U1,J1)
   
   !Given V (some x) and P, find optimal OJS market
   R = zero
-  M = 0
   Ptilde = zero
   do iy=1,ny
     do ix=1,nx
+      M(ix,iy) = ix
       ret = zero
       V = x(ix)
       do ixp=ix,nx !can start at ix as ret is negative below ix
         ret(ixp) = P(ixp,iy)*(x(ixp)-V)
       end do
       R(ix,iy) = MAXVAL(ret)
-      M(ix,iy) = MAXLOC(ret,DIM=1,MASK=ret.NE.zero) !could make this ix instead of 0
+        if (R(ix,iy)>0.0d0) then
+        M(ix,iy) = MAXLOC(ret,DIM=1)
+        endif
       Ptilde(ix,iy) = P(M(ix,iy),iy)
     end do
   end do

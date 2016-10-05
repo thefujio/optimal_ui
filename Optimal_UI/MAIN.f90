@@ -191,7 +191,6 @@ PROGRAM MAIN
   !Grid on PVU (x)
   xmin = Ufunc(bmin)/(one-betta)
   xmax = Ufunc(MAXVAL(y)+MAXVAL(z))/(one-betta)
-xmax = -20.0d0
   print*,'maximum output is: ',MAXVAL(y)+MAXVAL(z)
 
   x(1:nx) = (/ ( &
@@ -217,9 +216,9 @@ xmax = -20.0d0
    b = bmin
   
   !Bisection on tax rate
-  taul = 0.015d0
+  taul = 0.030d0
 !  taul = 0.037890682220459d0
-  tauu = 0.15d0
+  tauu = 0.045d0
   tau = taul
   call vfi(J,U)
   call sdi
