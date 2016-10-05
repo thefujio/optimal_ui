@@ -16,13 +16,15 @@ SUBROUTINE howardfull(J1,U1)
   
   !Dummy arguments declarations
   real(8), dimension(nx,ny,nz), intent(inout):: J1
-  real(8), dimension(ny)      , intent(inout):: U1
+  real(8), dimension(ny,ne)      , intent(inout):: U1
   
   !Local variables declarations
-  integer:: iter,is,ix,iy,iz
+  integer:: iter,i,ii,is,ix,iy,iz
   integer:: isp,ixp,iyp,izp
   real(8), dimension(nx,ny,nz):: J0
-  real(8), dimension(ny)      :: U0
+  real(8), dimension(ny,ne)      :: U0
+  real(8), dimension(nu)      :: ExpU
+  real(8), dimension(ne):: bvec
   real(8):: dp,EJ
   real(8):: norm0,norm1
   
@@ -30,11 +32,20 @@ SUBROUTINE howardfull(J1,U1)
   norm1 = zero
   do iter=1,nupdate
     U0 = U1
-    do iy=1,ny
-      U1(iy) = Ufunc(b) + betta*DOT_PRODUCT(py(iy,:),U0+RU)
+    !Update the value of unemployment
+    bvec(1) = hp + b
+    bvec(2) = hp
+    do i=1,nu
+      ExpU(i) = zero
+      do ii=1,nu
+        ExpU(i) = ExpU(i) + pus(i,ii)*(U0(iuyfun(ii),iuefun(ii))+RU(iuyfun(ii),iuefun(ii)))
+      end do
+      U1(iuyfun(i),iuefun(i)) = Ufunc(bvec(iuefun(i))) + ExpU(i)
     end do
-    
-    norm0 = norm1    
+
+
+
+    norm0 = norm1
     J0 = J1
     do ix=1,nx
       do is=1,ns

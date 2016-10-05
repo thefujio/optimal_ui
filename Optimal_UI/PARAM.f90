@@ -48,20 +48,34 @@ MODULE PARAM
   !NBER avg lenght (month) of booms (1945-2009)
   real(8), parameter       :: boom_length = 58.4d0
   real(8), dimension(ny)   :: y,pyss
-  real(8), dimension(ny,ny):: py,cumpy
+  real(8), dimension(ny,ny):: py
   
   ! STOCHASTIC IDIOSYNCRATIC PRODUCTIVITY
   integer, parameter       :: nz = 2
   real(8), dimension(nz)   :: z,pzss,Pztilde
-  real(8), dimension(nz,nz):: pz,cumpz
+  real(8), dimension(nz,nz):: pz
   
   ! INDEX CONVERSION
   integer, parameter       :: ns = ny*nz
   integer, dimension(ns)   :: iyfun,izfun
   integer, dimension(ny,nz):: isfun
   real(8), dimension(ns)   :: psss
-  real(8), dimension(ns,ns):: ps,cumps
-  
+  real(8), dimension(ns,ns):: ps
+
+  !Stochastic Expiration of UI benefits
+  integer, parameter       :: ne=2
+  real(8), parameter       :: psi = 1.0d0/6.0d0
+  real(8), dimension(ne,ne):: pe
+  !Index Conversion for unemployment transmat
+  integer, parameter       :: nu = ny*ne
+  integer, dimension(nu)   :: iuyfun,iuefun
+  integer, dimension(ny,ne):: iufun
+  real(8), dimension(nu,nu):: pus
+
+  !About 40% of avg wage
+  real(8), parameter:: bmin = 0.915d0*0.47d0
+  !Home production plus UI = about 2/3 of avg. wage
+  real(8), parameter:: hp = 0.915d0*0.20d0
   ! CONTRACT SPACE
   integer:: nc
   integer, allocatable:: cont(:,:)
@@ -75,12 +89,12 @@ MODULE PARAM
   real(8), dimension(nx,ny)   :: R,Ptilde
   integer, dimension(nx,ny)   :: M
 !  real(8), dimension(ny)      :: U
-  real(8), dimension(ny)      :: RU,PUtilde
-  integer, dimension(ny)      :: MU
+  real(8), dimension(ny,ne)      :: RU,PUtilde
+  integer, dimension(ny,ne)      :: MU
   
   !STATIONARY DISTRIBUTION
-  real(8), dimension(ns*nx+ny,ns*nx+ny):: pimat
-  real(8), dimension(ns*nx+ny):: muss
+  real(8), dimension(ns*nx+nu,ns*nx+nu):: pimat
+  real(8), dimension(ns*nx+nu):: muss
   
   ! MODEL PARAMETERS
   ! INDIVIDUALS / PREFERENCES
@@ -95,7 +109,6 @@ MODULE PARAM
   real(8), parameter:: kappa  = 0.029d0
   
   !INITIAL CONDITIONS AND POLICY PARAMETERS
-  real(8), parameter:: bmin = 0.670d0
   real(8):: tau,b
   
   !PROGRAMMING PARAMETERS

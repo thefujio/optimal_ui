@@ -32,7 +32,7 @@ PROGRAM MAIN
       USE UTILITY
       implicit none
       !Dummy arguments declarations
-      double precision, dimension(ny)      , intent(inout):: U1
+      double precision, dimension(ny,ne)      , intent(inout):: U1
       double precision, dimension(nx,ny,nz), intent(inout):: J1
       END SUBROUTINE VFI
 
@@ -42,7 +42,7 @@ PROGRAM MAIN
       USE PARAM
       implicit none
       !Dummy arguments declarations
-      double precision, dimension(ny)      , intent(in):: U1
+      double precision, dimension(ny,ne)      , intent(in):: U1
       double precision, dimension(nx,ny,nz), intent(in):: J1
     END SUBROUTINE write_output
 
@@ -89,12 +89,12 @@ PROGRAM MAIN
   integer, parameter:: nparams = 40        !For storage purposes
   real(8), dimension(nparams):: params     !To store values of parameters
   
-  real(8), dimension(ny)      :: U
+  real(8), dimension(ny,ne)      :: U
   real(8), dimension(nx,ny,nz):: J
   
   integer:: iter,i,jj                      !Generic indexes
-  integer:: is,ix,iy,iz
-  integer:: isp,ixp,iyp,izp
+  integer:: is,ix,iy,iz,ie
+  integer:: isp,ixp,iyp,izp,iep
   real(8):: fl,fu
   real(8):: bd
 !  real(8):: norm
@@ -136,7 +136,7 @@ PROGRAM MAIN
     STOP
   end if
   
-  !Transition matrix and Idiosyncratic Productivity
+  !Transition matrix for Idiosyncratic Productivity
   if(nz==1) then
     z = zero
     pz = one
@@ -169,7 +169,6 @@ PROGRAM MAIN
     write (*,'(3x,''This code cannot handle nz>3: Quitting'')')
     STOP
   end if
-  
   !Transition matrix and shocks over all states
   i=1
   do iy=1,ny
@@ -187,9 +186,35 @@ PROGRAM MAIN
       i=i+1
     end do
   end do
-    
+
+  !Transition matrix for UI eligibility
+  if(ne==1) then
+  pe = one
+  else if (ne==2) then
+  pe(1,1) = one - psi
+  pe(1,2) = psi
+  pe(2,2) = one
+  pe(2,1) = zero
+  end if
+  !Transition process for unemployed over agg. state and eligibility
+  i=1
+  do iy=1,ny
+      do ie=1,ne
+      iuyfun(i) = iy
+      iuefun(i) = ie
+      jj=1
+        do iyp=1,ny
+          do iep=1,ne
+            pus(i,jj) = py(iy,iyp)*pe(ie,iep)
+            jj=jj+1
+          end do
+        end do
+      iufun(iy,ie) = i
+      i=i+1
+    end do
+  end do
   !Grid on PVU (x)
-  xmin = Ufunc(bmin)/(one-betta)
+  xmin = Ufunc(hp+bmin)/(one-betta)
   xmax = Ufunc(MAXVAL(y)+MAXVAL(z))/(one-betta)
   print*,'maximum output is: ',MAXVAL(y)+MAXVAL(z)
 
@@ -212,13 +237,13 @@ PROGRAM MAIN
 !  call readfile(nx,1,x,root_dir//out_dir//"x.txt")
 !  call readfile(nx,1,J,root_dir//out_dir//"jfunc.txt")
    U = -18.929393939237876d0
-  !Set unemployment benefit
+  !Set unemployment benefit: e=1 is eligible for UI
    b = bmin
   
   !Bisection on tax rate
-  taul = 0.030d0
+  taul = 0.0001d0
 !  taul = 0.037890682220459d0
-  tauu = 0.045d0
+  tauu = 0.075d0
   tau = taul
   call vfi(J,U)
   call sdi
@@ -263,6 +288,8 @@ PROGRAM MAIN
   params(6) = delta
   params(7) = kappa
   params(8) = nx
+  params(9) = b
+  params(10)= hp
   call wri2file(nparams,1,params,root_dir//out_dir//"params.txt")
   call write_output(U,J)
   call CPU_Time(time_end)

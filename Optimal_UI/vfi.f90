@@ -17,7 +17,7 @@ SUBROUTINE VFI(J1,U1)
   implicit none
   
   !Dummy arguments declarations
-  double precision, dimension(ny)      , intent(inout):: U1
+  double precision, dimension(ny,ne)      , intent(inout):: U1
   double precision, dimension(nx,ny,nz), intent(inout):: J1
 
   INTERFACE
@@ -27,40 +27,38 @@ SUBROUTINE VFI(J1,U1)
       USE UTILITY
       implicit none
       !Dummy arguments declarations
-      double precision, dimension(ny)      , intent(inout):: U1
+      double precision, dimension(ny,ne)      , intent(inout):: U1
       double precision, dimension(nx,ny,nz), intent(inout):: J1
     END SUBROUTINE JPRIME
 
-    SUBROUTINE centergrid(xgrid,xl,xu,U1)
-    USE PARAM
-    USE UTILITY
-    implicit none
-    !Dummy arguments declarations
-    double precision, intent(inout):: xl
-    double precision, intent(inout):: xu
-    double precision, dimension(nx), intent(out)::xgrid
-    double precision, dimension(ny), intent(in)::U1
-
+    SUBROUTINE centergrid(xgrid,xl,xu)
+      USE PARAM
+      USE UTILITY
+      implicit none
+      !Dummy arguments declarations
+      double precision, intent(inout):: xl
+      double precision, intent(inout):: xu
+      double precision, dimension(nx), intent(out)::xgrid
     END SUBROUTINE centergrid
 
     SUBROUTINE spline(xvec,yvec,b,c,d,n)
-    integer:: n
-    double precision, dimension(n):: xvec, yvec
-    double precision, dimension(n):: b, c, d
+      integer:: n
+      double precision, dimension(n):: xvec, yvec
+      double precision, dimension(n):: b, c, d
     END SUBROUTINE spline
 
     double precision function ispline(u, xvec, yvec, b, c, d, n)
-    implicit none
-    integer:: n
-    double precision:: u
-    double precision, dimension(n):: xvec, yvec, b, c, d
+      implicit none
+      integer:: n
+      double precision:: u
+      double precision, dimension(n):: xvec, yvec, b, c, d
     end function ispline
   END INTERFACE
 
   !Local variables declarations
   integer:: iter,iz,iy,ix
   real(8):: norm, normx
-  double precision, dimension(ny)      :: U0
+  double precision, dimension(ny,ne)      :: U0
   double precision, dimension(nx,ny,nz):: J0
   double precision, dimension(nx)      :: xnew,Jvec,splineb,splinec,splined
 
@@ -79,7 +77,7 @@ SUBROUTINE VFI(J1,U1)
     !print*, theta
     print*, 'U: ', U1
     if (norm > 1.0d-3) then
-    call centergrid(xnew,xmin,xmax,U1)
+    call centergrid(xnew,xmin,xmax)
     !interpolate J on the new submarket grid
     do iz=1,nz
       do iy=1,ny

@@ -31,9 +31,9 @@ SUBROUTINE SDI
 !  double precision, dimension(nx,ny,nz), intent(inout):: J1
   
   !Local variables declarations
-  integer:: is,ix,iy,iz
-  integer:: isp,ixp,iyp,izp,ixpojs
-  real(8), dimension(ns*nx+ny):: muinit
+  integer:: is,ix,iy,iz,iu
+  integer:: isp,ixp,iyp,izp,iup,ixpojs
+  real(8), dimension(ns*nx+nu):: muinit
   real(8):: Pojs,dp,PU
   
   pimat = zero
@@ -65,23 +65,23 @@ SUBROUTINE SDI
         !transits to OJS market
         pimat((is-1)*nx+ix,(isp-1)*nx+ixpojs) = &
             pimat((is-1)*nx+ix,(isp-1)*nx+ixpojs) + ps(is,isp)*(1.0d0-dp)*Pojs
-        !transist to unemployment
-        pimat((is-1)*nx+ix,ns*nx+iyp) = pimat((is-1)*nx+ix,ns*nx+iyp) + ps(is,isp)*dp
+        !transits to unemployment (and eligible for UI)
+        pimat((is-1)*nx+ix,ns*nx+iufun(iyp,1)) = pimat((is-1)*nx+ix,ns*nx+iufun(iyp,1)) + ps(is,isp)*dp
       end do
     end do
   end do
- 	
+
   !dealing with unemployed individuals
-  do iy=1,ny
-    do iyp=1,ny
-      ixp = MU(iyp) !this is the market in which U(iyp) searches
-      PU = PUtilde(iyp) !this is the prob of success of search
+  do iu=1,nu
+    do iup=1,nu
+      ixp = MU(iuyfun(iup),iuefun(iup)) !this is the market in which U(iyp) searches
+      PU = PUtilde(iuyfun(iup),iuefun(iup)) !this is the prob of success of search
       !transits back to unemployment
-      pimat(ns*nx+iy,ns*nx+iyp) = py(iy,iyp)*(one-PU)
+      pimat(ns*nx+iu,ns*nx+iup) = pus(iu,iup)*(one-PU)
       do izp=1,nz
         !transits to market ixp in state isp=(iyp,izp)
-        isp = isfun(iyp,izp)
-        pimat(ns*nx+iy,(isp-1)*nx+ixp) = py(iy,iyp)*Pztilde(izp)*PU
+        isp = isfun(iuyfun(iup),izp)
+        pimat(ns*nx+iu,(isp-1)*nx+ixp) = pus(iu,iup)*Pztilde(izp)*PU
       end do
     end do
   end do
@@ -89,9 +89,9 @@ SUBROUTINE SDI
   
   !setting initial distribution to all unemployed
   muinit = zero
-  muinit(ns*nx+1:) = one/dble(ny)
+  muinit(ns*nx+1:) = one/dble(nu)
   
-  call stadist(ns*nx+ny,pimat,muss,muinit)
+  call stadist(ns*nx+nu,pimat,muss,muinit)
  	
   RETURN
 END SUBROUTINE SDI

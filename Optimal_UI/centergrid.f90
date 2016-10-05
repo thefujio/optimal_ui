@@ -1,4 +1,4 @@
-SUBROUTINE centergrid(xgrid,xl,xu,U1)
+SUBROUTINE centergrid(xgrid,xl,xu)
 !
 !   centergrid.f90
 !   Optimal_UI
@@ -12,7 +12,6 @@ implicit none
 !Dummy Variable Declarations
 double precision, intent(inout)::xl,xu
 double precision, dimension(nx), intent(out)::xgrid
-double precision, dimension(ny), intent(in)::U1
 !Local variables declarations
  integer:: i
 !integer:: isp,ixp,iyp,izp
@@ -33,7 +32,7 @@ xl = xl - 3.0d0*gridstep
 end if
 
 if (NT0 >= 5) then
-xu = xu - 0.1d0*gridstep*real(NT0,8)
+xu = xu - 0.05d0*gridstep*real(NT0,8)
 else if (NT0<=2) then
 xu = xu + 1.0d0*gridstep
 end if

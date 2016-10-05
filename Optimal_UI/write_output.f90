@@ -13,7 +13,7 @@ USE PARAM
 implicit none
 
 !Dummy arguments declarations
-double precision, dimension(ny)      , intent(in):: U1
+double precision, dimension(ny,ne)      , intent(in):: U1
 double precision, dimension(nx,ny,nz), intent(in):: J1
 
 
@@ -31,11 +31,9 @@ double precision, dimension(nx,ny,nz), intent(in):: J1
 !integer, dimension(ny)      :: MU
 
 !Local variables declarations
-integer:: i,ix,iy,iz,is,ic
-integer:: ixp,iyp,izp,isp,ixpojs
+integer:: i,ix,iy,iz,iu,is
 real(8), dimension(nx,ny)   :: Jtilde
-real(8):: Pojs,dp,PU
-real(8), dimension(nx+ny):: muvec
+real(8), dimension(nx+nu):: muvec
 
 if (nz==1) then
 Jtilde = J1(:,:,1)
@@ -48,31 +46,6 @@ else if (nz==3) then
 Jtilde = J1(:,:,2)
 end if
 
-
-!do is=1,ns
-!iy = iyfun(is)
-!do ix=1,nx
-!do isp=1,ns
-!iyp = iyfun(isp)
-!ixp = iVprime(ix,is,isp)
-!dp  = dprime(ix,is,isp)
-!ixpojs = M(ixp,iyp) !this is the market in which (ixp,iyp) searches
-!Pojs   = lambda*Ptilde(ixpojs,iyp) !this is the prob of success of OJS
-!end do
-!end do
-!end do
-
-!dealing with unemployed individuals
-do iy=1,ny
-do iyp=1,ny
-ixp = MU(iyp) !this is the market in which U(iyp) searches
-PU = PUtilde(iyp) !this is the prob of success of search
-do izp=1,nz
-!transits to market ixp in state isp=(iyp,izp)
-isp = isfun(iyp,izp)
-end do
-end do
-end do
 
 Call wri1file(ny,U1,root_dir//out_dir//"U.txt")
 Call wri1file(ny,PUtilde,root_dir//out_dir//"PUtilde.txt")
@@ -101,27 +74,27 @@ open(105,file=root_dir//out_dir//'empfuns.csv',status='replace')
 close(105)
 
 !Stationary Distribution
-Call wri1file(ns*nx+ny,muss,root_dir//out_dir//"muss.txt")
+Call wri1file(ns*nx+nu,muss,root_dir//out_dir//"muss.txt")
 !Collapsed to Rows of length nx+1: U is 1st element of muvec
 muvec = zero
-do iy=1,ny
-  muvec(iy) = muss(ns*nx+iy)
+do iu=1,nu
+  muvec(iu) = muss(ns*nx+iu)
 enddo
 
 do is=1,ns
   do ix=1,nx
-  muvec(ny+ix) = muvec(ny+ix) + muss((is-1)*nx+ix)
+  muvec(nu+ix) = muvec(nu+ix) + muss((is-1)*nx+ix)
   enddo
 enddo
 
 open(106,file=root_dir//out_dir//'dist.csv',status='replace')
 write(106,30)
 30 format('V,','dist')
-do iy=1,ny
-write(106,'(2(f15.4,","))') U1(iy),muvec(iy)
+do iu=1,nu
+write(106,'(2(f15.4,","))') U1(iuyfun(iu),iuefun(iu)),muvec(iu)
 enddo
 do ix=1,nx
-write(106,'(2(f15.4,","))') x(ix),muvec(ix+ny)
+write(106,'(2(f15.4,","))') x(ix),muvec(ix+nu)
 enddo
 close(106)
 
