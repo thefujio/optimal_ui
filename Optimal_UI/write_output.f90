@@ -5,7 +5,7 @@
 !   Created by Larry Warren on 10/3/16.
 !   Copyright 2016 Larry Warren. All rights reserved.
 !
-SUBROUTINE write_output(U1,J1)
+SUBROUTINE write_output(J1,U1)
 
 !  USE INTERFACES
 USE IOOP
@@ -18,7 +18,7 @@ double precision, dimension(nx,ny,nz), intent(in):: J1
 
 
 
-! CURRENT VALUE FUNCTIONS AND POLICY RULES
+! CURRENT VALUE FUNCTIONS AND POLICY RULES (for reference)
 !real(8), dimension(nx,ny)   :: theta,P
 !  real(8), dimension(nx,ny,nz):: J
 !real(8), dimension(nx,ny,nz):: w
@@ -88,15 +88,36 @@ do is=1,ns
 enddo
 
 open(106,file=root_dir//out_dir//'dist.csv',status='replace')
-write(106,30)
-30 format('V,','dist')
-do iu=1,nu
-write(106,'(2(f15.4,","))') U1(iuyfun(iu),iuefun(iu)),muvec(iu)
-enddo
-do ix=1,nx
-write(106,'(2(f15.4,","))') x(ix),muvec(ix+nu)
-enddo
+  write(106,30)
+  30 format('V,','dist')
+  do iu=1,nu
+    write(106,'(2(f15.4,","))') U1(iuyfun(iu),iuefun(iu)),muvec(iu)
+  enddo
+  do ix=1,nx
+    write(106,'(2(f15.4,","))') x(ix),muvec(ix+nu)
+  enddo
 close(106)
 
+!other parameters, moments
+params(1) = betta
+params(2) = eta
+params(3) = sigma
+params(4) = gamma
+params(5) = lambda
+params(6) = delta
+params(7) = kappa
+params(8) = nx
+params(9) = b
+params(10)= hp
+params(11)= em
+params(12)= unemp
+params(13)= UEflow
+params(14)= EEflow
+params(15)= EUflow
+params(16)= tot_wage
+params(17)= avg_wage
+params(18)= transfers
+params(19)= welfare
+call wri2file(nparams,1,params,root_dir//out_dir//"params.txt")
 
 END SUBROUTINE write_output

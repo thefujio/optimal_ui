@@ -1,4 +1,4 @@
-SUBROUTINE SDI
+SUBROUTINE SDI(J1,U1)
   !****************************************************************************
   !  SDI.f90
   !  
@@ -27,8 +27,8 @@ SUBROUTINE SDI
   END INTERFACE
   
   !Dummy arguments declarations
-!  double precision, dimension(ny)      , intent(inout):: U1
-!  double precision, dimension(nx,ny,nz), intent(inout):: J1
+  double precision, dimension(ny,ne)      , intent(inout):: U1
+  double precision, dimension(nx,ny,nz), intent(inout):: J1
   
   !Local variables declarations
   integer:: is,ix,iy,iz,iu
@@ -92,6 +92,60 @@ SUBROUTINE SDI
   muinit(ns*nx+1:) = one/dble(nu)
   
   call stadist(ns*nx+nu,pimat,muss,muinit)
- 	
+
+  !Aggregate Statistics
+  ee=zero
+  eu=zero
+  ue=zero
+  do is=1,ns
+    do ix=1,nx
+      do isp=1,ns
+        eu = eu + ps(is,isp)*dprimevec(ix,iyfun(isp))*muss((is-1)*nx+ix)
+        ee = ee + &
+        ps(is,isp)*(1.0d0-dprimevec(ix,iyfun(isp)))*lambda*Ptilde(ix,iyfun(isp))*muss((is-1)*nx+ix)
+      end do
+    end do
+  end do
+
+  do iu=1,nu
+    do iup=1,nu
+      ue = ue + pus(iu,iup)*PUtilde(iuyfun(iup),iuefun(iup))*muss(ns*nx+iu)
+    end do
+  end do
+
+  unemp=SUM(muss(ns*nx+1:))
+  em=SUM(muss(1:ns*nx))
+  UEflow=ue/unemp
+  EEflow=ee/em
+  EUflow=eu/em
+
+  tot_wage = zero
+  do is=1,ns
+    iy = iyfun(is)
+    iz = izfun(is)
+    do ix=1,nx
+      tot_wage = tot_wage + muss((is-1)*nx+ix)*w(ix,iy,iz)
+    end do
+  end do
+  avg_wage = tot_wage/em
+  tranfers = b*unemp
+
+  welfare = zero
+  do iu=1,nu
+    welfare = welfare + U1(iuyfun(iu),iuefun(iu))*muss(ns*nx+iu)
+  enddo
+
+  do is=1,ns
+    do ix=1,nx
+    welfare = welfare + x(ix)*muss((is-1)*nx+ix)
+    enddo
+  enddo
+
+  print*,'job-finding probability: ',UEflow
+  print*,'job-to-job flow: ',EEflow
+  print*,'job destruction rate: ',EUflow
+  print*,'unemployment rate: ', unemp
+  print*,'average wage: ', avg_wage
+  print*,'welfare: ', welfare
   RETURN
 END SUBROUTINE SDI

@@ -36,7 +36,7 @@ MODULE PARAM
   logical:: want_refine = .true.
   logical:: simul_only  = .false.
   
-  ! GRID ON PVU
+  ! GRID ON PV
   integer, parameter    :: nx = 30
   real(8)               :: xmin,xmax
   real(8), dimension(nx):: x
@@ -110,7 +110,10 @@ MODULE PARAM
   
   !INITIAL CONDITIONS AND POLICY PARAMETERS
   real(8):: tau,b
-  
+
+  !Aggregate Statistics
+  real(8):: ee,eu,ue,unemp,em,EUflow,EEflow,UEflow
+  real(8):: tot_wage,avg_wage,transfers,welfare
   !PROGRAMMING PARAMETERS
   ! FLOW CONTROLS
   integer, parameter:: niter = 300
