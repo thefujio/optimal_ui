@@ -27,8 +27,8 @@ SUBROUTINE SDI(J1,U1)
   END INTERFACE
   
   !Dummy arguments declarations
-  double precision, dimension(ny,ne)      , intent(inout):: U1
-  double precision, dimension(nx,ny,nz), intent(inout):: J1
+  double precision, dimension(ny,ne)      , intent(in):: U1
+  double precision, dimension(nx,ny,nz), intent(in):: J1
   
   !Local variables declarations
   integer:: is,ix,iy,iz,iu
@@ -131,16 +131,16 @@ SUBROUTINE SDI(J1,U1)
 
   transfers = b*unemp
 
-  welfare = 0.0d0
+
   do iu=1,nu
     welfare = welfare + U1(iuyfun(iu),iuefun(iu))*muss(ns*nx+iu)
-  enddo
+  end do
 
   do is=1,ns
     do ix=1,nx
     welfare = welfare + x(ix)*muss((is-1)*nx+ix)
-    enddo
-  enddo
+    end do
+  end do
 
   print*,'job-finding probability: ',UEflow
   print*,'job-to-job flow: ',EEflow

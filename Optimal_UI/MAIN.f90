@@ -47,10 +47,13 @@ PROGRAM MAIN
     END SUBROUTINE write_output
 
 
-    SUBROUTINE SDI
+    SUBROUTINE SDI(J1,U1)
       USE IOOP
       USE PARAM
       implicit none
+      double precision, dimension(ny,ne), intent(in)   :: U1
+      double precision, dimension(nx,ny,nz), intent(in):: J1
+
     END SUBROUTINE SDI
     
     REAL(8) FUNCTION GBD(tax,ui)
@@ -244,25 +247,25 @@ PROGRAM MAIN
   tauu = 0.05d0
   tau = taul
   call vfi(J,U)
-  call sdi
-  print*, 'test1'
+  call sdi(J,U)
   fl = gbd(taul,b)
-  print*,'test2'
   write (*,'(5x,''Budget Deficit = '',f10.6)') fl
+
   tau = tauu
   call vfi(J,U)
-  call sdi
+  call sdi(J,U)
   fu = gbd(tauu,b)
   write (*,'(5x,''Budget Deficit = '',f10.6)') fu
   if (fl*fu>zero) then
     write (*,'(3x,''Stop: Bisection not bracketed'')')
     STOP
   end if
+
   !Bisection loop
   do iter=1,niter
     tau = half*(taul+tauu)
     call vfi(J,U)
-    call sdi
+    call sdi(J,U)
     bd = gbd(tau,b)
     if (bd>0) then
       tauu=tau
