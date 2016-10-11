@@ -58,7 +58,7 @@ SUBROUTINE VFI(J1,U1)
   !Local variables declarations
   integer:: iter,iz,iy,ix
   real(8):: norm, normx
-  double precision, dimension(ny,ne)      :: U0
+  double precision, dimension(ny,ne)   :: U0
   double precision, dimension(nx,ny,nz):: J0
   double precision, dimension(nx)      :: xnew,Jvec,splineb,splinec,splined
 

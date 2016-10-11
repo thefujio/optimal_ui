@@ -11,12 +11,12 @@
 		476846F01D9C615000DF8A66 /* centergrid.f90 in Sources */ = {isa = PBXBuildFile; fileRef = 476846EF1D9C615000DF8A66 /* centergrid.f90 */; };
 		476846F41D9C73AE00DF8A66 /* spline.f90 in Sources */ = {isa = PBXBuildFile; fileRef = 476846F31D9C73AE00DF8A66 /* spline.f90 */; };
 		47C31B231D6E1C1F00A53C94 /* PARAM.f90 in Sources */ = {isa = PBXBuildFile; fileRef = 47C31B111D6E1C1F00A53C94 /* PARAM.f90 */; };
-		47C31B241D6E1C1F00A53C94 /* MAIN.F90 in Sources */ = {isa = PBXBuildFile; fileRef = 47C31B121D6E1C1F00A53C94 /* MAIN.F90 */; };
-		47C31B251D6E1C1F00A53C94 /* vfi.F90 in Sources */ = {isa = PBXBuildFile; fileRef = 47C31B131D6E1C1F00A53C94 /* vfi.F90 */; };
-		47C31B261D6E1C1F00A53C94 /* sdi.F90 in Sources */ = {isa = PBXBuildFile; fileRef = 47C31B141D6E1C1F00A53C94 /* sdi.F90 */; };
+		47C31B241D6E1C1F00A53C94 /* MAIN.f90 in Sources */ = {isa = PBXBuildFile; fileRef = 47C31B121D6E1C1F00A53C94 /* MAIN.f90 */; };
+		47C31B251D6E1C1F00A53C94 /* vfi.f90 in Sources */ = {isa = PBXBuildFile; fileRef = 47C31B131D6E1C1F00A53C94 /* vfi.f90 */; };
+		47C31B261D6E1C1F00A53C94 /* sdi.f90 in Sources */ = {isa = PBXBuildFile; fileRef = 47C31B141D6E1C1F00A53C94 /* sdi.f90 */; };
 		47C31B271D6E1C1F00A53C94 /* howard.f90 in Sources */ = {isa = PBXBuildFile; fileRef = 47C31B151D6E1C1F00A53C94 /* howard.f90 */; };
-		47C31B281D6E1C1F00A53C94 /* jprime.F90 in Sources */ = {isa = PBXBuildFile; fileRef = 47C31B161D6E1C1F00A53C94 /* jprime.F90 */; };
-		47C31B291D6E1C1F00A53C94 /* gbd.F90 in Sources */ = {isa = PBXBuildFile; fileRef = 47C31B171D6E1C1F00A53C94 /* gbd.F90 */; };
+		47C31B281D6E1C1F00A53C94 /* jprime.f90 in Sources */ = {isa = PBXBuildFile; fileRef = 47C31B161D6E1C1F00A53C94 /* jprime.f90 */; };
+		47C31B291D6E1C1F00A53C94 /* gbd.f90 in Sources */ = {isa = PBXBuildFile; fileRef = 47C31B171D6E1C1F00A53C94 /* gbd.f90 */; };
 		47C31B2B1D6E1C1F00A53C94 /* howardfull.f90 in Sources */ = {isa = PBXBuildFile; fileRef = 47C31B191D6E1C1F00A53C94 /* howardfull.f90 */; };
 		47C31B301D6E1C1F00A53C94 /* UTILITY.f90 in Sources */ = {isa = PBXBuildFile; fileRef = 47C31B1E1D6E1C1F00A53C94 /* UTILITY.f90 */; };
 		47C31B341D6E1C1F00A53C94 /* IOOP.f90 in Sources */ = {isa = PBXBuildFile; fileRef = 47C31B221D6E1C1F00A53C94 /* IOOP.f90 */; };
@@ -53,12 +53,12 @@
 		476846F31D9C73AE00DF8A66 /* spline.f90 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.fortran.f90; path = spline.f90; sourceTree = "<group>"; };
 		47AB9D851D54E11300CC84BC /* Optimal_UI */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Optimal_UI; sourceTree = BUILT_PRODUCTS_DIR; };
 		47C31B111D6E1C1F00A53C94 /* PARAM.f90 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.fortran.f90; path = PARAM.f90; sourceTree = "<group>"; };
-		47C31B121D6E1C1F00A53C94 /* MAIN.F90 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.fortran.f90; path = MAIN.F90; sourceTree = "<group>"; };
-		47C31B131D6E1C1F00A53C94 /* vfi.F90 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.fortran.f90; path = vfi.F90; sourceTree = "<group>"; };
-		47C31B141D6E1C1F00A53C94 /* sdi.F90 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.fortran.f90; path = sdi.F90; sourceTree = "<group>"; };
+		47C31B121D6E1C1F00A53C94 /* MAIN.f90 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.fortran.f90; path = MAIN.f90; sourceTree = "<group>"; };
+		47C31B131D6E1C1F00A53C94 /* vfi.f90 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.fortran.f90; path = vfi.f90; sourceTree = "<group>"; };
+		47C31B141D6E1C1F00A53C94 /* sdi.f90 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.fortran.f90; path = sdi.f90; sourceTree = "<group>"; };
 		47C31B151D6E1C1F00A53C94 /* howard.f90 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.fortran.f90; path = howard.f90; sourceTree = "<group>"; };
-		47C31B161D6E1C1F00A53C94 /* jprime.F90 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.fortran.f90; path = jprime.F90; sourceTree = "<group>"; };
-		47C31B171D6E1C1F00A53C94 /* gbd.F90 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.fortran.f90; path = gbd.F90; sourceTree = "<group>"; };
+		47C31B161D6E1C1F00A53C94 /* jprime.f90 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.fortran.f90; path = jprime.f90; sourceTree = "<group>"; };
+		47C31B171D6E1C1F00A53C94 /* gbd.f90 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.fortran.f90; path = gbd.f90; sourceTree = "<group>"; };
 		47C31B191D6E1C1F00A53C94 /* howardfull.f90 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.fortran.f90; path = howardfull.f90; sourceTree = "<group>"; };
 		47C31B1E1D6E1C1F00A53C94 /* UTILITY.f90 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.fortran.f90; path = UTILITY.f90; sourceTree = "<group>"; };
 		47C31B221D6E1C1F00A53C94 /* IOOP.f90 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.fortran.f90; path = IOOP.f90; sourceTree = "<group>"; };
@@ -100,14 +100,14 @@
 				47C31B111D6E1C1F00A53C94 /* PARAM.f90 */,
 				47C31B1E1D6E1C1F00A53C94 /* UTILITY.f90 */,
 				47C31B221D6E1C1F00A53C94 /* IOOP.f90 */,
-				47C31B121D6E1C1F00A53C94 /* MAIN.F90 */,
-				47C31B131D6E1C1F00A53C94 /* vfi.F90 */,
-				47C31B161D6E1C1F00A53C94 /* jprime.F90 */,
+				47C31B121D6E1C1F00A53C94 /* MAIN.f90 */,
+				47C31B131D6E1C1F00A53C94 /* vfi.f90 */,
+				47C31B161D6E1C1F00A53C94 /* jprime.f90 */,
 				47C31B151D6E1C1F00A53C94 /* howard.f90 */,
 				476846EF1D9C615000DF8A66 /* centergrid.f90 */,
-				47C31B141D6E1C1F00A53C94 /* sdi.F90 */,
+				47C31B141D6E1C1F00A53C94 /* sdi.f90 */,
 				47DB57071D748E790018B48A /* stadist.f90 */,
-				47C31B171D6E1C1F00A53C94 /* gbd.F90 */,
+				47C31B171D6E1C1F00A53C94 /* gbd.f90 */,
 				471754511DA5A9AF0060E918 /* contractn.f90 */,
 				476846F31D9C73AE00DF8A66 /* spline.f90 */,
 				47D12B6F1DA305F700BEAB74 /* write_output.f90 */,
@@ -178,13 +178,13 @@
 				47C31B341D6E1C1F00A53C94 /* IOOP.f90 in Sources */,
 				476846F01D9C615000DF8A66 /* centergrid.f90 in Sources */,
 				47D12B701DA305F700BEAB74 /* write_output.f90 in Sources */,
-				47C31B241D6E1C1F00A53C94 /* MAIN.F90 in Sources */,
+				47C31B241D6E1C1F00A53C94 /* MAIN.f90 in Sources */,
 				47DB57081D748E790018B48A /* stadist.f90 in Sources */,
-				47C31B261D6E1C1F00A53C94 /* sdi.F90 in Sources */,
-				47C31B251D6E1C1F00A53C94 /* vfi.F90 in Sources */,
-				47C31B291D6E1C1F00A53C94 /* gbd.F90 in Sources */,
+				47C31B261D6E1C1F00A53C94 /* sdi.f90 in Sources */,
+				47C31B251D6E1C1F00A53C94 /* vfi.f90 in Sources */,
+				47C31B291D6E1C1F00A53C94 /* gbd.f90 in Sources */,
 				476846F41D9C73AE00DF8A66 /* spline.f90 in Sources */,
-				47C31B281D6E1C1F00A53C94 /* jprime.F90 in Sources */,
+				47C31B281D6E1C1F00A53C94 /* jprime.f90 in Sources */,
 				47C31B271D6E1C1F00A53C94 /* howard.f90 in Sources */,
 				47C31B2B1D6E1C1F00A53C94 /* howardfull.f90 in Sources */,
 				471754521DA5A9AF0060E918 /* contractn.f90 in Sources */,

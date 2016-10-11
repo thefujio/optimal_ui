@@ -86,8 +86,6 @@ PROGRAM MAIN
   !Variables declarations
   real(8):: time_begin,time_end            !Used to keep track of time
 !  real(8):: start_iter, end_iter           !Used to keep track of time
-  integer, parameter:: nparams = 40        !For storage purposes
-  real(8), dimension(nparams):: params     !To store values of parameters
   
   real(8), dimension(ny,ne)      :: U
   real(8), dimension(nx,ny,nz):: J
@@ -243,11 +241,13 @@ PROGRAM MAIN
   !Bisection on tax rate
   taul = 0.0001d0
 !  taul = 0.037890682220459d0
-  tauu = 0.075d0
+  tauu = 0.05d0
   tau = taul
   call vfi(J,U)
   call sdi
+  print*, 'test1'
   fl = gbd(taul,b)
+  print*,'test2'
   write (*,'(5x,''Budget Deficit = '',f10.6)') fl
   tau = tauu
   call vfi(J,U)

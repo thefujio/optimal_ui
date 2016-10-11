@@ -128,9 +128,10 @@ SUBROUTINE SDI(J1,U1)
     end do
   end do
   avg_wage = tot_wage/em
-  tranfers = b*unemp
 
-  welfare = zero
+  transfers = b*unemp
+
+  welfare = 0.0d0
   do iu=1,nu
     welfare = welfare + U1(iuyfun(iu),iuefun(iu))*muss(ns*nx+iu)
   enddo
@@ -147,5 +148,6 @@ SUBROUTINE SDI(J1,U1)
   print*,'unemployment rate: ', unemp
   print*,'average wage: ', avg_wage
   print*,'welfare: ', welfare
+
   RETURN
 END SUBROUTINE SDI

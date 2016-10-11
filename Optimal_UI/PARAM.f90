@@ -27,7 +27,9 @@ MODULE PARAM
   character(LEN=*), parameter:: root_dir = "/Users/fujio/Fortran/Optimal_UI/Optimal_UI/"
   character(LEN=*), parameter:: out_dir  = "output/"
   integer,          parameter:: detail = 7
-  
+
+  integer, parameter:: nparams = 40        !For storage purposes
+  real(8), dimension(nparams):: params     !To store values of parameters
   ! LOGICAL VARIABLES TO CONTROL INITIAL VALUES AND REFINEMENTS
   logical:: use_old_v   = .false.
   logical:: do_howard   = .false.
