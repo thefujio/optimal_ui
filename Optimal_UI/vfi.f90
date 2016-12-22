@@ -96,7 +96,10 @@ SUBROUTINE VFI(J1,U1)
     print*, 'norm of Xnew-X:', normx
     x = xnew
     endif
-    !pause
+
+    print*,J1(:,1,1)
+    pause
+
     if (norm<tol) EXIT
   end do
   write (*,'(3x,''Value function converged after '',i3,'' iterations: norm = '',f11.8)') iter,norm

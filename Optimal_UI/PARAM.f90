@@ -44,7 +44,7 @@ MODULE PARAM
   real(8), dimension(nx):: x
     
   ! STOCHASTIC AGGREGATE PRODUCTIVITY
-  integer, parameter       :: ny = 2
+  integer, parameter       :: ny = 1
   !NBER avg lenght (month) of recession (1945-2009)
   real(8), parameter       :: recession_length = 11.1d0
   !NBER avg lenght (month) of booms (1945-2009)
