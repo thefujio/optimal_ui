@@ -63,26 +63,47 @@ Call int2file(nx,ny,M,root_dir//out_dir//"M.txt")
 !Call wri3file(nx,ny,nz,J1,root_dir//out_dir//"J.txt")
 !Call wri3file(nx,ny,nz,w,root_dir//out_dir//"w.txt")
 if (nz==2 .and. ny==2) then
-open(105,file=root_dir//out_dir//'empfuns.csv',status='replace')
-  write(105,40)
-  40 format('V,','J(y1;z1),','J(y1;z2),','J(y2;z1),','J(y2;z2),','w(y1;z1),','w(y1;z2),','w(y2;z1),','w(y2;z2),','dprime(y1),','dprime(y2),', &
-    'P(y1),','P(y2),','th(y1),','th(y2),','R(y1),','R(y2),','Ptilde(y1),','Ptilde(y2),','Jtilde(y1),','Jtilde(y2),','M(y1),','M(y2)')
-    do i=1,nx
-      write(105,'(<1+ns*2+ny*6>(f15.4,","),2(I6,","))') x(i),J1(i,1,1),J1(i,1,2),J1(i,2,1),J1(i,2,2),w(i,1,1),w(i,1,2),w(i,2,1),w(i,2,2),dprimevec(i,1),dprimevec(i,2),&
-      P(i,1),P(i,2),theta(i,1),theta(i,2),R(i,1),R(i,2),Ptilde(i,1),Ptilde(i,2),Jtilde(i,1),Jtilde(i,2),M(i,1),M(i,2)
-    enddo
-close(105)
-else
-open(105,file=root_dir//out_dir//'empfuns.csv',status='replace')
-write(105,50)
-50 format('V,','J(y1;z1),','J(y1;z2),','w(y1;z1),','w(y1;z2),','dprime(y1),', &
-'P(y1),','th(y1),','R(y1),','Ptilde(e),','Ptilde(ne),','Jtilde(y1),','Jtilde(y2),','M(y1),')
-do i=1,nx
-write(105,'(<13>(f15.4,","),1(I6,","))') x(i),J1(i,1,1),J1(i,1,2),w(i,1,1),w(i,1,2),dprimevec(i,1),&
-P(i,1),theta(i,1),R(i,1),Ptilde(i,1),Ptilde(i,2),Jtilde(i,1),Jtilde(i,2),M(i,1)
-enddo
-close(105)
+  open(105,file=root_dir//out_dir//'empfuns.csv',status='replace')
+    write(105,40)
+    40 format('V,','J(y1;z1),','J(y1;z2),','J(y2;z1),','J(y2;z2),','w(y1;z1),','w(y1;z2),','w(y2;z1),','w(y2;z2),','dprime(y1),','dprime(y2),', &
+      'P(y1),','P(y2),','th(y1),','th(y2),','R(y1),','R(y2),','Ptilde(y1),','Ptilde(y2),','Jtilde(y1),','Jtilde(y2),','M(y1),','M(y2)')
+      do i=1,nx
+        write(105,'(<1+ns*2+ny*6>(f15.4,","),2(I6,","))') x(i),J1(i,1,1),J1(i,1,2),J1(i,2,1),J1(i,2,2),w(i,1,1),w(i,1,2),w(i,2,1),w(i,2,2),dprimevec(i,1),dprimevec(i,2),&
+        P(i,1),P(i,2),theta(i,1),theta(i,2),R(i,1),R(i,2),Ptilde(i,1),Ptilde(i,2),Jtilde(i,1),Jtilde(i,2),M(i,1),M(i,2)
+      enddo
+  close(105)
+elseif (nz==1 .and. ny==2) then
+  open(105,file=root_dir//out_dir//'empfuns.csv',status='replace')
+    write(105,50)
+    50 format('V,','J(y1),','J(y2),','w(y1),','w(y2),','dprime(y1),','dprime(y2),', &
+      'P(y1),','P(y2),','th(y1),','th(y1),','R(y1),','R(y1),','Ptilde(e),','Ptilde(ne),','Jtilde(y1),','Jtilde(y2),','M(y1),','M(y2),')
+      do i=1,nx
+        write(105,'(<17>(f15.4,","),2(I6,","))') x(i),J1(i,1,1),J1(i,2,1),w(i,1,1),w(i,2,1),dprimevec(i,1),dprimevec(i,2),&
+        P(i,1),P(i,2),theta(i,1),theta(i,2),R(i,1),R(i,2),Ptilde(i,1),Ptilde(i,2),Jtilde(i,1),Jtilde(i,2),M(i,1),M(i,2)
+      enddo
+  close(105)
 
+elseif (nz==2 .and. ny==1) then
+  open(105,file=root_dir//out_dir//'empfuns.csv',status='replace')
+    write(105,60)
+    60 format('V,','J(y1;z1),','J(y1;z2),','w(y1;z1),','w(y1;z2),','dprime(y1),', &
+      'P(y1),','th(y1),','R(y1),','Ptilde(e),','Ptilde(ne),','Jtilde(y1),','M(y1),')
+      do i=1,nx
+        write(105,'(<12>(f15.4,","),1(I6,","))') x(i),J1(i,1,1),J1(i,1,2),w(i,1,1),w(i,1,2),dprimevec(i,1),&
+        P(i,1),theta(i,1),R(i,1),Ptilde(i,1),Ptilde(i,2),Jtilde(i,1),M(i,1)
+      enddo
+  close(105)
+
+else
+  open(105,file=root_dir//out_dir//'empfuns.csv',status='replace')
+    write(105,70)
+    70 format('V,','J,','w,','dprime,', &
+    'P,','th,','R,','Ptilde(e),','Ptilde(ne),','Jtilde,','M,')
+    do i=1,nx
+      write(105,'(<10>(f15.4,","),1(I6,","))') x(i),J1(i,1,1),w(i,1,1),dprimevec(i,1),&
+      P(i,1),theta(i,1),R(i,1),Ptilde(i,1),Jtilde(i,1),M(i,1)
+    enddo
+  close(105)
 endif
 !Stationary Distribution
 Call wri1file(ns*nx+nu,muss,root_dir//out_dir//"muss.txt")

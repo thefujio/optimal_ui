@@ -28,7 +28,7 @@ MODULE PARAM
   character(LEN=*), parameter:: out_dir  = "output/"
   integer,          parameter:: detail = 7
 
-  integer, parameter:: nparams = 40        !For storage purposes
+  integer, parameter:: nparams = 200        !For storage purposes
   real(8), dimension(nparams):: params     !To store values of parameters
   ! LOGICAL VARIABLES TO CONTROL INITIAL VALUES AND REFINEMENTS
   logical:: use_old_v   = .false.
@@ -39,7 +39,7 @@ MODULE PARAM
   logical:: simul_only  = .false.
   
   ! GRID ON PV
-  integer, parameter    :: nx = 30
+  integer, parameter    :: nx = 50
   real(8)               :: xmin,xmax
   real(8), dimension(nx):: x
     
@@ -121,9 +121,9 @@ MODULE PARAM
   integer, parameter:: niter = 300
   integer, parameter:: nupdate = 30
   
-  ! TOLERENCE LEVEL
-  real(8):: tol = 1.0d-5
-  real(8), parameter:: high_tol = 1.0d-5
+  ! TOLERANCE LEVEL
+  real(8):: tol = 1.0d-6
+  real(8), parameter:: high_tol = 1.0d-6
   real(8), parameter:: low_tol  = 1.0d-10
   real(8), parameter:: errrel   = 1.0d-12
   

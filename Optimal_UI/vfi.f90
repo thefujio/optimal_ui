@@ -97,8 +97,6 @@ SUBROUTINE VFI(J1,U1)
     x = xnew
     endif
 
-    print*,J1(:,1,1)
-    pause
 
     if (norm<tol) EXIT
   end do

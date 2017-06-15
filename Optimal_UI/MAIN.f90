@@ -36,7 +36,7 @@ PROGRAM MAIN
       double precision, dimension(nx,ny,nz), intent(inout):: J1
       END SUBROUTINE VFI
 
-    SUBROUTINE write_output(U1,J1)
+    SUBROUTINE write_output(J1,U1)
     !  USE INTERFACES
       USE IOOP
       USE PARAM
@@ -294,7 +294,8 @@ PROGRAM MAIN
   params(9) = b
   params(10)= hp
   call wri2file(nparams,1,params,root_dir//out_dir//"params.txt")
-  call write_output(U,J)
+  print*, J(:,1,1)
+  call write_output(J,U)
   call CPU_Time(time_end)
   !Timing of the program
   write(*,"('TOTAL EXECUTION TIME (seconds): ',f8.2)") &
