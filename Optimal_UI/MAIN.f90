@@ -56,7 +56,7 @@ PROGRAM MAIN
 
     END SUBROUTINE SDI
     
-    REAL(8) FUNCTION GBD(tax,ui)
+    REAL(8) FUNCTION GBD(tax,uivec)
       !****************************************************************************
       !  GBD.f90
       !  
@@ -72,7 +72,8 @@ PROGRAM MAIN
       USE PARAM
       implicit none
       !Dummy arguments declarations
-      real(8):: tax,ui
+      real(8):: tax
+      real(8), dimension(*)   :: uivec
     END FUNCTION GBD
 
     SUBROUTINE stadist(m,pimat,pss,initpss)
@@ -240,21 +241,20 @@ PROGRAM MAIN
    U = -18.929393939237876d0
   !Set unemployment benefit: e=1 is eligible for UI
    b = bmin
-  
-  !Bisection on tax rate
-  taul = 0.0001d0
+!Bisection on tax rate
+  taul = 0.0000001d0
 !  taul = 0.037890682220459d0
-  tauu = 0.05d0
+  tauu = 0.03d0
   tau = taul
   call vfi(J,U)
   call sdi(J,U)
-  fl = gbd(taul,b)
+  fl = gbd(taul,bvec)
   write (*,'(5x,''Budget Deficit = '',f10.6)') fl
 
   tau = tauu
   call vfi(J,U)
   call sdi(J,U)
-  fu = gbd(tauu,b)
+  fu = gbd(tauu,bvec)
   write (*,'(5x,''Budget Deficit = '',f10.6)') fu
   if (fl*fu>zero) then
     write (*,'(3x,''Stop: Bisection not bracketed'')')
@@ -266,7 +266,7 @@ PROGRAM MAIN
     tau = half*(taul+tauu)
     call vfi(J,U)
     call sdi(J,U)
-    bd = gbd(tau,b)
+    bd = gbd(tau,bvec)
     if (bd>0) then
       tauu=tau
     else

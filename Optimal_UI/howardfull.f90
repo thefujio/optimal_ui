@@ -24,7 +24,6 @@ SUBROUTINE howardfull(J1,U1)
   real(8), dimension(nx,ny,nz):: J0
   real(8), dimension(ny,ne)      :: U0
   real(8), dimension(nu)      :: ExpU
-  real(8), dimension(ne):: bvec
   real(8):: dp,EJ
   real(8):: norm0,norm1
   

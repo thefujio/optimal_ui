@@ -43,7 +43,6 @@ SUBROUTINE JPRIME(U1,J1)
   !Local variables declarations
   integer:: i,ii,ie,iu,ix,iy,iz,is,ic
   integer:: ixp,iyp,izp,isp,iup
-  real(8), dimension(ne):: bvec
   real(8), dimension(nu):: ExpU
   real(8), dimension(nx):: ret
   real(8), dimension(ny,ne):: U0
@@ -60,22 +59,23 @@ SUBROUTINE JPRIME(U1,J1)
   U1 = zero
   J1 = zero
 
-  !Below I assume that there is no initial idiosyncratic uncertainty. If there
-  !were, I would need to take a stand on what the value of getting into
+  !Below I assume that there is initial idiosyncratic uncertainty. If there
+  !I need to take a stand on what the value of getting into
   !a new match is for firms. For example, in the paper all new matches
-  !have z=0. It may be just as well to flip a (fair) coin once the match
-  !is created, i.e. integrate over possible states for z.
+  !have z=0/iz=2 when nz=3. It may be just as well to flip a (fair) coin once the match
+  !is created, i.e. integrate over possible states for z (assign pzss*J0()).
  	
   !Given J, find Tightness and JFP
   if (nz==1) then
     Jtilde = J0(:,:,1)
-  else if (nz==2) then
+  else if (nz==2) then !starts at the exp. value
     Jtilde = zero
     do iz=1,nz
       Jtilde(:,:) = Jtilde(:,:) + pzss(iz)*J0(:,:,iz)
     end do
   else if (nz==3) then
-    Jtilde = J0(:,:,2)
+    Jtilde = J0(:,:,2) !no initial uncertainty, starts at midpoint
+    !Jtilde(:,:) = Jtilde(:,:) + pzss(iz)*J0(:,:,iz) !Flip a coin
   end if
   
   theta = zero

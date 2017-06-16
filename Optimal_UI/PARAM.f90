@@ -28,7 +28,7 @@ MODULE PARAM
   character(LEN=*), parameter:: out_dir  = "output/"
   integer,          parameter:: detail = 7
 
-  integer, parameter:: nparams = 200        !For storage purposes
+  integer, parameter:: nparams = 19        !For storage purposes
   real(8), dimension(nparams):: params     !To store values of parameters
   ! LOGICAL VARIABLES TO CONTROL INITIAL VALUES AND REFINEMENTS
   logical:: use_old_v   = .false.
@@ -53,7 +53,7 @@ MODULE PARAM
   real(8), dimension(ny,ny):: py
   
   ! STOCHASTIC IDIOSYNCRATIC PRODUCTIVITY
-  integer, parameter       :: nz = 2
+  integer, parameter       :: nz = 3
   real(8), dimension(nz)   :: z,pzss,Pztilde
   real(8), dimension(nz,nz):: pz
   
@@ -72,9 +72,10 @@ MODULE PARAM
   integer, parameter       :: nu = ny*ne
   integer, dimension(nu)   :: iuyfun,iuefun
   integer, dimension(ny,ne):: iufun
+  real(8), dimension(ne)   :: bvec
   real(8), dimension(nu,nu):: pus
 
-  !About 40% of avg wage
+  !About 46% of avg wage
   real(8), parameter:: bmin = 0.915d0*0.47d0
   !Home production plus UI = about 2/3 of avg. wage
   real(8), parameter:: hp = 0.915d0*0.20d0
@@ -91,8 +92,8 @@ MODULE PARAM
   real(8), dimension(nx,ny)   :: R,Ptilde
   integer, dimension(nx,ny)   :: M
 !  real(8), dimension(ny)      :: U
-  real(8), dimension(ny,ne)      :: RU,PUtilde
-  integer, dimension(ny,ne)      :: MU
+  real(8), dimension(ny,ne)   :: RU,PUtilde
+  integer, dimension(ny,ne)   :: MU
   
   !STATIONARY DISTRIBUTION
   real(8), dimension(ns*nx+nu,ns*nx+nu):: pimat
@@ -123,7 +124,7 @@ MODULE PARAM
   
   ! TOLERANCE LEVEL
   real(8):: tol = 1.0d-6
-  real(8), parameter:: high_tol = 1.0d-6
+  real(8), parameter:: high_tol = 1.0d-8
   real(8), parameter:: low_tol  = 1.0d-10
   real(8), parameter:: errrel   = 1.0d-12
   

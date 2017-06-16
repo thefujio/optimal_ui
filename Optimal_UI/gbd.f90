@@ -1,4 +1,4 @@
-REAL(8) FUNCTION GBD(tax,ui)
+REAL(8) FUNCTION GBD(tax,uivec)
   !****************************************************************************
   !  GBD.f90
   !  
@@ -15,11 +15,12 @@ REAL(8) FUNCTION GBD(tax,ui)
   implicit none
   
   !Dummy arguments declarations
-  real(8):: tax,ui
+  real(8):: tax
+  real(8), dimension(*)   :: uivec
   
   !Local variables declarations
-  integer:: is,ix,iy,iz
-  real(8):: wagebill,urate
+  integer:: is,ix,iy,iz,iu,ie
+  real(8):: wagebill,uibill,urate
   
   wagebill = zero
   do is=1,ns
@@ -29,13 +30,16 @@ REAL(8) FUNCTION GBD(tax,ui)
       wagebill = wagebill + muss((is-1)*nx+ix)*w(ix,iy,iz)
     end do
   end do
-  
+  !Adds up obligations (b+hp for eligible, and hp for ineligible)
+  uibill = zero
   urate = zero
-  do iy=1,ny
-    urate = urate + muss(ns*nx+iy)
+  do iu=1,nu
+    urate = urate + muss(ns*nx+iu)
+    ie = iuefun(iu)
+    uibill = uibill + uivec(ie)*muss(ns*nx+iu)
   end do
   
-  GBD = tax*wagebill - ui*urate
+  GBD = tax*wagebill - uibill
   
   RETURN
 END FUNCTION GBD
