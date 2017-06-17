@@ -38,7 +38,7 @@ SUBROUTINE stadist(m,pimat,pss,initpss)
     if (dabs(SUM(pimat(i,:))-one) .GT. tol) then
       write(*,'(''row '',i3,'' does not sum to 1'')')  i
       write(*,'(''SUM(mat('',i3,'',:) = '',f14.10)') i,SUM(pimat(i,:))
-      STOP
+      pause
     end if
   end do
   

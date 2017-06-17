@@ -190,31 +190,64 @@ PROGRAM MAIN
   end do
 
   !Transition matrix for UI eligibility
+  ! if ne>1, gridpt ne is ineligible.
   if(ne==1) then
-  pe = one
+    pe = one
   else if (ne==2) then
-  pe(1,1) = one - psi
-  pe(1,2) = psi
-  pe(2,2) = one
-  pe(2,1) = zero
+    pe(1,1) = one - psi
+    pe(1,2) = psi
+    pe(2,2) = one
+    pe(2,1) = zero
+  else if (ne>2) then
+    do ie=1,ne-1
+      pe(ie,ie) = one-psi
+      pe(ie,ne) = psi
+    end do
+    pe(ne,ne) = one
   end if
+
   !Transition process for unemployed over agg. state and eligibility
   i=1
   do iy=1,ny
-      do ie=1,ne
+    do ie=1,ne
       iuyfun(i) = iy
       iuefun(i) = ie
       jj=1
-        do iyp=1,ny
-          do iep=1,ne
-            pus(i,jj) = py(iy,iyp)*pe(ie,iep)
-            jj=jj+1
-          end do
+      do iyp=1,ny
+        do iep=1,ne
+          pus(i,jj) = py(iy,iyp)*pe(ie,iep)
+          jj=jj+1
         end do
+      end do
       iufun(iy,ie) = i
       i=i+1
     end do
   end do
+
+  !Grid of unemployment benefits (e) (past wage):
+  !replacement rate is roughly 46% in U.S.
+  if (ne==1) then
+    bvec = hp+bmin
+  elseif (ne==2) then
+    bvec(1) = hp+bmin
+    bvec(2) = hp
+    print*, 'bvec:', bvec
+  elseif (ne>2) then
+    rr = 0.46
+    emin = 0.9d0*MINVAL(y)+MINVAL(z)
+    emax = MAXVAL(y)+MAXVAL(z)
+    e(1:ne-1) = (/ ( &
+    ((emax-emin)/(real(ne-2,8)))*(real(i-1,8)) + emin, i=1,ne-1) /)
+    e(ne) = zero
+    call wri2file(ne,1,e,root_dir//out_dir//"egrid.txt")
+
+  !Set unemployment benefit: e=1:ne-1 is eligible for UI ne = ineligible (wage=0)
+      do ie=1,ne-1
+        bvec(ie) = hp+rr*e(ie)
+      end do
+      bvec(ne) = hp
+    print*, 'bvec:', bvec
+  endif
   !Grid on PVU (x)
   xmin = Ufunc(hp+bmin)/(one-betta)
   xmax = Ufunc(MAXVAL(y)+MAXVAL(z))/(one-betta)
@@ -239,12 +272,10 @@ PROGRAM MAIN
 !  call readfile(nx,1,x,root_dir//out_dir//"x.txt")
 !  call readfile(nx,1,J,root_dir//out_dir//"jfunc.txt")
    U = -18.929393939237876d0
-  !Set unemployment benefit: e=1 is eligible for UI
-   b = bmin
 !Bisection on tax rate
   taul = 0.0000001d0
 !  taul = 0.037890682220459d0
-  tauu = 0.03d0
+  tauu = 0.06d0
   tau = taul
   call vfi(J,U)
   call sdi(J,U)
@@ -291,7 +322,7 @@ PROGRAM MAIN
   params(6) = delta
   params(7) = kappa
   params(8) = nx
-  params(9) = b
+  params(9) = rr
   params(10)= hp
   call wri2file(nparams,1,params,root_dir//out_dir//"params.txt")
   print*, J(:,1,1)

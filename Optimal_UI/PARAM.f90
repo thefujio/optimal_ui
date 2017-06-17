@@ -28,7 +28,7 @@ MODULE PARAM
   character(LEN=*), parameter:: out_dir  = "output/"
   integer,          parameter:: detail = 7
 
-  integer, parameter:: nparams = 19        !For storage purposes
+  integer, parameter:: nparams = 20        !For storage purposes
   real(8), dimension(nparams):: params     !To store values of parameters
   ! LOGICAL VARIABLES TO CONTROL INITIAL VALUES AND REFINEMENTS
   logical:: use_old_v   = .false.
@@ -37,9 +37,9 @@ MODULE PARAM
   logical:: do_refine   = .false.
   logical:: want_refine = .true.
   logical:: simul_only  = .false.
-  
+    
   ! GRID ON PV
-  integer, parameter    :: nx = 50
+  integer, parameter    :: nx = 30
   real(8)               :: xmin,xmax
   real(8), dimension(nx):: x
     
@@ -65,7 +65,12 @@ MODULE PARAM
   real(8), dimension(ns,ns):: ps
 
   !Stochastic Expiration of UI benefits
-  integer, parameter       :: ne=2
+  ! GRID ON UI benefit (past wage+ineligible)
+  integer, parameter    :: ne = 21
+  !integer, parameter    :: ne=2
+  real(8)               :: emin,emax
+  real(8), dimension(ne):: e
+
   real(8), parameter       :: psi = 1.0d0/6.0d0
   real(8), dimension(ne,ne):: pe
   !Index Conversion for unemployment transmat
@@ -76,7 +81,7 @@ MODULE PARAM
   real(8), dimension(nu,nu):: pus
 
   !About 46% of avg wage
-  real(8), parameter:: bmin = 0.915d0*0.47d0
+  real(8), parameter:: bmin = 0.915d0*0.46d0
   !Home production plus UI = about 2/3 of avg. wage
   real(8), parameter:: hp = 0.915d0*0.20d0
   ! CONTRACT SPACE
@@ -84,9 +89,11 @@ MODULE PARAM
   integer, allocatable:: cont(:,:)
   
   ! CURRENT VALUE FUNCTIONS AND POLICY RULES
-  real(8), dimension(nx,ny)   :: theta,P,dprimevec
+  real(8), dimension(nx,ny)   :: theta,P
+  real(8), dimension(nx,ny,ne):: dprimevec
 !  real(8), dimension(nx,ny,nz):: J
   real(8), dimension(nx,ny,nz):: w
+  integer, dimension(nx,ny,nz):: wind
   real(8), dimension(nx,ns,ns):: dprime
   integer, dimension(nx,ns,ns):: iVprime
   real(8), dimension(nx,ny)   :: R,Ptilde
@@ -112,11 +119,13 @@ MODULE PARAM
   real(8), parameter:: kappa  = 0.029d0
   
   !INITIAL CONDITIONS AND POLICY PARAMETERS
-  real(8):: tau,b
+  real(8):: tau,rr
 
   !Aggregate Statistics
   real(8):: ee,eu,ue,unemp,em,EUflow,EEflow,UEflow
-  real(8):: tot_wage,avg_wage,transfers,welfare
+  real(8):: tot_wage,avg_wage,avg_benefit,transfers,welfare
+  integer:: avg_wage_ind
+
   !PROGRAMMING PARAMETERS
   ! FLOW CONTROLS
   integer, parameter:: niter = 300
@@ -124,7 +133,7 @@ MODULE PARAM
   
   ! TOLERANCE LEVEL
   real(8):: tol = 1.0d-6
-  real(8), parameter:: high_tol = 1.0d-8
+  real(8), parameter:: high_tol = 1.0d-6
   real(8), parameter:: low_tol  = 1.0d-10
   real(8), parameter:: errrel   = 1.0d-12
   

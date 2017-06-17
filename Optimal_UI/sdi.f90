@@ -31,8 +31,9 @@ SUBROUTINE SDI(J1,U1)
   double precision, dimension(nx,ny,nz), intent(in):: J1
   
   !Local variables declarations
-  integer:: is,ix,iy,iz,iu
+  integer:: is,ix,iy,iz,iu,ie
   integer:: isp,ixp,iyp,izp,iup,ixpojs
+  real(8), dimension(ne):: tempe
   real(8), dimension(ns*nx+nu):: muinit
   real(8):: Pojs,dp,PU
   
@@ -61,12 +62,14 @@ SUBROUTINE SDI(J1,U1)
         ixpojs = M(ixp,iyp) !this is the market in which (ixp,iyp) searches
         Pojs   = lambda*Ptilde(ixpojs,iyp) !this is the prob of success of OJS
         !transits to contract Vprime
-        pimat((is-1)*nx+ix,(isp-1)*nx+ixp) = ps(is,isp)*(1.0d0-dp)*(1.0d0-Pojs)
+        pimat((is-1)*nx+ix,(isp-1)*nx+ixp) = pimat((is-1)*nx+ix,(isp-1)*nx+ixp) + &
+            ps(is,isp)*(1.0d0-dp)*(1.0d0-Pojs)
         !transits to OJS market
-        pimat((is-1)*nx+ix,(isp-1)*nx+ixpojs) = &
-            pimat((is-1)*nx+ix,(isp-1)*nx+ixpojs) + ps(is,isp)*(1.0d0-dp)*Pojs
+        pimat((is-1)*nx+ix,(isp-1)*nx+ixpojs) = pimat((is-1)*nx+ix,(isp-1)*nx+ixpojs) + &
+            ps(is,isp)*(1.0d0-dp)*Pojs
         !transits to unemployment (and eligible for UI)
-        pimat((is-1)*nx+ix,ns*nx+iufun(iyp,1)) = pimat((is-1)*nx+ix,ns*nx+iufun(iyp,1)) + ps(is,isp)*dp
+        pimat((is-1)*nx+ix,ns*nx+iufun(iyp,wind(ix,iyfun(is),izfun(is)))) = pimat((is-1)*nx+ix,ns*nx+iufun(iyp,wind(ix,iyfun(is),izfun(is)))) + &
+            ps(is,isp)*dp
       end do
     end do
   end do
@@ -77,11 +80,11 @@ SUBROUTINE SDI(J1,U1)
       ixp = MU(iuyfun(iup),iuefun(iup)) !this is the market in which U(iyp) searches
       PU = PUtilde(iuyfun(iup),iuefun(iup)) !this is the prob of success of search
       !transits back to unemployment
-      pimat(ns*nx+iu,ns*nx+iup) = pus(iu,iup)*(one-PU)
+      pimat(ns*nx+iu,ns*nx+iup) = pimat(ns*nx+iu,ns*nx+iup) + pus(iu,iup)*(one-PU)
       do izp=1,nz
         !transits to market ixp in state isp=(iyp,izp)
         isp = isfun(iuyfun(iup),izp)
-        pimat(ns*nx+iu,(isp-1)*nx+ixp) = pus(iu,iup)*Pztilde(izp)*PU
+        pimat(ns*nx+iu,(isp-1)*nx+ixp) = pimat(ns*nx+iu,(isp-1)*nx+ixp) + pus(iu,iup)*Pztilde(izp)*PU
       end do
     end do
   end do
@@ -90,7 +93,7 @@ SUBROUTINE SDI(J1,U1)
   !setting initial distribution to all unemployed
   muinit = zero
   muinit(ns*nx+1:) = one/dble(nu)
-  
+
   call stadist(ns*nx+nu,pimat,muss,muinit)
 
   !Aggregate Statistics
@@ -100,9 +103,9 @@ SUBROUTINE SDI(J1,U1)
   do is=1,ns
     do ix=1,nx
       do isp=1,ns
-        eu = eu + ps(is,isp)*dprimevec(ix,iyfun(isp))*muss((is-1)*nx+ix)
+        eu = eu + ps(is,isp)*dprimevec(ix,iyfun(isp),wind(ix,iyfun(is),izfun(is)))*muss((is-1)*nx+ix)
         ee = ee + &
-        ps(is,isp)*(1.0d0-dprimevec(ix,iyfun(isp)))*lambda*Ptilde(ix,iyfun(isp))*muss((is-1)*nx+ix)
+        ps(is,isp)*(1.0d0-dprimevec(ix,iyfun(isp),wind(ix,iyfun(is),izfun(is))))*lambda*Ptilde(ix,iyfun(isp))*muss((is-1)*nx+ix)
       end do
     end do
   end do
@@ -129,9 +132,21 @@ SUBROUTINE SDI(J1,U1)
   end do
   avg_wage = tot_wage/em
 
-  transfers = b*unemp
+  if (ne>2) then
+    do ie=1,ne
+      tempe(ie) = DABS(e(ie)-avg_wage)
+    end do
+    avg_wage_ind = MINLOC(tempe, DIM=1)
+  endif
 
+  transfers = zero
+  do iu=1,nu
+  transfers = transfers + bvec(iuefun(iu))*muss(ns*nx+iu)
+  end do
 
+  avg_benefit = transfers/unemp
+
+  welfare = zero
   do iu=1,nu
     welfare = welfare + U1(iuyfun(iu),iuefun(iu))*muss(ns*nx+iu)
   end do

@@ -68,7 +68,7 @@ if (nz==2 .and. ny==2) then
     40 format('V,','J(y1;z1),','J(y1;z2),','J(y2;z1),','J(y2;z2),','w(y1;z1),','w(y1;z2),','w(y2;z1),','w(y2;z2),','dprime(y1),','dprime(y2),', &
       'P(y1),','P(y2),','th(y1),','th(y2),','R(y1),','R(y2),','Ptilde(y1),','Ptilde(y2),','Jtilde(y1),','Jtilde(y2),','M(y1),','M(y2)')
       do i=1,nx
-        write(105,'(<1+ns*2+ny*6>(f15.4,","),2(I6,","))') x(i),J1(i,1,1),J1(i,1,2),J1(i,2,1),J1(i,2,2),w(i,1,1),w(i,1,2),w(i,2,1),w(i,2,2),dprimevec(i,1),dprimevec(i,2),&
+        write(105,'(<1+ns*2+ny*6>(f15.4,","),2(I6,","))') x(i),J1(i,1,1),J1(i,1,2),J1(i,2,1),J1(i,2,2),w(i,1,1),w(i,1,2),w(i,2,1),w(i,2,2),dprimevec(i,1,1),dprimevec(i,2,1),&
         P(i,1),P(i,2),theta(i,1),theta(i,2),R(i,1),R(i,2),Ptilde(i,1),Ptilde(i,2),Jtilde(i,1),Jtilde(i,2),M(i,1),M(i,2)
       enddo
   close(105)
@@ -78,7 +78,7 @@ elseif (nz==1 .and. ny==2) then
     50 format('V,','J(y1),','J(y2),','w(y1),','w(y2),','dprime(y1),','dprime(y2),', &
       'P(y1),','P(y2),','th(y1),','th(y1),','R(y1),','R(y1),','Ptilde(e),','Ptilde(ne),','Jtilde(y1),','Jtilde(y2),','M(y1),','M(y2),')
       do i=1,nx
-        write(105,'(<17>(f15.4,","),2(I6,","))') x(i),J1(i,1,1),J1(i,2,1),w(i,1,1),w(i,2,1),dprimevec(i,1),dprimevec(i,2),&
+        write(105,'(<17>(f15.4,","),2(I6,","))') x(i),J1(i,1,1),J1(i,2,1),w(i,1,1),w(i,2,1),dprimevec(i,1,1),dprimevec(i,2,1),&
         P(i,1),P(i,2),theta(i,1),theta(i,2),R(i,1),R(i,2),Ptilde(i,1),Ptilde(i,2),Jtilde(i,1),Jtilde(i,2),M(i,1),M(i,2)
       enddo
   close(105)
@@ -89,7 +89,7 @@ elseif (nz==2 .and. ny==1) then
     60 format('V,','J(y1;z1),','J(y1;z2),','w(y1;z1),','w(y1;z2),','dprime(y1),', &
       'P(y1),','th(y1),','R(y1),','Ptilde(e),','Ptilde(ne),','Jtilde(y1),','M(y1),')
       do i=1,nx
-        write(105,'(<12>(f15.4,","),1(I6,","))') x(i),J1(i,1,1),J1(i,1,2),w(i,1,1),w(i,1,2),dprimevec(i,1),&
+        write(105,'(<12>(f15.4,","),1(I6,","))') x(i),J1(i,1,1),J1(i,1,2),w(i,1,1),w(i,1,2),dprimevec(i,1,1),&
         P(i,1),theta(i,1),R(i,1),Ptilde(i,1),Ptilde(i,2),Jtilde(i,1),M(i,1)
       enddo
   close(105)
@@ -100,7 +100,7 @@ write(105,70)
 70 format('V,','J(y1;z1),','J(y1;z2),','J(y1;z3),','w(y1;z1),','w(y1;z2),','w(y1;z3),','dprime(y1),', &
 'P(y1),','th(y1),','R(y1),','Ptilde(e),','Ptilde(ne),','Jtilde(y1),','M(y1),')
 do i=1,nx
-write(105,'(<14>(f15.4,","),1(I6,","))') x(i),J1(i,1,1),J1(i,1,2),J1(i,1,3),w(i,1,1),w(i,1,2),w(i,1,3),dprimevec(i,1),&
+write(105,'(<14>(f15.4,","),1(I6,","))') x(i),J1(i,1,1),J1(i,1,2),J1(i,1,3),w(i,1,1),w(i,1,2),w(i,1,3),dprimevec(i,1,1),&
 P(i,1),theta(i,1),R(i,1),Ptilde(i,1),Ptilde(i,2),Jtilde(i,1),M(i,1)
 enddo
 close(105)
@@ -111,7 +111,7 @@ else
     80 format('V,','J,','w,','dprime,', &
     'P,','th,','R,','Ptilde(e),','Ptilde(ne),','Jtilde,','M,')
     do i=1,nx
-      write(105,'(<10>(f15.4,","),1(I6,","))') x(i),J1(i,1,1),w(i,1,1),dprimevec(i,1),&
+      write(105,'(<10>(f15.4,","),1(I6,","))') x(i),J1(i,1,1),w(i,1,1),dprimevec(i,1,1),&
       P(i,1),theta(i,1),R(i,1),Ptilde(i,1),Jtilde(i,1),M(i,1)
     enddo
   close(105)
@@ -127,6 +127,18 @@ if (nz==2 .and. ny==1) then
       write(107,'((f15.4,","),<2*ns>(I6,","))') x(i),iVprime(i,1,1),iVprime(i,1,2),iVprime(i,2,1),iVprime(i,2,2)
     enddo
   close(107)
+endif
+
+if (ne>2) then
+  open(109,file=root_dir//out_dir//'ufuns.csv',status='replace')
+    write(109,90)
+    90 format('Past Wage,','U(y1),','U(y2),','wtilde(y1;z1),','wtilde(y1;z2),','wtilde(y2;z1),','wtilde(y2;z2),', &
+'PUtilde(y1),','PUtilde(y2),','RU(y1),','RU(y2),','MU(y1),','MU(y2)')
+    do i=1,ne
+      write(109,'(<1+ny*nz+ny*3>(f15.4,","),2(I6,","))') e(i),U1(1,i),U1(2,i),w(MU(1,i),1,1),w(MU(1,i),1,2),w(MU(2,i),2,1),w(MU(2,i),2,2), &
+          PUtilde(1,i),PUtilde(2,i),RU(1,i),RU(2,i),MU(1,i),MU(2,i)
+    enddo
+  close(109)
 endif
 
 !Stationary Distribution
@@ -163,7 +175,7 @@ params(5) = lambda
 params(6) = delta
 params(7) = kappa
 params(8) = nx
-params(9) = b
+params(9) = rr
 params(10)= hp
 params(11)= em
 params(12)= unemp
@@ -172,8 +184,9 @@ params(14)= EEflow
 params(15)= EUflow
 params(16)= tot_wage
 params(17)= avg_wage
-params(18)= transfers
-params(19)= welfare
+params(18)= avg_benefit
+params(19)= transfers
+params(20)= welfare
 call wri2file(nparams,1,params,root_dir//out_dir//"params.txt")
 
 END SUBROUTINE write_output

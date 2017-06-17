@@ -66,7 +66,11 @@ SUBROUTINE VFI(J1,U1)
   do iter=1,niter
     U0 = U1
     J0 = J1
-    call jprime(U1,J1)
+    if (ne>2) then
+      call jprime_wage(U1,J1)
+    else
+      call jprime(U1,J1)
+    endif
     norm = MAXVAL(dabs(J1-J0))
     write(*,'(5x,''norm at iteration '',i3,'' = '',f15.8)') iter,norm
     write(*,'(5x,''xmin: '',f11.6,'' xmax: '',f11.6)') xmin, xmax

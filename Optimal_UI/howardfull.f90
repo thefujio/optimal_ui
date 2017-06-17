@@ -32,9 +32,7 @@ SUBROUTINE howardfull(J1,U1)
   do iter=1,nupdate
     U0 = U1
     !Update the value of unemployment
-    bvec(1) = hp + b
-    bvec(2) = hp
-    do i=1,nu
+      do i=1,nu
       ExpU(i) = zero
       do ii=1,nu
         ExpU(i) = ExpU(i) + pus(i,ii)*(U0(iuyfun(ii),iuefun(ii))+RU(iuyfun(ii),iuefun(ii)))

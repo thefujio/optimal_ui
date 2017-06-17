@@ -107,8 +107,6 @@ SUBROUTINE JPRIME(U1,J1)
     end do
   end do
   !Update the value of unemployment
-  bvec(1) = hp + b
-  bvec(2) = hp
   do i=1,nu
     ExpU(i) = zero
     do ii=1,nu
@@ -144,7 +142,7 @@ SUBROUTINE JPRIME(U1,J1)
   do ix=1,nx
     do iy=1,ny
       if (U1(iy,1)>x(ix)+lambda*R(ix,iy)) then
-        dprimevec(ix,iy) = 1.0d0
+        dprimevec(ix,iy,:) = 1.0d0
       end if
     end do
   end do
@@ -167,7 +165,7 @@ SUBROUTINE JPRIME(U1,J1)
           izp = izfun(isp)   !this gives the idiosyncratic state in is'
           ixp = cont(ic,isp) !this is the index of V' in state is'
           Vp = x(ixp)        !this is V' in state s'
-          dp = dprimevec(ixp,iyp) !This is dprime
+          dp = dprimevec(ixp,iyp,1) !This is dprime
           EV = EV + betta*ps(is,isp)*(dp*U1(iyp,1) + (1-dp)*(Vp+lambda*R(ixp,iyp)))
           EJ = EJ + betta*ps(is,isp)*((one-dp)*(one-lambda*Ptilde(ixp,iyp))*J0(ixp,iyp,izp))
         end do
@@ -183,11 +181,12 @@ SUBROUTINE JPRIME(U1,J1)
       J1(ix,iy,iz)  = MAXVAL(Jtemp)
       iJ1(ix,iy,iz) = MAXLOC(Jtemp,DIM=1)
       w(ix,iy,iz)   = wage(iJ1(ix,iy,iz))
+      wind(ix,iy,iz) = 1
       iVprime(ix,is,:) = cont(iJ1(ix,iy,iz),:)
       do isp=1,ns
         iyp = iyfun(isp)
         ixp = cont(iJ1(ix,iy,iz),isp)
-        dprime(ix,is,isp) = dprimevec(ixp,iyp)
+        dprime(ix,is,isp) = dprimevec(ixp,iyp,1)
       end do
     end do
   end do
