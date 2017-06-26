@@ -208,7 +208,9 @@ do is=1,ns
       dprime(ix,is,isp) = dprimevec(ixp,iyp,wind(ix,iy,iz))
     end do
   end do
-  print*,'is: ', is
+  if (want_print) then
+    print*,'is: ', is
+  endif
 end do
 
 if (do_howard) then

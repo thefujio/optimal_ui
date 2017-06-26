@@ -72,14 +72,19 @@ SUBROUTINE VFI(J1,U1)
       call jprime(U1,J1)
     endif
     norm = MAXVAL(dabs(J1-J0))
+    if (want_print) then
     write(*,'(5x,''norm at iteration '',i3,'' = '',f15.8)') iter,norm
     write(*,'(5x,''xmin: '',f11.6,'' xmax: '',f11.6)') xmin, xmax
+    endif
     if (iter>2 .AND. want_howard) do_howard   = .true.
 
     !adjust space of grid of submarkets
     !print*, dprime(:,1,1)
     !print*, theta
-    print*, 'U: ', U1
+    if (want_print) then
+      print*, 'U: ', U1
+    endif
+
     if (norm > 1.0d-3) then
     call centergrid(xnew,xmin,xmax)
     !interpolate J on the new submarket grid
@@ -97,7 +102,9 @@ SUBROUTINE VFI(J1,U1)
       enddo
     enddo
     normx = MAXVAL(dabs(xnew-x))
-    print*, 'norm of Xnew-X:', normx
+    if (want_print) then
+      print*, 'norm of Xnew-X:', normx
+    endif
     x = xnew
     endif
 

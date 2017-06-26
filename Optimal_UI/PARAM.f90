@@ -27,58 +27,79 @@ MODULE PARAM
   character(LEN=*), parameter:: root_dir = "/Users/fujio/Fortran/Optimal_UI/Optimal_UI/"
   character(LEN=*), parameter:: out_dir  = "output/"
   integer,          parameter:: detail = 7
+  integer,          parameter:: calibout = 8
 
-  integer, parameter:: nparams = 20        !For storage purposes
+
+  integer, parameter:: nparams = 21        !For storage purposes
   real(8), dimension(nparams):: params     !To store values of parameters
   ! LOGICAL VARIABLES TO CONTROL INITIAL VALUES AND REFINEMENTS
   logical:: use_old_v   = .false.
   logical:: do_howard   = .false.
-  logical:: want_howard = .true.
+  logical:: want_howard = .false.
   logical:: do_refine   = .false.
   logical:: want_refine = .true.
   logical:: simul_only  = .false.
-    
+  logical:: want_print  = .false.
+
+  !Flag for whether optimization routine used is going to be unconstrained (1) or bound-constrained (0)
+  integer,          parameter:: transform = 1
+  !Calibration Targets:
+  real(8), parameter        :: jfptarget = 0.450d0
+  real(8), parameter        :: septarget = 0.026d0
+  real(8), parameter        :: j_jtarget = 0.060d0
+  real(8)                   :: funcerror
+
+  !Initial Guess on Calibrated Parameters
+  integer, parameter        :: dims = 3
+  real(8), dimension(dims), parameter   :: guess     = (/ 0.066205d0, 0.025d0, 0.46264d0 /) !kappa, delta, lambda
+  real(8), dimension(dims), parameter   :: lb        = (/ 0.020000d0, 0.010d0, 0.15000d0 /)
+  real(8), dimension(dims), parameter   :: ub        = (/ 0.120000d0, 0.030d0, 1.00000d0 /)
+  real(8)                               :: kappa, delta, lambda
+  !Spread for restr/unrestr function - must be larger than 1!
+  real(8), parameter:: spread = 2.000d0
+  real(8), parameter:: pie = 3.14159265d0
+
   ! GRID ON PV
-  integer, parameter    :: nx = 30
-  real(8)               :: xmin,xmax
-  real(8), dimension(nx):: x
+  integer, parameter        :: nx = 30
+  real(8)                   :: xmin,xmax
+  real(8), dimension(nx)    :: x
     
   ! STOCHASTIC AGGREGATE PRODUCTIVITY
-  integer, parameter       :: ny = 1
+  integer, parameter        :: ny = 1
   !NBER avg lenght (month) of recession (1945-2009)
-  real(8), parameter       :: recession_length = 11.1d0
+  real(8), parameter        :: recession_length = 11.1d0
   !NBER avg lenght (month) of booms (1945-2009)
-  real(8), parameter       :: boom_length = 58.4d0
-  real(8), dimension(ny)   :: y,pyss
-  real(8), dimension(ny,ny):: py
+  real(8), parameter        :: boom_length = 58.4d0
+  real(8), dimension(ny)    :: y,pyss
+  real(8), dimension(ny,ny) :: py
   
   ! STOCHASTIC IDIOSYNCRATIC PRODUCTIVITY
-  integer, parameter       :: nz = 3
-  real(8), dimension(nz)   :: z,pzss,Pztilde
-  real(8), dimension(nz,nz):: pz
+  integer, parameter        :: nz = 3
+  real(8), dimension(nz)    :: z,pzss,Pztilde
+  real(8), dimension(nz,nz) :: pz
   
   ! INDEX CONVERSION
-  integer, parameter       :: ns = ny*nz
-  integer, dimension(ns)   :: iyfun,izfun
-  integer, dimension(ny,nz):: isfun
-  real(8), dimension(ns)   :: psss
-  real(8), dimension(ns,ns):: ps
+  integer, parameter        :: ns = ny*nz
+  integer, dimension(ns)    :: iyfun,izfun
+  integer, dimension(ny,nz) :: isfun
+  real(8), dimension(ns)    :: psss
+  real(8), dimension(ns,ns) :: ps
 
   !Stochastic Expiration of UI benefits
   ! GRID ON UI benefit (past wage+ineligible)
-  integer, parameter    :: ne = 21
-  !integer, parameter    :: ne=2
-  real(8)               :: emin,emax
-  real(8), dimension(ne):: e
+  sinteger, parameter        :: ne = 31
+  !integer, parameter       :: ne=2
+  real(8)                   :: emin,emax
+  real(8), dimension(ne)    :: e
 
-  real(8), parameter       :: psi = 1.0d0/6.0d0
-  real(8), dimension(ne,ne):: pe
+  real(8), parameter        :: psi = 1.0d0/6.0d0
+  real(8), dimension(ne,ne) :: pe
   !Index Conversion for unemployment transmat
-  integer, parameter       :: nu = ny*ne
-  integer, dimension(nu)   :: iuyfun,iuefun
-  integer, dimension(ny,ne):: iufun
-  real(8), dimension(ne)   :: bvec
-  real(8), dimension(nu,nu):: pus
+  integer, parameter        :: nu = ny*ne
+  integer, dimension(nu)    :: iuyfun,iuefun
+  integer, dimension(ny,ne) :: iufun
+  real(8), dimension(ne)    :: bvec
+  real(8), dimension(nu,nu) :: pus
 
   !About 46% of avg wage
   real(8), parameter:: bmin = 0.915d0*0.46d0
@@ -114,9 +135,9 @@ MODULE PARAM
   
   ! MATCHING TECHNOLOGY, SEARCH, SEPARATION, COST
   real(8), parameter:: gamma  = 0.500d0
-  real(8), parameter:: lambda = 1.000d0
-  real(8), parameter:: delta  = 0.026d0
-  real(8), parameter:: kappa  = 0.029d0
+  !real(8), parameter:: lambda = 1.000d0
+  !real(8), parameter:: delta  = 0.026d0
+  !real(8), parameter:: kappa  = 0.029d0
   
   !INITIAL CONDITIONS AND POLICY PARAMETERS
   real(8):: tau,rr

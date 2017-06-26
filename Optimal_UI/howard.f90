@@ -55,14 +55,15 @@ SUBROUTINE howard(J1)
       end do
     end do
     norm1 = MAXVAL(dabs(J1-J0))
-    print*, 'howard iteration: ', iter
+    if (want_print) then
+      print*, 'howard iteration: ', iter
+    endif
     if (norm1<high_tol) then
-      EXIT
+            EXIT
     else if (iter>1 .and. norm1>norm0) then
       write(*,"('Norm went up: No Howard this iteration')")
       EXIT
     end if
   end do
-  
   RETURN
 END SUBROUTINE howard

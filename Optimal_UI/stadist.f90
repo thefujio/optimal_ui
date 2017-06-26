@@ -79,7 +79,7 @@ SUBROUTINE stadist(m,pimat,pss,initpss)
   if (dabs(psstot-one).gt.tol) then
     print *, 'THE STATIONARY DISTRIBUTION DOES NOT ADD UP TO ONE'
     print *, 'psstot = ',psstot
-    STOP
+    PAUSE
   end if
   
   !LAST CARD OF SUBROUTINE stadist

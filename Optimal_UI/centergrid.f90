@@ -21,10 +21,13 @@ real(8):: gridstep
 integer:: ND1, NT0
 gridstep = (xu-xl)/real(nx-1,8)
 ND1=count(dprimevec(:,1,1) == 1.0d0)
+if (want_print) then
 print*, 'Submkts w/delta=1:',ND1
+endif
 NT0=count(theta(:,ny) == 0.0d0)
+if (want_print) then
 print*, 'Submkts w/theta=0:',NT0
-
+endif
 if (ND1 >= 5) then
 xl = xl + 0.05d0*gridstep*real(ND1,8)
 else if (ND1<=2) then
@@ -40,9 +43,9 @@ end if
 xgrid(1:nx) = (/ ( &
 ((xu-xl)/(real(nx-1,8)))*(real(i-1,8)) + xl, i=1,nx &
 ) /)
-
+if (want_print) then
 print*, 'gridstep= ',gridstep
 print*, 'xmin = : ', xl, ' xmax = : ', xu
-
+endif
 RETURN
 END SUBROUTINE centergrid

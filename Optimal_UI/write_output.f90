@@ -36,14 +36,14 @@ real(8), dimension(nx,ny)   :: Jtilde
 real(8), dimension(nx+nu):: muvec
 
 if (nz==1) then
-Jtilde = J1(:,:,1)
+  Jtilde = J1(:,:,1)
 else if (nz==2) then
-Jtilde = zero
-do iz=1,nz
-Jtilde(:,:) = Jtilde(:,:) + pzss(iz)*J1(:,:,iz)
-end do
+  Jtilde = zero
+  do iz=1,nz
+    Jtilde(:,:) = Jtilde(:,:) + pzss(iz)*J1(:,:,iz)
+  end do
 else if (nz==3) then
-Jtilde = J1(:,:,2)
+  Jtilde = J1(:,:,2)
 end if
 
 
@@ -60,7 +60,7 @@ Call wri2file(nx,ny,Jtilde,root_dir//out_dir//"Jtilde.txt")
 Call wri2file(nx,ny,dprimevec,root_dir//out_dir//"dprime.txt")
 Call int2file(nx,ny,M,root_dir//out_dir//"M.txt")
 
-!Call wri3file(nx,ny,nz,J1,root_dir//out_dir//"J.txt")
+Call wri3file(nx,ny,nz,J1,root_dir//out_dir//"J.txt")
 !Call wri3file(nx,ny,nz,w,root_dir//out_dir//"w.txt")
 if (nz==2 .and. ny==2) then
   open(105,file=root_dir//out_dir//'empfuns.csv',status='replace')
@@ -176,17 +176,18 @@ params(6) = delta
 params(7) = kappa
 params(8) = nx
 params(9) = rr
-params(10)= hp
-params(11)= em
-params(12)= unemp
-params(13)= UEflow
-params(14)= EEflow
-params(15)= EUflow
-params(16)= tot_wage
-params(17)= avg_wage
-params(18)= avg_benefit
-params(19)= transfers
-params(20)= welfare
+params(10)= tau
+params(11)= hp
+params(12)= em
+params(13)= unemp
+params(14)= UEflow
+params(15)= EEflow
+params(16)= EUflow
+params(17)= tot_wage
+params(18)= avg_wage
+params(19)= avg_benefit
+params(20)= transfers
+params(21)= welfare
 call wri2file(nparams,1,params,root_dir//out_dir//"params.txt")
 
 END SUBROUTINE write_output
