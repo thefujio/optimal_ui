@@ -195,7 +195,7 @@
     end do
   end do
   !If code has been run already, use existing solution to speed up:
-    call readfile(nx,1,x,root_dir//out_dir//"x.txt")
-    call read3file(nx,ny,nz,J1,root_dir//out_dir//"J.txt")
+    !call readfile(nx,1,x,root_dir//out_dir//"x.txt")
+    !call read3file(nx,ny,nz,J1,root_dir//out_dir//"J.txt")
   !
   END SUBROUTINE STATES

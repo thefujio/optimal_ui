@@ -39,7 +39,7 @@ MODULE PARAM
   logical:: do_refine   = .false.
   logical:: want_refine = .true.
   logical:: simul_only  = .false.
-  logical:: want_print  = .false.
+  logical:: want_print  = .true.
 
   !Flag for whether optimization routine used is going to be unconstrained (1) or bound-constrained (0)
   integer,          parameter:: transform = 1
@@ -51,9 +51,9 @@ MODULE PARAM
 
   !Initial Guess on Calibrated Parameters
   integer, parameter        :: dims = 3
-  real(8), dimension(dims), parameter   :: guess     = (/ 0.066205d0, 0.025d0, 0.46264d0 /) !kappa, delta, lambda
-  real(8), dimension(dims), parameter   :: lb        = (/ 0.020000d0, 0.010d0, 0.15000d0 /)
-  real(8), dimension(dims), parameter   :: ub        = (/ 0.120000d0, 0.030d0, 1.00000d0 /)
+  real(8), dimension(dims), parameter   :: guess     = (/ 0.07271306d0, 0.02600000d0, 0.47155190d0 /) !kappa, delta, lambda
+  real(8), dimension(dims), parameter   :: lb        = (/ 0.02000000d0, 0.01000000d0, 0.15000000d0 /)
+  real(8), dimension(dims), parameter   :: ub        = (/ 0.12000000d0, 0.03000000d0, 1.00000000d0 /)
   real(8)                               :: kappa, delta, lambda
   !Spread for restr/unrestr function - must be larger than 1!
   real(8), parameter:: spread = 2.000d0
@@ -87,8 +87,8 @@ MODULE PARAM
 
   !Stochastic Expiration of UI benefits
   ! GRID ON UI benefit (past wage+ineligible)
-  sinteger, parameter        :: ne = 31
-  !integer, parameter       :: ne=2
+  !integer, parameter        :: ne = 31
+  integer, parameter       :: ne=2
   real(8)                   :: emin,emax
   real(8), dimension(ne)    :: e
 
