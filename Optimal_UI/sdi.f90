@@ -4,7 +4,7 @@ SUBROUTINE SDI(J1,U1)
   !  
   !  PURPOSE:
   !   Finds the statoinary distribution given a tax code (tau,b)
-  !     
+  !   Calculate aggregate moments
   !  
   !  Program written by: M. Gervais
   !   Date:    Feb 2016
@@ -100,12 +100,15 @@ SUBROUTINE SDI(J1,U1)
   ee=zero
   eu=zero
   ue=zero
+  submktval=zero
   do is=1,ns
     do ix=1,nx
       do isp=1,ns
         eu = eu + ps(is,isp)*dprimevec(ix,iyfun(isp),wind(ix,iyfun(is),izfun(is)))*muss((is-1)*nx+ix)
         ee = ee + &
         ps(is,isp)*(1.0d0-dprimevec(ix,iyfun(isp),wind(ix,iyfun(is),izfun(is))))*lambda*Ptilde(ix,iyfun(isp))*muss((is-1)*nx+ix)
+        submktval = submktval + x(M(ix,iyfun(isp)))*ps(is,isp)* &
+        (1.0d0-dprimevec(ix,iyfun(isp),wind(ix,iyfun(is),izfun(is))))*lambda*Ptilde(ix,iyfun(isp))*muss((is-1)*nx+ix)
       end do
     end do
   end do
@@ -113,6 +116,7 @@ SUBROUTINE SDI(J1,U1)
   do iu=1,nu
     do iup=1,nu
       ue = ue + pus(iu,iup)*PUtilde(iuyfun(iup),iuefun(iup))*muss(ns*nx+iu)
+      submktval = submktval + x(MU(iuyfun(iup),iuefun(iup)))*pus(iu,iup)*PUtilde(iuyfun(iup),iuefun(iup))*muss(ns*nx+iu)
     end do
   end do
 
@@ -147,8 +151,10 @@ SUBROUTINE SDI(J1,U1)
   avg_benefit = transfers/unemp
 
   welfare = zero
+  uval = zero
   do iu=1,nu
     welfare = welfare + U1(iuyfun(iu),iuefun(iu))*muss(ns*nx+iu)
+    uval = uval + U1(iuyfun(iu),iuefun(iu))*muss(ns*nx+iu)
   end do
 
   do is=1,ns
@@ -163,6 +169,18 @@ SUBROUTINE SDI(J1,U1)
   print*,'unemployment rate: ', unemp
   print*,'average wage: ', avg_wage
   print*,'welfare: ', welfare
+
+  !Grid Output
+  !uval, submktval calculated in loops above
+  ceval = welfare
+  taxval = tau
+  jfpval = UEflow
+  grosswageval = avg_wage
+  netwageval = avg_wage*(1.0d0-tau)
+  urateval = unemp/unemp+em
+  uuval = unemp-ue !1.0d0 - UEflow The current charts are the percent of population who are in uu,ee, not the flow prob!
+  eeval = ee !EEflow
+
 
   RETURN
 END SUBROUTINE SDI

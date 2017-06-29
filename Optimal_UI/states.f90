@@ -153,13 +153,12 @@
   !Grid of unemployment benefits (e) (past wage):
   !replacement rate is roughly 46% in U.S.
   if (ne==1) then
-    bvec = hp+bmin
+    bvec = hp+bval
   elseif (ne==2) then
-    bvec(1) = hp+bmin
+    bvec(1) = hp+bval
     bvec(2) = hp
     print*, 'bvec:', bvec
   elseif (ne>2) then
-    rr = 0.46
     emin = 0.9d0*MINVAL(y)+MINVAL(z)
     emax = MAXVAL(y)+MAXVAL(z)
     e(1:ne-1) = (/ ( &
@@ -169,13 +168,13 @@
 
     !Set unemployment benefit: e=1:ne-1 is eligible for UI ne = ineligible (wage=0)
     do ie=1,ne-1
-      bvec(ie) = hp+rr*e(ie)
+      bvec(ie) = hp+bval*e(ie)
     end do
     bvec(ne) = hp
     print*, 'bvec:', bvec
   endif
   !Grid on PVU (x)
-  xmin = Ufunc(hp+bmin)/(one-betta)
+  xmin = Ufunc(hp+bval)/(one-betta)
   xmax = Ufunc(MAXVAL(y)+MAXVAL(z))/(one-betta)
   print*,'maximum output is: ',MAXVAL(y)+MAXVAL(z)
 

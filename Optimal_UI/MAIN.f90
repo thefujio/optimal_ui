@@ -22,7 +22,7 @@ PROGRAM MAIN
   USE UTILITY
   USE IOOP
   USE TOOLBOX
-  USE POWELL
+!  USE POWELL
 !  USE omp_lib
 !  USE isnan_int
   implicit none
@@ -30,9 +30,9 @@ PROGRAM MAIN
   real(8):: time_begin,time_end            !Used to keep track of time
 !  real(8):: start_iter, end_iter           !Used to keep track of time
   real(8), dimension(dims):: paramvec
-  real(8):: rhobeg, rhoend
-  integer:: i,iprint, maxfun
-  real(8), dimension((2*dims+5)*(2*dims+dims)+3*dims*(dims+5)/2):: wspace
+!  real(8):: rhobeg, rhoend
+  integer:: i !,iprint, maxfun
+!  real(8), dimension((2*dims+5)*(2*dims+dims)+3*dims*(dims+5)/2):: wspace
 !Timing of the program
   call CPU_Time(time_begin)
   ! CHANGING IMSL HANDLING OF ERRORS
@@ -53,25 +53,38 @@ PROGRAM MAIN
     print*,paramvec
   endif
 
-  !Powell optimization starts here
-  iprint=2
-  maxfun=1000
 
-  !Create step size when using uobyqa
-  rhobeg=7.0d0 !maxval(ub-lb)/2.00d0
-  rhoend=1.0D-5
-  print*, 'rhobeg = ', rhobeg
-  print *, "Begin optimization routine"
+  call linspace(bgrid,0.4d0,0.7d0,gridpoints)
 
+  print *, "Run bisection method to find tau for each rr in grid"
   !For non-calibration testing:
-  !Call calfun(dims,paramvec,funcerror)
-  !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-  ! CALLING THE FUNCTION THAT MINIMIZES THE DISTANCE!
-  !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-  Call uobyqa (dims, paramvec, rhobeg, rhoend, iprint, maxfun)
+  do i=1,gridpoints
+    bval = bgrid(i)
+    Call calfun(dims,paramvec,funcerror)
+    cegrid(i) = ceval
+    taxgrid(i) = taxval
+    jfpgrid(i) = jfpval
+    uvalgrid(i) = uval
+    submktgrid(i) = submktval
+    grosswagegrid(i) = grosswageval
+    netwagegrid(i) = netwageval
+    urategrid(i) = urateval
+    uugrid(i) = uuval
+    eegrid(i) = eeval
+    print*,'gridpoint ', i ,' completed'
+  end do
 
-call CPU_Time(time_end)
-!Timing of the program
+  open(unit=gridout,  file=root_dir//out_dir//"gridout.txt",  status='replace')
+  write(gridout,15)
+  15 format('b,','CE,','Tax,','JFP(U),','U VF,','Avg. Open Submkt,','Gross W,','Net W,','Urate,','UU,','EE,')
+    do i=1,gridpoints
+      write(gridout,'(<11>(f15.4,","))') bgrid(i),cegrid(i),taxgrid(i),jfpgrid(i),uvalgrid(i),submktgrid(i),grosswagegrid(i),netwagegrid(i),urategrid(i),uugrid(i),eegrid(i)
+    enddo
+  close(gridout)
+
+
+  call CPU_Time(time_end)
+  !Timing of the program
   write(*,"('TOTAL EXECUTION TIME (seconds): ',f8.2)") &
   (time_end-time_begin)/8.0d0
   STOP

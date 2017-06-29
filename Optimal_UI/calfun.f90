@@ -154,6 +154,7 @@
 
   call write_output(J,U)
   deallocate(cont)
+  !Calibration Output
   jfploss =  min(1.0d8, abs(100.0d0*(UEflow - jfptarget)/jfptarget))
   seploss = min(1.0d8, abs(100.0d0*(EUflow - septarget)/septarget))
   j_jloss = min(1.0d8, abs(100.0d0*(EEflow - j_jtarget)/j_jtarget))

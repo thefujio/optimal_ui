@@ -1,1036 +1,300 @@
    Loss Function
 ----------------
-kappa                    0.06620500
-delta                    0.02500000
-lambda                   0.46264000
-jfploss                 10.26747063
-seploss                  3.84615385
-j2jloss                  0.64267091
-funcerror               14.75629538
-
-
-
-   Loss Function
-----------------
-kappa                    0.11084427
-delta                    0.02500000
-lambda                   0.46264000
-jfploss                  2.08612287
-seploss                  3.84615385
-j2jloss                 62.73968043
-funcerror               68.67195715
-
-
-
-   Loss Function
-----------------
-kappa                    0.02857961
-delta                    0.02500000
-lambda                   0.46264000
-jfploss                 32.30669971
-seploss                  3.84615385
-j2jloss                 47.39654951
-funcerror               83.54940306
-
-
-
-   Loss Function
-----------------
-kappa                    0.06620500
-delta                    0.02860791
-lambda                   0.46264000
-jfploss                 11.65096234
-seploss                 10.03042409
-j2jloss                  6.97680463
-funcerror               28.65819106
-
-
-
-   Loss Function
-----------------
-kappa                    0.06620500
-delta                    0.01242238
-lambda                   0.46264000
-jfploss                 10.22981604
-seploss                 52.22161992
-j2jloss                  2.89219448
-funcerror               65.34363043
-
-
-
-   Loss Function
-----------------
-kappa                    0.06620500
-delta                    0.02500000
-lambda                   0.91451658
-jfploss                  9.12668354
-seploss                  3.84615385
-j2jloss                124.82862509
-funcerror              137.80146248
-
-
-
-   Loss Function
-----------------
-kappa                    0.06620500
-delta                    0.02500000
-lambda                   0.21723572
-jfploss                 13.05963164
-seploss                  3.84615385
-j2jloss                 55.82915218
-funcerror               72.73493767
-
-
-
-   Loss Function
-----------------
-kappa                    0.02857961
-delta                    0.01242238
-lambda                   0.46264000
-jfploss                 27.21089098
-seploss                 52.22161992
-j2jloss                 47.51185730
-funcerror              126.94436820
-
-
-
-   Loss Function
-----------------
-kappa                    0.02857961
-delta                    0.02500000
-lambda                   0.21723572
-jfploss                 29.38047773
-seploss                  3.84615385
-j2jloss                 33.03014654
-funcerror               66.25677811
-
-
-
-   Loss Function
-----------------
-kappa                    0.06620500
-delta                    0.01242238
-lambda                   0.21723572
-jfploss                 12.98349452
-seploss                 52.22161992
-j2jloss                 57.80229033
-funcerror              123.00740477
-
-
-
-
-    New RHO = 0.7000         Number of function values =    10
-    Least value of F =   14.7562953798376             The corresponding X is:
-    -0.239583        2.00000      -0.881850    
-   Loss Function
-----------------
-kappa                    0.06146268
-delta                    0.02701597
-lambda                   0.34568571
-jfploss                 11.06355266
-seploss                  3.90756172
-j2jloss                 22.74179314
-funcerror               37.71290752
-
-
-
-   Loss Function
-----------------
-kappa                    0.06614443
-delta                    0.02285231
-lambda                   0.40146679
-jfploss                 10.21195940
-seploss                 12.10648410
-j2jloss                  8.92593279
-funcerror               31.24437629
-
-
-
-   Loss Function
-----------------
-kappa                    0.06875411
-delta                    0.02564673
-lambda                   0.52497295
-jfploss                  9.39051953
-seploss                  1.35871382
-j2jloss                  9.91288330
-funcerror               20.66211664
-
-
-
-   Loss Function
-----------------
-kappa                    0.06753741
-delta                    0.02412345
-lambda                   0.52341632
-jfploss                  9.53348507
-seploss                  7.21749378
-j2jloss                 11.95245746
-funcerror               28.70343631
-
-
-
-   Loss Function
-----------------
-kappa                    0.06955275
-delta                    0.02536629
-lambda                   0.40065514
-jfploss                  8.07837622
-seploss                  2.43733869
-j2jloss                 17.01716889
-funcerror               27.53288380
-
-
-
-   Loss Function
-----------------
-kappa                    0.05603583
-delta                    0.02504813
-lambda                   0.45954564
-jfploss                 15.32531492
-seploss                  3.66103196
-j2jloss                  9.83606617
-funcerror               28.82241305
-
-
-
-   Loss Function
-----------------
-kappa                    0.07683811
-delta                    0.02513450
-lambda                   0.48128832
-jfploss                  7.82002370
-seploss                  3.32886249
-j2jloss                  9.32204687
-funcerror               20.47093305
-
-
-
-   Loss Function
-----------------
-kappa                    0.07064043
-delta                    0.02587295
-lambda                   0.46734806
-jfploss                  7.56865285
-seploss                  0.48866200
-j2jloss                  0.37286027
-funcerror                8.43017512
-
-
-
-   Loss Function
-----------------
-kappa                    0.08154767
-delta                    0.02688465
-lambda                   0.52241028
-jfploss                  5.35215435
-seploss                  3.40248098
-j2jloss                 14.00269039
-funcerror               22.75732572
-
-
-
-   Loss Function
-----------------
-kappa                    0.06621625
-delta                    0.02651434
-lambda                   0.46159952
-jfploss                 10.25151151
-seploss                  1.97824401
-j2jloss                  1.78508725
-funcerror               14.01484276
-
-
-
-   Loss Function
-----------------
-kappa                    0.06977023
-delta                    0.02621710
-lambda                   0.44653242
-jfploss                  7.62295876
-seploss                  0.83501588
-j2jloss                  4.90005272
-funcerror               13.35802736
-
-
-
-   Loss Function
-----------------
-kappa                    0.07882627
-delta                    0.02574476
-lambda                   0.42036791
-jfploss                  4.52519362
-seploss                  0.98170760
-j2jloss                 16.75177161
-funcerror               22.25867283
-
-
-
-   Loss Function
-----------------
-kappa                    0.07513254
-delta                    0.02650248
-lambda                   0.45290543
-jfploss                  7.93421222
-seploss                  1.93262009
-j2jloss                 22.00771181
-funcerror               31.87454412
-
-
-
-   Loss Function
-----------------
-kappa                    0.06936642
-delta                    0.02632293
-lambda                   0.41082064
-jfploss                  7.98130898
-seploss                  1.24204777
-j2jloss                 12.12141884
-funcerror               21.34477559
-
-
-
-   Loss Function
-----------------
-kappa                    0.06050451
-delta                    0.02607745
-lambda                   0.47086725
-jfploss                 13.55058560
-seploss                  0.29789221
-j2jloss                  7.65688357
-funcerror               21.50536139
-
-
-
-
-    New RHO = 0.7000E-01     Number of function values =    25
-    Least value of F =   8.43017512202244             The corresponding X is:
-     0.402447E-01    2.64031      -0.840594    
-   Loss Function
-----------------
-kappa                    0.07069816
-delta                    0.02546639
-lambda                   0.45671079
-jfploss                  7.41937907
-seploss                  2.05235441
-j2jloss                  2.17517464
-funcerror               11.64690812
-
-
-
-   Loss Function
-----------------
-kappa                    0.06942603
-delta                    0.02596742
-lambda                   0.46172363
-jfploss                  8.87639850
-seploss                  0.12528858
-j2jloss                  1.19256414
-funcerror               10.19425121
-
-
-
-   Loss Function
-----------------
-kappa                    0.07164905
-delta                    0.02585816
-lambda                   0.47042900
-jfploss                  7.19608608
-seploss                  0.54553147
-j2jloss                  0.05134124
-funcerror                7.79295879
-
-
-
-   Loss Function
-----------------
-kappa                    0.07268700
-delta                    0.02583023
-lambda                   0.46968953
-jfploss                  6.77279361
-seploss                  0.65296716
-j2jloss                  0.42093593
-funcerror                7.84669670
-
-
-
-   Loss Function
-----------------
-kappa                    0.07171284
-delta                    0.02590254
-lambda                   0.47727739
-jfploss                  7.27500496
-seploss                  0.37485663
-j2jloss                  2.12096772
-funcerror                9.77082931
-
-
-
-   Loss Function
-----------------
-kappa                    0.07186708
-delta                    0.02585414
-lambda                   0.46256916
-jfploss                  7.15489862
-seploss                  0.56098465
-j2jloss                  1.49340085
-funcerror                9.20928413
-
-
-
-   Loss Function
-----------------
-kappa                    0.07171795
-delta                    0.02577729
-lambda                   0.47223185
-jfploss                  7.20119135
-seploss                  0.85657178
-j2jloss                  0.78764962
-funcerror                8.84541274
-
-
-
-   Loss Function
-----------------
-kappa                    0.07111273
-delta                    0.02592822
-lambda                   0.47127999
-jfploss                  7.55720125
-seploss                  0.27608321
-j2jloss                  1.03349110
-funcerror                8.86677556
-
-
-
-   Loss Function
-----------------
-kappa                    0.07251307
-delta                    0.02590630
-lambda                   0.47204724
-jfploss                  6.92627126
-seploss                  0.36040134
-j2jloss                  0.48455576
-funcerror                7.77122836
-
-
-
-   Loss Function
-----------------
-kappa                    0.07332693
-delta                    0.02589172
-lambda                   0.47740641
-jfploss                  6.66782908
-seploss                  0.41645545
-j2jloss                  1.05216605
-funcerror                8.13645057
-
-
-
-   Loss Function
-----------------
-kappa                    0.07199113
-delta                    0.02584061
-lambda                   0.46918407
-jfploss                  9.53378141
-seploss                  0.61305726
-j2jloss                  9.67009006
-funcerror               19.81692874
-
-
-
-   Loss Function
-----------------
-kappa                    0.07277033
-delta                    0.02593632
-lambda                   0.46480892
-jfploss                  6.74313782
-seploss                  0.24490989
-j2jloss                  1.56704338
-funcerror                8.55509109
-
-
-
-
-    New RHO = 0.7000E-02     Number of function values =    37
-    Least value of F =   7.77122836214701             The corresponding X is:
-     0.158230        2.66924      -0.800014    
-   Loss Function
-----------------
-kappa                    0.07267897
-delta                    0.02586779
-lambda                   0.47215858
-jfploss                  9.31326981
-seploss                  0.50850587
-j2jloss                  9.26645550
-funcerror               19.08823119
-
-
-
-   Loss Function
-----------------
-kappa                    0.07275454
-delta                    0.02591594
-lambda                   0.47189750
-jfploss                  6.83547689
-seploss                  0.32332138
-j2jloss                  0.28091878
-funcerror                7.43971705
-
-
-
-   Loss Function
-----------------
-kappa                    0.07271741
-delta                    0.02592295
-lambda                   0.47216994
-jfploss                  9.47543825
-seploss                  0.29632894
-j2jloss                  7.91683697
-funcerror               17.68860417
-
-
-
-   Loss Function
-----------------
-kappa                    0.07281829
-delta                    0.02591061
-lambda                   0.47151290
-jfploss                  9.41792062
-seploss                  0.34381780
-j2jloss                  8.35730596
-funcerror               18.11904438
-
-
-
-   Loss Function
-----------------
-kappa                    0.07276187
-delta                    0.02591386
-lambda                   0.47268458
-jfploss                  6.93985440
-seploss                  0.33128953
-j2jloss                  0.48864872
-funcerror                7.75979264
-
-
-
-   Loss Function
-----------------
-kappa                    0.07268642
-delta                    0.02590970
-lambda                   0.47181015
-jfploss                  9.48579226
-seploss                  0.34730687
-j2jloss                  7.97701327
-funcerror               17.81011240
-
-
-
-   Loss Function
-----------------
-kappa                    0.07284214
-delta                    0.02592079
-lambda                   0.47187730
-jfploss                  9.39832561
-seploss                  0.30463916
-j2jloss                  8.25979600
-funcerror               17.96276077
-
-
-
-   Loss Function
-----------------
-kappa                    0.07273424
-delta                    0.02590998
-lambda                   0.47242068
-jfploss                  6.91551062
-seploss                  0.34623054
-j2jloss                  0.55890569
-funcerror                7.82064684
-
-
-
-   Loss Function
-----------------
-kappa                    0.07264813
-delta                    0.02591665
-lambda                   0.47210815
-jfploss                  6.88917104
-seploss                  0.32057713
-j2jloss                  0.41376619
-funcerror                7.62351436
-
-
-
-   Loss Function
-----------------
-kappa                    0.07270074
-delta                    0.02592029
-lambda                   0.47134109
-jfploss                  6.90606207
-seploss                  0.30659504
-j2jloss                  0.07455377
-funcerror                7.28721088
-
-
-
-   Loss Function
-----------------
-kappa                    0.07274482
-delta                    0.02592338
-lambda                   0.47066531
-jfploss                  6.92020574
-seploss                  0.29467658
-j2jloss                  0.13482180
-funcerror                7.34970413
-
-
-
-   Loss Function
-----------------
-kappa                    0.07270810
-delta                    0.02591609
-lambda                   0.47203216
-jfploss                  6.85768854
-seploss                  0.32274372
-j2jloss                  0.34497554
-funcerror                7.52540780
-
-
-
-
-    New RHO = 0.7000E-03     Number of function values =    49
-    Least value of F =   7.28721088148453             The corresponding X is:
-     0.170101        2.68150      -0.806076    
-   Loss Function
-----------------
-kappa                    0.07270707
-delta                    0.02591819
-lambda                   0.47168449
-jfploss                  6.78703896
-seploss                  0.31465757
-j2jloss                  0.09552417
-funcerror                7.19722070
-
-
-
-   Loss Function
-----------------
-kappa                    0.07270862
-delta                    0.02591604
-lambda                   0.47202776
-jfploss                  6.85741712
-seploss                  0.32293268
-j2jloss                  0.34308087
-funcerror                7.52343067
-
-
-
-   Loss Function
-----------------
-kappa                    0.07270880
-delta                    0.02591732
-lambda                   0.47150127
-jfploss                  6.90103727
-seploss                  0.31798180
-j2jloss                  0.11119473
-funcerror                7.33021380
-
-
-
-   Loss Function
-----------------
-kappa                    0.07271425
-delta                    0.02591792
-lambda                   0.47162867
-jfploss                  6.77938773
-seploss                  0.31567459
-j2jloss                  0.09363394
-funcerror                7.18869626
-
-
-
-   Loss Function
-----------------
-kappa                    0.07270346
-delta                    0.02591803
-lambda                   0.47161380
-jfploss                  6.80641325
-seploss                  0.31528631
-j2jloss                  0.12312865
-funcerror                7.24482821
-
-
-
-   Loss Function
-----------------
-kappa                    0.07272154
-delta                    0.02591784
-lambda                   0.47156801
-jfploss                  6.79212703
-seploss                  0.31601152
-j2jloss                  0.08127637
-funcerror                7.18941492
-
-
-
-   Loss Function
-----------------
-kappa                    0.07271389
-delta                    0.02591824
-lambda                   0.47155386
-jfploss                  6.77929416
-seploss                  0.31446014
-j2jloss                  0.04536363
-funcerror                7.13911793
-
-
-
-   Loss Function
-----------------
-kappa                    0.07271588
-delta                    0.02591852
-lambda                   0.47139412
-jfploss                  6.90110321
-seploss                  0.31337362
-j2jloss                  0.08803571
-funcerror                7.30251254
-
-
-
-   Loss Function
-----------------
-kappa                    0.07270866
-delta                    0.02591889
-lambda                   0.47158072
-jfploss                  6.78208505
-seploss                  0.31195443
-j2jloss                  0.05993805
-funcerror                7.15397754
-
-
-
-   Loss Function
-----------------
-kappa                    0.07271507
-delta                    0.02591873
-lambda                   0.47161763
-jfploss                  6.78210900
-seploss                  0.31257910
-j2jloss                  0.09544510
-funcerror                7.19013321
-
-
-
-   Loss Function
-----------------
-kappa                    0.07271931
-delta                    0.02591779
-lambda                   0.47149950
-jfploss                  6.78928760
-seploss                  0.31617920
-j2jloss                  0.08153976
-funcerror                7.18700655
-
-
-
-   Loss Function
-----------------
-kappa                    0.07271809
-delta                    0.02591893
-lambda                   0.47152646
-jfploss                  6.78974859
-seploss                  0.31181885
-j2jloss                  0.07543602
-funcerror                7.17700346
-
-
-
-
-    New RHO = 0.8367E-04     Number of function values =    61
-    Least value of F =   7.13911792846524             The corresponding X is:
-     0.170933        2.67971      -0.804248    
-   Loss Function
-----------------
-kappa                    0.07271312
-delta                    0.02591850
-lambda                   0.47155104
-jfploss                  6.77971095
-seploss                  0.31346607
-j2jloss                  0.04474618
-funcerror                7.13792321
-
-
-
-   Loss Function
-----------------
-kappa                    0.07271347
-delta                    0.02591844
-lambda                   0.47156084
-jfploss                  6.77947460
-seploss                  0.31367691
-j2jloss                  0.04638186
-funcerror                7.13953337
-
-
-
-   Loss Function
-----------------
-kappa                    0.07271220
-delta                    0.02591855
-lambda                   0.47154778
-jfploss                  6.78537150
-seploss                  0.31327641
-j2jloss                  0.08777195
-funcerror                7.18641985
-
-
-
-   Loss Function
-----------------
-kappa                    0.07271411
-delta                    0.02591848
-lambda                   0.47154495
-jfploss                  6.77983213
-seploss                  0.31354637
-j2jloss                  0.07790386
-funcerror                7.17128236
-
-
-
-   Loss Function
-----------------
-kappa                    0.07271278
-delta                    0.02591853
-lambda                   0.47155985
-jfploss                  6.77987413
-seploss                  0.31334209
-j2jloss                  0.04725810
-funcerror                7.14047432
-
-
-
-   Loss Function
-----------------
-kappa                    0.07271266
-delta                    0.02591841
-lambda                   0.47155220
-jfploss                  6.78510350
-seploss                  0.31380607
-j2jloss                  0.08860378
-funcerror                7.18751336
-
-
-
-   Loss Function
-----------------
-kappa                    0.07271357
-delta                    0.02591859
-lambda                   0.47155275
-jfploss                  6.78009784
-seploss                  0.31312699
-j2jloss                  0.08013432
-funcerror                7.17335914
-
-
-
-   Loss Function
-----------------
-kappa                    0.07271336
-delta                    0.02591846
-lambda                   0.47154243
-jfploss                  6.78474784
-seploss                  0.31362457
-j2jloss                  0.08437644
-funcerror                7.18274884
-
-
-
-   Loss Function
-----------------
-kappa                    0.07271323
-delta                    0.02591843
-lambda                   0.47155790
-jfploss                  6.77963631
-seploss                  0.31372486
-j2jloss                  0.04645595
-funcerror                7.13981712
-
-
-
-   Loss Function
-----------------
-kappa                    0.07271392
-delta                    0.02591843
-lambda                   0.47155291
-jfploss                  6.77990836
-seploss                  0.31374972
-j2jloss                  0.08049625
-funcerror                7.17415432
-
-
-
-   Loss Function
-----------------
-kappa                    0.07271291
-delta                    0.02591847
-lambda                   0.47156032
-jfploss                  6.77980130
-seploss                  0.31356093
-j2jloss                  0.04745703
-funcerror                7.14081926
-
-
-
-
-    New RHO = 0.1000E-04     Number of function values =    72
-    Least value of F =   7.13792321205778             The corresponding X is:
-     0.170885        2.67993      -0.804272    
-   Loss Function
-----------------
 kappa                    0.07271306
-delta                    0.02591849
-lambda                   0.47155585
-jfploss                  6.77973290
-seploss                  0.31348975
-j2jloss                  0.04596838
-funcerror                7.13919103
-
-
-
-   Loss Function
-----------------
-kappa                    0.07271305
-delta                    0.02591852
-lambda                   0.47155109
-jfploss                  6.77976000
-seploss                  0.31337697
-j2jloss                  0.04475910
-funcerror                7.13789607
-
-
-
-   Loss Function
-----------------
-kappa                    0.07271302
-delta                    0.02591852
-lambda                   0.47155221
-jfploss                  6.77976541
-seploss                  0.31338381
-j2jloss                  0.04511030
-funcerror                7.13825952
-
-
-
-   Loss Function
-----------------
-kappa                    0.07271318
-delta                    0.02591852
-lambda                   0.47155100
-jfploss                  6.78032804
-seploss                  0.31339954
-j2jloss                  0.08127266
-funcerror                7.17500024
-
-
-
-   Loss Function
-----------------
-kappa                    0.07271289
-delta                    0.02591852
-lambda                   0.47155124
-jfploss                  6.78496839
-seploss                  0.31337721
-j2jloss                  0.08696579
-funcerror                7.18531140
-
-
-
-   Loss Function
-----------------
-kappa                    0.07271301
-delta                    0.02591853
-lambda                   0.47155120
-jfploss                  6.77977951
-seploss                  0.31333459
-j2jloss                  0.04479278
-funcerror                7.13790687
-
-
-
-   Loss Function
-----------------
-kappa                    0.07271311
-delta                    0.02591852
-lambda                   0.47155213
-jfploss                  6.77971876
-seploss                  0.31336840
-j2jloss                  0.04480397
-funcerror                7.13789113
-
-
-
-   Loss Function
-----------------
-kappa                    0.07271309
-delta                    0.02591853
-lambda                   0.47155265
-jfploss                  6.78037155
-seploss                  0.31332979
-j2jloss                  0.08172260
-funcerror                7.17542394
-
-
-
-   Loss Function
-----------------
-kappa                    0.07271308
-delta                    0.02591851
-lambda                   0.47155217
-jfploss                  6.77973261
-seploss                  0.31341091
-j2jloss                  0.04500470
-funcerror                7.13814822
-
-
-
-   Loss Function
-----------------
-kappa                    0.07271315
-delta                    0.02591853
-lambda                   0.47155129
-jfploss                  6.78034564
-seploss                  0.31333940
-j2jloss                  0.08130574
-funcerror                7.17499078
-
-
-
-   Loss Function
-----------------
-kappa                    0.07271311
-delta                    0.02591852
-lambda                   0.47155298
-jfploss                  6.77971494
-seploss                  0.31339824
-j2jloss                  0.04504306
-funcerror                7.13815624
-
-
-
-   Loss Function
-----------------
-kappa                    0.07271306
-delta                    0.02591852
+delta                    0.02600000
 lambda                   0.47155190
-jfploss                  6.77974750
-seploss                  0.31337697
-j2jloss                  0.04489464
-funcerror                7.13801911
+jfploss                  5.87234693
+seploss                  0.00000000
+j2jloss                  0.42256182
+funcerror                6.29490875
 
 
 
+   Loss Function
+----------------
+kappa                    0.07271306
+delta                    0.02600000
+lambda                   0.47155190
+jfploss                  5.21539475
+seploss                  0.00000000
+j2jloss                  1.86822721
+funcerror                7.08362195
 
-    At the return from UOBYQA     Number of function values =    84
-    Least value of F =   7.13789112820245             The corresponding X is:
-     0.170884        2.67996      -0.804263    
+
+
+   Loss Function
+----------------
+kappa                    0.07271306
+delta                    0.02600000
+lambda                   0.47155190
+jfploss                  4.63006672
+seploss                  0.00000000
+j2jloss                  5.01441361
+funcerror                9.64448033
+
+
+
+   Loss Function
+----------------
+kappa                    0.07271306
+delta                    0.02600000
+lambda                   0.47155190
+jfploss                  4.08795574
+seploss                  0.00000000
+j2jloss                  8.42977266
+funcerror               12.51772840
+
+
+
+   Loss Function
+----------------
+kappa                    0.07271306
+delta                    0.02600000
+lambda                   0.47155190
+jfploss                  3.83981282
+seploss                  0.00000000
+j2jloss                  9.10662827
+funcerror               12.94644109
+
+
+
+   Loss Function
+----------------
+kappa                    0.07271306
+delta                    0.02600000
+lambda                   0.47155190
+jfploss                  3.35835657
+seploss                  0.00000000
+j2jloss                  6.46713291
+funcerror                9.82548948
+
+
+
+   Loss Function
+----------------
+kappa                    0.07271306
+delta                    0.02600000
+lambda                   0.47155190
+jfploss                  3.27284815
+seploss                  0.00000000
+j2jloss                  5.99433820
+funcerror                9.26718635
+
+
+
+   Loss Function
+----------------
+kappa                    0.07271306
+delta                    0.02600000
+lambda                   0.47155190
+jfploss                  7.29689198
+seploss                  0.00000000
+j2jloss                  6.53463729
+funcerror               13.83152927
+
+
+
+   Loss Function
+----------------
+kappa                    0.07271306
+delta                    0.02600000
+lambda                   0.47155190
+jfploss                  7.26536267
+seploss                  0.00000000
+j2jloss                 10.00818864
+funcerror               17.27355131
+
+
+
+   Loss Function
+----------------
+kappa                    0.07271306
+delta                    0.02600000
+lambda                   0.47155190
+jfploss                  5.77607931
+seploss                  0.00000000
+j2jloss                 14.79850484
+funcerror               20.57458415
+
+
+
+   Loss Function
+----------------
+kappa                    0.07271306
+delta                    0.02600000
+lambda                   0.47155190
+jfploss                  6.39771790
+seploss                  0.00000000
+j2jloss                 25.08813848
+funcerror               31.48585638
+
+
+
+   Loss Function
+----------------
+kappa                    0.07271306
+delta                    0.02600000
+lambda                   0.47155190
+jfploss                  5.98403917
+seploss                  0.00000000
+j2jloss                  5.72536444
+funcerror               11.70940361
+
+
+
+   Loss Function
+----------------
+kappa                    0.07271306
+delta                    0.02600000
+lambda                   0.47155190
+jfploss                  5.33677389
+seploss                  0.00000000
+j2jloss                  7.82486367
+funcerror               13.16163756
+
+
+
+   Loss Function
+----------------
+kappa                    0.07271306
+delta                    0.02600000
+lambda                   0.47155190
+jfploss                  5.28281927
+seploss                  0.00000000
+j2jloss                 10.80359864
+funcerror               16.08641791
+
+
+
+   Loss Function
+----------------
+kappa                    0.07271306
+delta                    0.02600000
+lambda                   0.47155190
+jfploss                  4.77177353
+seploss                  0.00000000
+j2jloss                 12.84532573
+funcerror               17.61709926
+
+
+
+   Loss Function
+----------------
+kappa                    0.07271306
+delta                    0.02600000
+lambda                   0.47155190
+jfploss                  3.82449156
+seploss                  0.00000000
+j2jloss                 18.67402551
+funcerror               22.49851706
+
+
+
+   Loss Function
+----------------
+kappa                    0.07271306
+delta                    0.02600000
+lambda                   0.47155190
+jfploss                  3.49006933
+seploss                  0.00000000
+j2jloss                 14.64945457
+funcerror               18.13952389
+
+
+
+   Loss Function
+----------------
+kappa                    0.07271306
+delta                    0.02600000
+lambda                   0.47155190
+jfploss                  2.57884913
+seploss                  0.00000000
+j2jloss                 19.44112493
+funcerror               22.01997406
+
+
+
+   Loss Function
+----------------
+kappa                    0.07271306
+delta                    0.02600000
+lambda                   0.47155190
+jfploss                  1.71894093
+seploss                  0.00000000
+j2jloss                 20.94223008
+funcerror               22.66117101
+
+
+
+   Loss Function
+----------------
+kappa                    0.07271306
+delta                    0.02600000
+lambda                   0.47155190
+jfploss                  3.05754806
+seploss                  0.00000000
+j2jloss                 19.18052090
+funcerror               22.23806896
+
+
+
+   Loss Function
+----------------
+kappa                    0.07271306
+delta                    0.02600000
+lambda                   0.47155190
+jfploss                  2.38752925
+seploss                  0.00000000
+j2jloss                 22.43900565
+funcerror               24.82653490
+
+
+
+   Loss Function
+----------------
+kappa                    0.07271306
+delta                    0.02600000
+lambda                   0.47155190
+jfploss                  1.54321047
+seploss                  0.00000000
+j2jloss                 17.20676177
+funcerror               18.74997224
+
+
+
+   Loss Function
+----------------
+kappa                    0.07271306
+delta                    0.02600000
+lambda                   0.47155190
+jfploss                  1.10351214
+seploss                  0.00000000
+j2jloss                 32.05844814
+funcerror               33.16196028
+
+
+
+   Loss Function
+----------------
+kappa                    0.07271306
+delta                    0.02600000
+lambda                   0.47155190
+jfploss                  0.37656370
+seploss                  0.00000000
+j2jloss                 18.66397080
+funcerror               19.04053450
+
+
+
+   Loss Function
+----------------
+kappa                    0.07271306
+delta                    0.02600000
+lambda                   0.47155190
+jfploss                  0.25209348
+seploss                  0.00000000
+j2jloss                 22.09846082
+funcerror               22.35055430
+
+
+

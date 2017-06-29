@@ -28,6 +28,7 @@ MODULE PARAM
   character(LEN=*), parameter:: out_dir  = "output/"
   integer,          parameter:: detail = 7
   integer,          parameter:: calibout = 8
+  integer,          parameter:: gridout = 9
 
 
   integer, parameter:: nparams = 21        !For storage purposes
@@ -39,10 +40,15 @@ MODULE PARAM
   logical:: do_refine   = .false.
   logical:: want_refine = .true.
   logical:: simul_only  = .false.
-  logical:: want_print  = .true.
+  logical:: want_print  = .false.
 
+  !Grid over b
+  integer, parameter        :: gridpoints = 25
+  real(8)                   :: bval
+  real(8)                   :: ceval, taxval, jfpval, uval, submktval, grosswageval, netwageval, urateval, uuval, eeval
+  real(8), dimension(gridpoints) :: bgrid, cegrid, taxgrid, jfpgrid, uvalgrid, submktgrid, grosswagegrid, netwagegrid, urategrid, uugrid, eegrid
   !Flag for whether optimization routine used is going to be unconstrained (1) or bound-constrained (0)
-  integer,          parameter:: transform = 1
+  integer,          parameter:: transform = 0
   !Calibration Targets:
   real(8), parameter        :: jfptarget = 0.450d0
   real(8), parameter        :: septarget = 0.026d0
@@ -102,9 +108,9 @@ MODULE PARAM
   real(8), dimension(nu,nu) :: pus
 
   !About 46% of avg wage
-  real(8), parameter:: bmin = 0.915d0*0.46d0
+  real(8), parameter:: bmin = 0.460d0
   !Home production plus UI = about 2/3 of avg. wage
-  real(8), parameter:: hp = 0.915d0*0.20d0
+  real(8), parameter:: hp = 0.200d0
   ! CONTRACT SPACE
   integer:: nc
   integer, allocatable:: cont(:,:)
@@ -149,11 +155,11 @@ MODULE PARAM
 
   !PROGRAMMING PARAMETERS
   ! FLOW CONTROLS
-  integer, parameter:: niter = 300
+  integer, parameter:: niter = 500
   integer, parameter:: nupdate = 30
   
   ! TOLERANCE LEVEL
-  real(8):: tol = 1.0d-6
+  real(8):: tol = 1.0d-8
   real(8), parameter:: high_tol = 1.0d-6
   real(8), parameter:: low_tol  = 1.0d-10
   real(8), parameter:: errrel   = 1.0d-12
