@@ -43,10 +43,10 @@ MODULE PARAM
   logical:: want_print  = .false.
 
   !Grid over b
-  integer, parameter        :: gridpoints = 25
+  integer, parameter        :: gridpoints = 20
   real(8)                   :: bval
-  real(8)                   :: ceval, taxval, jfpval, uval, submktval, grosswageval, netwageval, urateval, uuval, eeval
-  real(8), dimension(gridpoints) :: bgrid, cegrid, taxgrid, jfpgrid, uvalgrid, submktgrid, grosswagegrid, netwagegrid, urategrid, uugrid, eegrid
+  real(8)                   :: rrval, ceval, taxval, jfpval, uval, submktval, grosswageval, netwageval, urateval, uuval, eeval
+  real(8), dimension(gridpoints) :: bgrid, rrgrid, cegrid, taxgrid, jfpgrid, uvalgrid, submktgrid, grosswagegrid, netwagegrid, urategrid, uugrid, eegrid
   !Flag for whether optimization routine used is going to be unconstrained (1) or bound-constrained (0)
   integer,          parameter:: transform = 0
   !Calibration Targets:

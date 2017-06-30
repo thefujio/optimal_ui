@@ -173,6 +173,7 @@ SUBROUTINE SDI(J1,U1)
   !Grid Output
   !uval, submktval calculated in loops above
   ceval = welfare
+  rrval = avg_benefit/avg_wage !avg b/ avg wage
   taxval = tau
   jfpval = UEflow
   grosswageval = avg_wage

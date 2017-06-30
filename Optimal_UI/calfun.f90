@@ -112,7 +112,7 @@
   call states(J,U)
   !Bisection on tax rate
   taul = 0.0000001d0
-  tauu = 0.06d0
+  tauu = 0.065d0
   !Evaluate at endpoints taul,tauu
   tau = taul
   call vfi(J,U)
@@ -141,7 +141,7 @@
     else
       taul=tau
     end if
-    if (dabs(taul-tauu) < tol .or. dabs(bd) < tol) EXIT
+    if (dabs(taul-tauu) < tol) EXIT !removed .or. dabs(bd) < tol
   end do
   if (iter.ge.niter) then
     write (*,'(3x,''Bisection did not converge after '',i6,'' iterations '')') iter

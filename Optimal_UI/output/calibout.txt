@@ -3,10 +3,10 @@
 kappa                    0.07271306
 delta                    0.02600000
 lambda                   0.47155190
-jfploss                  5.87234693
+jfploss                  6.71311201
 seploss                  0.00000000
-j2jloss                  0.42256182
-funcerror                6.29490875
+j2jloss                  0.36595277
+funcerror                7.07906478
 
 
 
@@ -15,10 +15,10 @@ funcerror                6.29490875
 kappa                    0.07271306
 delta                    0.02600000
 lambda                   0.47155190
-jfploss                  5.21539475
+jfploss                  5.15299706
 seploss                  0.00000000
-j2jloss                  1.86822721
-funcerror                7.08362195
+j2jloss                  5.52452170
+funcerror               10.67751876
 
 
 
@@ -27,10 +27,10 @@ funcerror                7.08362195
 kappa                    0.07271306
 delta                    0.02600000
 lambda                   0.47155190
-jfploss                  4.63006672
+jfploss                  3.74393167
 seploss                  0.00000000
-j2jloss                  5.01441361
-funcerror                9.64448033
+j2jloss                  4.55149906
+funcerror                8.29543072
 
 
 
@@ -39,10 +39,10 @@ funcerror                9.64448033
 kappa                    0.07271306
 delta                    0.02600000
 lambda                   0.47155190
-jfploss                  4.08795574
+jfploss                  2.58601250
 seploss                  0.00000000
-j2jloss                  8.42977266
-funcerror               12.51772840
+j2jloss                  8.36926064
+funcerror               10.95527313
 
 
 
@@ -51,10 +51,10 @@ funcerror               12.51772840
 kappa                    0.07271306
 delta                    0.02600000
 lambda                   0.47155190
-jfploss                  3.83981282
+jfploss                  7.01532301
 seploss                  0.00000000
-j2jloss                  9.10662827
-funcerror               12.94644109
+j2jloss                  5.50302401
+funcerror               12.51834702
 
 
 
@@ -63,10 +63,10 @@ funcerror               12.94644109
 kappa                    0.07271306
 delta                    0.02600000
 lambda                   0.47155190
-jfploss                  3.35835657
+jfploss                  5.88271924
 seploss                  0.00000000
-j2jloss                  6.46713291
-funcerror                9.82548948
+j2jloss                  9.78115335
+funcerror               15.66387259
 
 
 
@@ -75,10 +75,10 @@ funcerror                9.82548948
 kappa                    0.07271306
 delta                    0.02600000
 lambda                   0.47155190
-jfploss                  3.27284815
+jfploss                  4.54014812
 seploss                  0.00000000
-j2jloss                  5.99433820
-funcerror                9.26718635
+j2jloss                 17.27504792
+funcerror               21.81519603
 
 
 
@@ -87,10 +87,10 @@ funcerror                9.26718635
 kappa                    0.07271306
 delta                    0.02600000
 lambda                   0.47155190
-jfploss                  7.29689198
+jfploss                  4.11949374
 seploss                  0.00000000
-j2jloss                  6.53463729
-funcerror               13.83152927
+j2jloss                 10.64886614
+funcerror               14.76835988
 
 
 
@@ -99,10 +99,10 @@ funcerror               13.83152927
 kappa                    0.07271306
 delta                    0.02600000
 lambda                   0.47155190
-jfploss                  7.26536267
+jfploss                  2.41982728
 seploss                  0.00000000
-j2jloss                 10.00818864
-funcerror               17.27355131
+j2jloss                 14.89454383
+funcerror               17.31437111
 
 
 
@@ -111,10 +111,10 @@ funcerror               17.27355131
 kappa                    0.07271306
 delta                    0.02600000
 lambda                   0.47155190
-jfploss                  5.77607931
+jfploss                  3.22298686
 seploss                  0.00000000
-j2jloss                 14.79850484
-funcerror               20.57458415
+j2jloss                 16.42334654
+funcerror               19.64633340
 
 
 
@@ -123,10 +123,10 @@ funcerror               20.57458415
 kappa                    0.07271306
 delta                    0.02600000
 lambda                   0.47155190
-jfploss                  6.39771790
+jfploss                  1.01211567
 seploss                  0.00000000
-j2jloss                 25.08813848
-funcerror               31.48585638
+j2jloss                 20.50635221
+funcerror               21.51846789
 
 
 
@@ -135,10 +135,10 @@ funcerror               31.48585638
 kappa                    0.07271306
 delta                    0.02600000
 lambda                   0.47155190
-jfploss                  5.98403917
+jfploss                  0.18319858
 seploss                  0.00000000
-j2jloss                  5.72536444
-funcerror               11.70940361
+j2jloss                 24.42984996
+funcerror               24.61304854
 
 
 
@@ -147,10 +147,10 @@ funcerror               11.70940361
 kappa                    0.07271306
 delta                    0.02600000
 lambda                   0.47155190
-jfploss                  5.33677389
+jfploss                  0.21221841
 seploss                  0.00000000
-j2jloss                  7.82486367
-funcerror               13.16163756
+j2jloss                 19.28233099
+funcerror               19.49454940
 
 
 
@@ -159,10 +159,10 @@ funcerror               13.16163756
 kappa                    0.07271306
 delta                    0.02600000
 lambda                   0.47155190
-jfploss                  5.28281927
+jfploss                  1.12910682
 seploss                  0.00000000
-j2jloss                 10.80359864
-funcerror               16.08641791
+j2jloss                 20.05092240
+funcerror               21.18002922
 
 
 
@@ -171,10 +171,10 @@ funcerror               16.08641791
 kappa                    0.07271306
 delta                    0.02600000
 lambda                   0.47155190
-jfploss                  4.77177353
+jfploss                  2.28740627
 seploss                  0.00000000
-j2jloss                 12.84532573
-funcerror               17.61709926
+j2jloss                 31.02899818
+funcerror               33.31640445
 
 
 
@@ -183,10 +183,10 @@ funcerror               17.61709926
 kappa                    0.07271306
 delta                    0.02600000
 lambda                   0.47155190
-jfploss                  3.82449156
+jfploss                  3.09111200
 seploss                  0.00000000
-j2jloss                 18.67402551
-funcerror               22.49851706
+j2jloss                 30.56128226
+funcerror               33.65239426
 
 
 
@@ -195,10 +195,10 @@ funcerror               22.49851706
 kappa                    0.07271306
 delta                    0.02600000
 lambda                   0.47155190
-jfploss                  3.49006933
+jfploss                  2.54848294
 seploss                  0.00000000
-j2jloss                 14.64945457
-funcerror               18.13952389
+j2jloss                 29.03032571
+funcerror               31.57880866
 
 
 
@@ -207,10 +207,10 @@ funcerror               18.13952389
 kappa                    0.07271306
 delta                    0.02600000
 lambda                   0.47155190
-jfploss                  2.57884913
+jfploss                  4.38117190
 seploss                  0.00000000
-j2jloss                 19.44112493
-funcerror               22.01997406
+j2jloss                 26.67696138
+funcerror               31.05813328
 
 
 
@@ -219,10 +219,10 @@ funcerror               22.01997406
 kappa                    0.07271306
 delta                    0.02600000
 lambda                   0.47155190
-jfploss                  1.71894093
+jfploss                  4.30252428
 seploss                  0.00000000
-j2jloss                 20.94223008
-funcerror               22.66117101
+j2jloss                 28.64131400
+funcerror               32.94383828
 
 
 
@@ -231,70 +231,10 @@ funcerror               22.66117101
 kappa                    0.07271306
 delta                    0.02600000
 lambda                   0.47155190
-jfploss                  3.05754806
+jfploss                  6.01838450
 seploss                  0.00000000
-j2jloss                 19.18052090
-funcerror               22.23806896
-
-
-
-   Loss Function
-----------------
-kappa                    0.07271306
-delta                    0.02600000
-lambda                   0.47155190
-jfploss                  2.38752925
-seploss                  0.00000000
-j2jloss                 22.43900565
-funcerror               24.82653490
-
-
-
-   Loss Function
-----------------
-kappa                    0.07271306
-delta                    0.02600000
-lambda                   0.47155190
-jfploss                  1.54321047
-seploss                  0.00000000
-j2jloss                 17.20676177
-funcerror               18.74997224
-
-
-
-   Loss Function
-----------------
-kappa                    0.07271306
-delta                    0.02600000
-lambda                   0.47155190
-jfploss                  1.10351214
-seploss                  0.00000000
-j2jloss                 32.05844814
-funcerror               33.16196028
-
-
-
-   Loss Function
-----------------
-kappa                    0.07271306
-delta                    0.02600000
-lambda                   0.47155190
-jfploss                  0.37656370
-seploss                  0.00000000
-j2jloss                 18.66397080
-funcerror               19.04053450
-
-
-
-   Loss Function
-----------------
-kappa                    0.07271306
-delta                    0.02600000
-lambda                   0.47155190
-jfploss                  0.25209348
-seploss                  0.00000000
-j2jloss                 22.09846082
-funcerror               22.35055430
+j2jloss                 38.14081036
+funcerror               44.15919486
 
 
 
