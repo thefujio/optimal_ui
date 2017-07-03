@@ -112,7 +112,7 @@
   call states(J,U)
   !Bisection on tax rate
   taul = 0.0000001d0
-  tauu = 0.065d0
+  tauu = 0.085d0
   !Evaluate at endpoints taul,tauu
   tau = taul
   call vfi(J,U)

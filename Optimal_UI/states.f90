@@ -184,6 +184,7 @@
   call wri2file(nx,1,x,root_dir//out_dir//"xgrid.txt")
 
   !Setting initial conditions for value functions
+
   U1 = -18.929393939237876d0
   do iz=1,nz
     do iy=1,ny

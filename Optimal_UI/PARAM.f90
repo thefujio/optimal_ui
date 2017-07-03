@@ -57,7 +57,7 @@ MODULE PARAM
 
   !Initial Guess on Calibrated Parameters
   integer, parameter        :: dims = 3
-  real(8), dimension(dims), parameter   :: guess     = (/ 0.07271306d0, 0.02600000d0, 0.47155190d0 /) !kappa, delta, lambda
+  real(8), dimension(dims), parameter   :: guess     = (/ 0.03632722d0, 0.02600000d0, 0.48401908d0 /) !kappa, delta, lambda
   real(8), dimension(dims), parameter   :: lb        = (/ 0.02000000d0, 0.01000000d0, 0.15000000d0 /)
   real(8), dimension(dims), parameter   :: ub        = (/ 0.12000000d0, 0.03000000d0, 1.00000000d0 /)
   real(8)                               :: kappa, delta, lambda
@@ -110,7 +110,7 @@ MODULE PARAM
   !About 46% of avg wage
   real(8), parameter:: bmin = 0.460d0
   !Home production plus UI = about 2/3 of avg. wage
-  real(8), parameter:: hp = 0.200d0
+  real(8), parameter:: hp = 0.300d0
   ! CONTRACT SPACE
   integer:: nc
   integer, allocatable:: cont(:,:)
