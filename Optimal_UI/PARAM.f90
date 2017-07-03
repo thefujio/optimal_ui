@@ -46,7 +46,7 @@ MODULE PARAM
   integer, parameter        :: gridpoints = 20
   real(8)                   :: bval
   real(8)                   :: rrval, ceval, taxval, jfpval, uval, submktval, grosswageval, netwageval, urateval, uuval, eeval
-  real(8), dimension(gridpoints) :: bgrid, rrgrid, cegrid, taxgrid, jfpgrid, uvalgrid, submktgrid, grosswagegrid, netwagegrid, urategrid, uugrid, eegrid
+  real(8), dimension(gridpoints) :: psigrid, bgrid, rrgrid, cegrid, taxgrid, jfpgrid, uvalgrid, submktgrid, grosswagegrid, netwagegrid, urategrid, uugrid, eegrid
   !Flag for whether optimization routine used is going to be unconstrained (1) or bound-constrained (0)
   integer,          parameter:: transform = 0
   !Calibration Targets:
@@ -98,7 +98,7 @@ MODULE PARAM
   real(8)                   :: emin,emax
   real(8), dimension(ne)    :: e
 
-  real(8), parameter        :: psi = 1.0d0/6.0d0
+  real(8)                   :: psi
   real(8), dimension(ne,ne) :: pe
   !Index Conversion for unemployment transmat
   integer, parameter        :: nu = ny*ne
