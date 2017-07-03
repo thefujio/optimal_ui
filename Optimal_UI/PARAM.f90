@@ -80,7 +80,7 @@ MODULE PARAM
   real(8), dimension(ny,ny) :: py
   
   ! STOCHASTIC IDIOSYNCRATIC PRODUCTIVITY
-  integer, parameter        :: nz = 3
+  integer, parameter        :: nz = 1
   real(8), dimension(nz)    :: z,pzss,Pztilde
   real(8), dimension(nz,nz) :: pz
   
