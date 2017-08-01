@@ -50,23 +50,23 @@ MODULE PARAM
   !Flag for whether optimization routine used is going to be unconstrained (1) or bound-constrained (0)
   integer,          parameter:: transform = 0
   !Calibration Targets:
-  real(8), parameter        :: jfptarget = 0.450d0
-  real(8), parameter        :: septarget = 0.026d0
-  real(8), parameter        :: j_jtarget = 0.060d0
+  real(8), parameter        :: jfptarget = 0.385d0
+  real(8), parameter        :: urtarget = 0.0575d0
+  real(8), parameter        :: j_jtarget = 0.027d0
   real(8)                   :: funcerror
 
   !Initial Guess on Calibrated Parameters
   integer, parameter        :: dims = 3
-  real(8), dimension(dims), parameter   :: guess     = (/ 0.03632722d0, 0.02600000d0, 0.48401908d0 /) !kappa, delta, lambda
+  real(8), dimension(dims), parameter   :: guess     = (/ 0.13100000d0, 0.02280000d0, 1.00000000d0 /) !kappa, delta, lambda
   real(8), dimension(dims), parameter   :: lb        = (/ 0.02000000d0, 0.01000000d0, 0.15000000d0 /)
-  real(8), dimension(dims), parameter   :: ub        = (/ 0.12000000d0, 0.03000000d0, 1.00000000d0 /)
+  real(8), dimension(dims), parameter   :: ub        = (/ 0.20000000d0, 0.03000000d0, 1.00000000d0 /)
   real(8)                               :: kappa, delta, lambda
   !Spread for restr/unrestr function - must be larger than 1!
   real(8), parameter:: spread = 2.000d0
   real(8), parameter:: pie = 3.14159265d0
 
   ! GRID ON PV
-  integer, parameter        :: nx = 30
+  integer, parameter        :: nx = 100
   real(8)                   :: xmin,xmax
   real(8), dimension(nx)    :: x
     
@@ -110,7 +110,7 @@ MODULE PARAM
   !About 46% of avg wage
   real(8), parameter:: bmin = 0.460d0
   !Home production plus UI = about 2/3 of avg. wage
-  real(8), parameter:: hp = 0.300d0
+  real(8), parameter:: hp = 0.200d0
   ! CONTRACT SPACE
   integer:: nc
   integer, allocatable:: cont(:,:)

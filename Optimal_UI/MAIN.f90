@@ -54,7 +54,7 @@ PROGRAM MAIN
   endif
 
 
-  call linspace(bgrid,0.4d0,0.89d0,gridpoints)
+  call linspace(bgrid,0.4d0,0.65d0,gridpoints)
   call linspace(psigrid,0.25d0,0.01d0,gridpoints)
   print*, psigrid
   pause

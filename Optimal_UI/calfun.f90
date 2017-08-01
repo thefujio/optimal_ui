@@ -93,7 +93,7 @@
 
   integer:: iter                      !Generic indexes
   real(8):: fl,fu
-  real(8):: bd,jfploss,seploss,j_jloss
+  real(8):: bd,jfploss,urloss,j_jloss
 
   ! TAX CODE - upper and lower bound tax rates for bisection
   real(8):: taul,tauu
@@ -112,7 +112,7 @@
   call states(J,U)
   !Bisection on tax rate
   taul = 0.0000001d0
-  tauu = 0.085d0
+  tauu = 0.065d0
   !Evaluate at endpoints taul,tauu
   tau = taul
   call vfi(J,U)
@@ -156,10 +156,10 @@
   deallocate(cont)
   !Calibration Output
   jfploss =  min(1.0d8, abs(100.0d0*(UEflow - jfptarget)/jfptarget))
-  seploss = min(1.0d8, abs(100.0d0*(EUflow - septarget)/septarget))
+  urloss = min(1.0d8, abs(100.0d0*(unemp - urtarget)/urtarget))
   j_jloss = min(1.0d8, abs(100.0d0*(EEflow - j_jtarget)/j_jtarget))
 
-  funcerror = (jfploss + seploss + j_jloss)
+  funcerror = (jfploss + urloss + j_jloss)
   if (isnan(real(funcerror,8))) then
     funcerror = 1.00d8
   endif
@@ -167,14 +167,14 @@
   print*, 'kappa = :', kappa, 'delta = ', delta, 'lambda = ', lambda
   print*, 'distance from calibration targets: ', fval
 
-  write (calibout,14) kappa, delta, lambda, jfploss, seploss, j_jloss, funcerror
+  write (calibout,14) kappa, delta, lambda, jfploss, urloss, j_jloss, funcerror
   14 format ('   Loss Function'/&
   '----------------'/&
   "kappa            ",f18.8/&
   "delta            ",f18.8/&
   "lambda           ",f18.8/&
   "jfploss          ",f18.8/&
-  "seploss          ",f18.8/&
+  "urloss           ",f18.8/&
   "j2jloss          ",f18.8/&
   "funcerror        ",f18.8///)
 

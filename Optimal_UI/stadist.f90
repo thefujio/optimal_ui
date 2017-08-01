@@ -38,7 +38,7 @@ SUBROUTINE stadist(m,pimat,pss,initpss)
     if (dabs(SUM(pimat(i,:))-one) .GT. tol) then
       write(*,'(''row '',i3,'' does not sum to 1'')')  i
       write(*,'(''SUM(mat('',i3,'',:) = '',f14.10)') i,SUM(pimat(i,:))
-      pause
+      !pause
     end if
   end do
   
@@ -79,7 +79,7 @@ SUBROUTINE stadist(m,pimat,pss,initpss)
   if (dabs(psstot-one).gt.tol) then
     print *, 'THE STATIONARY DISTRIBUTION DOES NOT ADD UP TO ONE'
     print *, 'psstot = ',psstot
-    PAUSE
+    !PAUSE
   end if
   
   !LAST CARD OF SUBROUTINE stadist
