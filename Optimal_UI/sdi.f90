@@ -178,9 +178,9 @@ SUBROUTINE SDI(J1,U1)
   jfpval = UEflow
   grosswageval = avg_wage
   netwageval = avg_wage*(1.0d0-tau)
-  urateval = unemp/unemp+em
-  uuval = unemp-ue !1.0d0 - UEflow The current charts are the percent of population who are in uu,ee, not the flow prob!
-  eeval = ee !EEflow
+  urateval = unemp
+  uuval = 1.0d0-UEflow !1.0d0 - UEflow The current charts are the percent of population who are in uu,ee, not the flow prob!
+  eeval = EEflow
 
 
   RETURN

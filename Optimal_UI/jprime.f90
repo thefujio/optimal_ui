@@ -110,7 +110,7 @@ SUBROUTINE JPRIME(U1,J1)
   do i=1,nu
     ExpU(i) = zero
     do ii=1,nu
-      ExpU(i) = ExpU(i) + pus(i,ii)*(U0(iuyfun(ii),iuefun(ii))+RU(iuyfun(ii),iuefun(ii)))
+      ExpU(i) = ExpU(i) + betta*pus(i,ii)*(U0(iuyfun(ii),iuefun(ii))+RU(iuyfun(ii),iuefun(ii)))
     end do
     U1(iuyfun(i),iuefun(i)) = Ufunc(bvec(iuefun(i))) + ExpU(i)
   end do

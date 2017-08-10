@@ -55,7 +55,9 @@ PROGRAM MAIN
 
 
   call linspace(bgrid,0.4d0,0.65d0,gridpoints)
-  call linspace(psigrid,0.25d0,0.01d0,gridpoints)
+  !call linspace(psigrid,1.0d0,1.0d0/36.0d0,gridpoints)
+  call linspace(durgrid,1.0d0,36.0d0,gridpoints)
+  psigrid = 1.0d0/durgrid
   print*, psigrid
   pause
   print *, "Run bisection method to find tau for each rr in grid"

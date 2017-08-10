@@ -31,7 +31,7 @@
 /* Begin PBXBuildRule section */
 		47AB9D931D54E2BC00CC84BC /* PBXBuildRule */ = {
 			isa = PBXBuildRule;
-			compilerSpec = com.intel.compilers.ifort.16_0_0;
+			compilerSpec = com.intel.compilers.ifort.latest;
 			fileType = sourcecode.fortran;
 			isEditable = 1;
 			outputFiles = (
@@ -305,18 +305,18 @@
 				ALWAYS_SEARCH_USER_PATHS = YES;
 				CLANG_USE_OPTIMIZATION_PROFILE = YES;
 				HEADER_SEARCH_PATHS = (
-					/opt/intel/compilers_and_libraries_2016.3.170/mac/mkl/include,
 					/Users/fujio/Fortran/Optimal_UI/Optimal_UI,
+					/opt/intel/compilers_and_libraries_2017.4.181/mac/mkl/include,
 				);
 				IFORT_DATA_HEAP_ARRAYS = 100;
 				IFORT_MKL = "-mkl=parallel";
 				IFORT_OPT_AUTOPARALLEL_THRESHOLD = 10;
-				IFORT_OPT_LEVEL = "-fast";
+				IFORT_OPT_LEVEL = "-O3";
 				IFORT_OPT_VEC_THRESHOLD = 10;
 				IFORT_OTHER_FLAGS = "-parallel -par-report3 -ipo";
-				IFORT_RT_LIBRARY = "-Dynamic lib";
-				LD_RUNPATH_SEARCH_PATHS = "/opt/intel/compilers_and_libraries_2016.4.210/mac/mkl/lib /opt/intel/compilers_and_libraries_2016.4.210/mac/compiler/lib /Users/fujio/Fortran/Optimal_UI/Optimal_UI";
-				LIBRARY_SEARCH_PATHS = /opt/intel/compilers_and_libraries_2016.3.170/mac/mkl/lib;
+				IFORT_RT_LIBRARY = "";
+				LD_RUNPATH_SEARCH_PATHS = "/Users/fujio/Fortran/Optimal_UI/Optimal_UI /opt/intel/compilers_and_libraries_2017.4.181/mac/mkl/lib /opt/intel/compilers_and_libraries_2017.4.181/mac/compiler/lib";
+				LIBRARY_SEARCH_PATHS = /opt/intel/compilers_and_libraries_2017.4.181/mac/mkl/lib;
 				OTHER_LDFLAGS = (
 					"-lmkl_intel_lp64",
 					"-lmkl_core",
@@ -336,18 +336,18 @@
 				ALWAYS_SEARCH_USER_PATHS = YES;
 				CLANG_USE_OPTIMIZATION_PROFILE = YES;
 				HEADER_SEARCH_PATHS = (
-					/opt/intel/compilers_and_libraries_2016.3.170/mac/mkl/include,
 					/Users/fujio/Fortran/Optimal_UI/Optimal_UI,
+					/opt/intel/compilers_and_libraries_2017.4.181/mac/mkl/include,
 				);
 				IFORT_DATA_HEAP_ARRAYS = 100;
 				IFORT_MKL = "-mkl=parallel";
 				IFORT_OPT_AUTOPARALLEL_THRESHOLD = 10;
-				IFORT_OPT_LEVEL = "-fast";
+				IFORT_OPT_LEVEL = "-O3";
 				IFORT_OPT_VEC_THRESHOLD = 10;
 				IFORT_OTHER_FLAGS = "-parallel -par-report3 -ipo";
-				IFORT_RT_LIBRARY = "-Dynamic lib";
-				LD_RUNPATH_SEARCH_PATHS = "/opt/intel/compilers_and_libraries_2016.4.210/mac/mkl/lib /opt/intel/compilers_and_libraries_2016.4.210/mac/compiler/lib /Users/fujio/Fortran/Optimal_UI/Optimal_UI";
-				LIBRARY_SEARCH_PATHS = /opt/intel/compilers_and_libraries_2016.3.170/mac/mkl/lib;
+				IFORT_RT_LIBRARY = "";
+				LD_RUNPATH_SEARCH_PATHS = "/Users/fujio/Fortran/Optimal_UI/Optimal_UI /opt/intel/compilers_and_libraries_2017.4.181/mac/mkl/lib /opt/intel/compilers_and_libraries_2017.4.181/mac/compiler/lib";
+				LIBRARY_SEARCH_PATHS = /opt/intel/compilers_and_libraries_2017.4.181/mac/mkl/lib;
 				OTHER_LDFLAGS = (
 					"-lmkl_intel_lp64",
 					"-lmkl_core",

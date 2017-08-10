@@ -111,8 +111,8 @@
   !Set up grids and transition matrices
   call states(J,U)
   !Bisection on tax rate
-  taul = 0.0000001d0
-  tauu = 0.065d0
+  taul = 0.0001d0
+  tauu = 0.0750d0
   !Evaluate at endpoints taul,tauu
   tau = taul
   call vfi(J,U)
