@@ -107,7 +107,9 @@ SUBROUTINE SDI(J1,U1)
         eu = eu + ps(is,isp)*dprimevec(ix,iyfun(isp),wind(ix,iyfun(is),izfun(is)))*muss((is-1)*nx+ix)
         ee = ee + &
         ps(is,isp)*(1.0d0-dprimevec(ix,iyfun(isp),wind(ix,iyfun(is),izfun(is))))*lambda*Ptilde(ix,iyfun(isp))*muss((is-1)*nx+ix)
-        submktval = submktval + x(M(ix,iyfun(isp)))*ps(is,isp)* &
+        submktwgt = submktwgt + x(M(ix,iyfun(isp)))*ps(is,isp)* &
+        (1.0d0-dprimevec(ix,iyfun(isp),wind(ix,iyfun(is),izfun(is))))*lambda*Ptilde(ix,iyfun(isp))*muss((is-1)*nx+ix)
+        submktmeasure = submktmeasure + ps(is,isp)* &
         (1.0d0-dprimevec(ix,iyfun(isp),wind(ix,iyfun(is),izfun(is))))*lambda*Ptilde(ix,iyfun(isp))*muss((is-1)*nx+ix)
       end do
     end do
@@ -116,10 +118,11 @@ SUBROUTINE SDI(J1,U1)
   do iu=1,nu
     do iup=1,nu
       ue = ue + pus(iu,iup)*PUtilde(iuyfun(iup),iuefun(iup))*muss(ns*nx+iu)
-      submktval = submktval + x(MU(iuyfun(iup),iuefun(iup)))*pus(iu,iup)*PUtilde(iuyfun(iup),iuefun(iup))*muss(ns*nx+iu)
+      submktwgt = submktwgt + x(MU(iuyfun(iup),iuefun(iup)))*pus(iu,iup)*PUtilde(iuyfun(iup),iuefun(iup))*muss(ns*nx+iu)
+      submktmeasure = submktmeasure + pus(iu,iup)*PUtilde(iuyfun(iup),iuefun(iup))*muss(ns*nx+iu)
     end do
   end do
-
+  submktval = submktwgt/submktmeasure
   unemp=SUM(muss(ns*nx+1:))
   em=SUM(muss(1:ns*nx))
   UEflow=ue/unemp
@@ -154,9 +157,10 @@ SUBROUTINE SDI(J1,U1)
   uval = zero
   do iu=1,nu
     welfare = welfare + U1(iuyfun(iu),iuefun(iu))*muss(ns*nx+iu)
-    uval = uval + U1(iuyfun(iu),iuefun(iu))*muss(ns*nx+iu)
+    uwgt = uwgt + U1(iuyfun(iu),iuefun(iu))*muss(ns*nx+iu)
+    umeasure = umeasure + muss(ns*nx+iu)
   end do
-
+  uval = uwgt/umeasure
   do is=1,ns
     do ix=1,nx
     welfare = welfare + x(ix)*muss((is-1)*nx+ix)

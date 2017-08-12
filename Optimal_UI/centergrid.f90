@@ -31,13 +31,13 @@ endif
 if (ND1 >= 5) then
 xl = xl + 0.05d0*gridstep*real(ND1,8)
 else if (ND1<=2) then
-xl = xl - 2.0d0*gridstep
+xl = xl - 8.0d0*gridstep
 end if
 
 if (NT0 >= 5) then
 xu = xu - 0.05d0*gridstep*real(NT0,8)
 else if (NT0<=2) then
-xu = xu + 0.5d0*gridstep
+xu = xu + 8.0d0*gridstep
 end if
 
 xgrid(1:nx) = (/ ( &
