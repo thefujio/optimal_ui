@@ -20,13 +20,13 @@ double precision, dimension(nx,ny,nz), intent(in):: J1
 
 ! CURRENT VALUE FUNCTIONS AND POLICY RULES (for reference)
 !real(8), dimension(nx,ny)   :: theta,P
-!  real(8), dimension(nx,ny,nz):: J
+!real(8), dimension(nx,ny,nz):: J
 !real(8), dimension(nx,ny,nz):: w
 !real(8), dimension(nx,ns,ns):: dprime
 !integer, dimension(nx,ns,ns):: iVprime
 !real(8), dimension(nx,ny)   :: R,Ptilde
 !integer, dimension(nx,ny)   :: M
-!  real(8), dimension(ny)      :: U
+!real(8), dimension(ny)      :: U
 !real(8), dimension(ny)      :: RU,PUtilde
 !integer, dimension(ny)      :: MU
 
@@ -121,7 +121,7 @@ else
     80 format('V,','J,','w,','dprime,', &
     'P,','th,','R,','Ptilde(y1),','Jtilde,','M,')
     do i=1,nx
-      write(105,'(<10>(f15.4,","),1(I6,","))') x(i),J1(i,1,1),w(i,1,1),dprimevec(i,1,1),&
+      write(105,'(<9>(f15.4,","),1(I6,","))') x(i),J1(i,1,1),w(i,1,1),dprimevec(i,1,1),&
       P(i,1),theta(i,1),R(i,1),Ptilde(i,1),Jtilde(i,1),M(i,1)
     enddo
   close(105)
@@ -135,6 +135,16 @@ if (nz==2 .and. ny==1) then
     write(107,'((A6,","),<2*ns>(I6,","))') 'z(isp)', izfun(1), izfun(2), izfun(1), izfun(2)
     do i=1,nx
       write(107,'((f15.4,","),<2*ns>(I6,","))') x(i),iVprime(i,1,1),iVprime(i,1,2),iVprime(i,2,1),iVprime(i,2,2)
+    enddo
+  close(107)
+else if(nz==1 .and. ny==1) then
+  open(107,file=root_dir//out_dir//'vprime.csv',status='replace')
+    write(107,'((A6,","),<2*ns>(I6,","))') 'is',1
+    write(107,'((A6,","),<2*ns>(I6,","))') 'isp',1
+    write(107,'((A6,","),<2*ns>(I6,","))') 'y(isp)', iyfun(1)
+    write(107,'((A6,","),<2*ns>(I6,","))') 'z(isp)', izfun(1)
+    do i=1,nx
+      write(107,'((f15.4,","),<2*ns>(I6,","))') x(i),iVprime(i,1,1)
     enddo
   close(107)
 endif
