@@ -309,6 +309,7 @@
 					/opt/intel/compilers_and_libraries_2017.4.181/mac/mkl/include,
 				);
 				IFORT_DATA_HEAP_ARRAYS = 100;
+				IFORT_LANG_OPENMP = "";
 				IFORT_MKL = "-mkl=parallel";
 				IFORT_OPT_AUTOPARALLEL_THRESHOLD = 10;
 				IFORT_OPT_LEVEL = "-O3";
@@ -340,6 +341,7 @@
 					/opt/intel/compilers_and_libraries_2017.4.181/mac/mkl/include,
 				);
 				IFORT_DATA_HEAP_ARRAYS = 100;
+				IFORT_LANG_OPENMP = "";
 				IFORT_MKL = "-mkl=parallel";
 				IFORT_OPT_AUTOPARALLEL_THRESHOLD = 10;
 				IFORT_OPT_LEVEL = "-O3";

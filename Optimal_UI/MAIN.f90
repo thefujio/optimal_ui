@@ -31,7 +31,7 @@ PROGRAM MAIN
 !  real(8):: start_iter, end_iter           !Used to keep track of time
   real(8), dimension(dims):: paramvec
 !  real(8):: rhobeg, rhoend
-  integer:: i !,iprint, maxfun
+  integer:: i,j !,iprint, maxfun
 !  real(8), dimension((2*dims+5)*(2*dims+dims)+3*dims*(dims+5)/2):: wspace
 !Timing of the program
   call CPU_Time(time_begin)
@@ -54,39 +54,40 @@ PROGRAM MAIN
   endif
 
 
-  !call linspace(bgrid,0.4d0,0.65d0,gridpoints)
+  call linspace(bgrid,0.41d0,0.51d0,bgridpoints)
   !call linspace(psigrid,1.0d0,1.0d0/36.0d0,gridpoints)
-  !call linspace(durgrid,1.0d0,36.0d0,gridpoints)
-  !psigrid = 1.0d0/durgrid
+  call linspace(durgrid,1.0d0,36.0d0,gridpoints)
+  psigrid = 1.0d0/durgrid
   !print*, psigrid
-  psigrid = 1.0d0/6.0d0
   pause
   print *, "Run bisection method to find tau for each rr in grid"
-  !For non-calibration testing:
-  do i=1,gridpoints
-    bval = bmin
-    psi = psigrid(i)
-    Call calfun(dims,paramvec,funcerror)
-    rrgrid(i) = rrval
-    cegrid(i) = ceval
-    taxgrid(i) = taxval
-    jfpgrid(i) = jfpval
-    uvalgrid(i) = uval
-    submktgrid(i) = submktval
-    grosswagegrid(i) = grosswageval
-    netwagegrid(i) = netwageval
-    urategrid(i) = urateval
-    uugrid(i) = uuval
-    eegrid(i) = eeval
-    print*,'gridpoint ', i ,' completed'
-  end do
-
   open(unit=gridout,  file=root_dir//out_dir//"gridout.txt",  status='replace')
   write(gridout,15)
-  15 format('Psi,','RR,','CE,','Tax,','JFP(U),','U VF,','Avg. Open Submkt,','Gross W,','Net W,','Urate,','UU,','EE,')
+  15 format('Psi,','RR,','CE,','Tax,','JFP(U),','U VF,','Avg. Open Submkt,','Gross W,','Net W,','Urate,','UU,','EE,','b')
+  !For non-calibration testing:
+  do j=1,bgridpoints
     do i=1,gridpoints
-      write(gridout,'(<12>(f15.4,","))') psigrid(i),rrgrid(i),cegrid(i),taxgrid(i),jfpgrid(i),uvalgrid(i),submktgrid(i),grosswagegrid(i),netwagegrid(i),urategrid(i),uugrid(i),eegrid(i)
-    enddo
+      bval = bgrid(j)
+      psi = psigrid(i)
+      Call calfun(dims,paramvec,funcerror)
+      rrgrid(i) = rrval
+      cegrid(i) = ceval
+      taxgrid(i) = taxval
+      jfpgrid(i) = jfpval
+      uvalgrid(i) = uval
+      submktgrid(i) = submktval
+      grosswagegrid(i) = grosswageval
+      netwagegrid(i) = netwageval
+      urategrid(i) = urateval
+      uugrid(i) = uuval
+      eegrid(i) = eeval
+      print*,'gridpoint ', i ,' completed'
+    end do
+
+  do i=1,gridpoints
+    write(gridout,'(<13>(f15.4,","))') psigrid(i),rrgrid(i),cegrid(i),taxgrid(i),jfpgrid(i),uvalgrid(i),submktgrid(i),grosswagegrid(i),netwagegrid(i),urategrid(i),uugrid(i),eegrid(i),bgrid(j)
+  enddo
+  enddo !end j grid
   close(gridout)
 
 

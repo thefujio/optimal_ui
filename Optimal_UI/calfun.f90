@@ -112,7 +112,7 @@
   call states(J,U)
   !Bisection on tax rate
   taul = 0.0001d0
-  tauu = 0.1150d0
+  tauu = 0.400d0
   !Evaluate at endpoints taul,tauu
   tau = taul
   call vfi(J,U)
@@ -127,7 +127,7 @@
   write (*,'(5x,''Budget Deficit = '',f10.6)') fu
   if (fl*fu>zero) then
     write (*,'(3x,''Stop: Bisection not bracketed'')')
-    STOP
+    !PAUSE
   end if
 
   !Bisection loop
