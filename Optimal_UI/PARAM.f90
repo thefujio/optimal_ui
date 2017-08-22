@@ -53,12 +53,13 @@ MODULE PARAM
   !Calibration Targets:
   real(8), parameter        :: jfptarget = 0.385d0
   real(8), parameter        :: urtarget = 0.0575d0
-  real(8), parameter        :: j_jtarget = 0.027d0
+  real(8), parameter        :: j_jtarget = 0.023d0
   real(8)                   :: funcerror
 
   !Initial Guess on Calibrated Parameters
   integer, parameter        :: dims = 3
-  real(8), dimension(dims), parameter   :: guess     = (/ 0.11635000d0, 0.02600000d0, 0.95830000d0 /) !kappa, delta, lambda
+  !real(8), dimension(dims), parameter   :: guess     = (/ 0.13100000d0, 0.02280000d0, 1.00000000d0 /) !kappa, delta, lambda
+  real(8), dimension(dims), parameter   :: guess     = (/ 0.15463269d0, 0.02206612d0, 0.98376169d0 /)
   real(8), dimension(dims), parameter   :: lb        = (/ 0.02000000d0, 0.01000000d0, 0.15000000d0 /)
   real(8), dimension(dims), parameter   :: ub        = (/ 0.20000000d0, 0.03000000d0, 1.00000000d0 /)
   real(8)                               :: kappa, delta, lambda
@@ -67,7 +68,7 @@ MODULE PARAM
   real(8), parameter:: pie = 3.14159265d0
 
   ! GRID ON PV
-  integer, parameter        :: nx = 220
+  integer, parameter        :: nx = 30
   real(8)                   :: xmin,xmax
   real(8), dimension(nx)    :: x
     
@@ -156,7 +157,7 @@ MODULE PARAM
 
   !PROGRAMMING PARAMETERS
   ! FLOW CONTROLS
-  integer, parameter:: niter = 400
+  integer, parameter:: niter = 500
   integer, parameter:: nupdate = 30
   
   ! TOLERANCE LEVEL

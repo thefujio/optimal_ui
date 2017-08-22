@@ -159,7 +159,7 @@
   urloss = min(1.0d8, abs(100.0d0*(unemp - urtarget)/urtarget))
   j_jloss = min(1.0d8, abs(100.0d0*(EEflow - j_jtarget)/j_jtarget))
 
-  funcerror = (jfploss + urloss + j_jloss)
+  funcerror = (jfploss**2.0d0 + urloss**2.0d0 + j_jloss**2.0d0)
   if (isnan(real(funcerror,8))) then
     funcerror = 1.00d8
   endif
