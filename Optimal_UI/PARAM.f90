@@ -43,8 +43,8 @@ MODULE PARAM
   logical:: want_print  = .false.
 
   !Grid over b
-  integer, parameter        :: gridpoints = 20
-  integer, parameter        :: bgridpoints = 3
+  integer, parameter        :: gridpoints = 1
+  integer, parameter        :: bgridpoints = 1
   real(8)                   :: bval
   real(8)                   :: rrval, ceval, taxval, jfpval, uval, uwgt, umeasure, submktval, submktwgt, submktmeasure, grosswageval, netwageval, urateval, uuval, eeval
   real(8), dimension(gridpoints) :: psigrid, durgrid, bgrid, rrgrid, cegrid, taxgrid, jfpgrid, uvalgrid, submktgrid, grosswagegrid, netwagegrid, urategrid, uugrid, eegrid
@@ -67,7 +67,7 @@ MODULE PARAM
   real(8), parameter:: pie = 3.14159265d0
 
   ! GRID ON PV
-  integer, parameter        :: nx = 40
+  integer, parameter        :: nx = 220
   real(8)                   :: xmin,xmax
   real(8), dimension(nx)    :: x
     
@@ -94,8 +94,8 @@ MODULE PARAM
 
   !Stochastic Expiration of UI benefits
   ! GRID ON UI benefit (past wage+ineligible)
-  integer, parameter        :: ne = 31
-  !integer, parameter       :: ne=2
+  !integer, parameter        :: ne = 31
+  integer, parameter        :: ne=2
   real(8)                   :: emin,emax
   real(8), dimension(ne)    :: e
 
