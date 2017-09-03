@@ -1,12 +1,12 @@
    Loss Function
 ----------------
-kappa                    0.15463269
-delta                    0.02206612
-lambda                   0.98376169
-jfploss                  4.21462399
-urloss                   1.81179312
-j2jloss                 36.43824978
-funcerror             1348.79169691
+kappa                    0.03507659
+delta                    0.02000000
+lambda                   1.00000000
+jfploss                 11.56966821
+urloss                  15.19362938
+j2jloss                 61.93787395
+funcerror             4201.00382599
 
 
 

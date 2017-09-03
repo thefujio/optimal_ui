@@ -112,7 +112,7 @@ do i=1,nu
   do ii=1,nu
     ExpU(i) = ExpU(i) + betta*pus(i,ii)*(U0(iuyfun(ii),iuefun(ii))+RU(iuyfun(ii),iuefun(ii)))
   end do
-  U1(iuyfun(i),iuefun(i)) = Ufunc(hp+bvec(iuefun(i))) + ExpU(i)
+  U1(iuyfun(i),iuefun(i)) = Ufunc(bvec(iuefun(i))) + ExpU(i)
 end do
 
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!

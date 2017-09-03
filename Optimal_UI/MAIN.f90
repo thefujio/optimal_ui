@@ -57,7 +57,7 @@ PROGRAM MAIN
   !call linspace(bgrid,0.41d0,0.51d0,bgridpoints)
   !call linspace(psigrid,1.0d0,1.0d0/36.0d0,gridpoints)
   !call linspace(durgrid,1.0d0,36.0d0,gridpoints)
-  psigrid = 1.0d0/6.0d0
+  psigrid = 0.0d0
   bgrid = bmin
   !print*, psigrid
   pause

@@ -51,15 +51,15 @@ MODULE PARAM
   !Flag for whether optimization routine used is going to be unconstrained (1) or bound-constrained (0)
   integer,          parameter:: transform = 0
   !Calibration Targets:
-  real(8), parameter        :: jfptarget = 0.385d0
-  real(8), parameter        :: urtarget = 0.0575d0
-  real(8), parameter        :: j_jtarget = 0.023d0
+  real(8), parameter        :: jfptarget = 0.343d0
+  real(8), parameter        :: urtarget = 0.0537d0
+  real(8), parameter        :: j_jtarget = 0.0223d0
   real(8)                   :: funcerror
 
   !Initial Guess on Calibrated Parameters
   integer, parameter        :: dims = 3
   !real(8), dimension(dims), parameter   :: guess     = (/ 0.13100000d0, 0.02280000d0, 1.00000000d0 /) !kappa, delta, lambda
-  real(8), dimension(dims), parameter   :: guess     = (/ 0.15463269d0, 0.02206612d0, 0.98376169d0 /)
+  real(8), dimension(dims), parameter   :: guess     = (/ 0.03507659d0, 0.02000000d0, 1.00000000d0 /)
   real(8), dimension(dims), parameter   :: lb        = (/ 0.02000000d0, 0.01000000d0, 0.15000000d0 /)
   real(8), dimension(dims), parameter   :: ub        = (/ 0.20000000d0, 0.03000000d0, 1.00000000d0 /)
   real(8)                               :: kappa, delta, lambda
@@ -68,7 +68,7 @@ MODULE PARAM
   real(8), parameter:: pie = 3.14159265d0
 
   ! GRID ON PV
-  integer, parameter        :: nx = 30
+  integer, parameter        :: nx = 120
   real(8)                   :: xmin,xmax
   real(8), dimension(nx)    :: x
     
@@ -95,8 +95,8 @@ MODULE PARAM
 
   !Stochastic Expiration of UI benefits
   ! GRID ON UI benefit (past wage+ineligible)
-  !integer, parameter        :: ne = 31
-  integer, parameter        :: ne=2
+  integer, parameter        :: ne = 31
+  !integer, parameter        :: ne=1
   real(8)                   :: emin,emax
   real(8), dimension(ne)    :: e
 
@@ -110,9 +110,9 @@ MODULE PARAM
   real(8), dimension(nu,nu) :: pus
 
   !About 46% of avg wage
-  real(8), parameter:: bmin = 0.460d0
+  real(8), parameter:: bmin = 0.250d0
   !Home production plus UI = about 2/3 of avg. wage
-  real(8), parameter:: hp = 0.200d0
+  real(8), parameter:: hp = 0.430d0
   ! CONTRACT SPACE
   integer:: nc
   integer, allocatable:: cont(:,:)
@@ -142,7 +142,7 @@ MODULE PARAM
   real(8), parameter:: sigma = 2.000d0
   
   ! MATCHING TECHNOLOGY, SEARCH, SEPARATION, COST
-  real(8), parameter:: gamma  = 0.500d0
+  real(8), parameter:: gamma  = 0.3889d0
   !real(8), parameter:: lambda = 1.000d0
   !real(8), parameter:: delta  = 0.026d0
   !real(8), parameter:: kappa  = 0.029d0
@@ -157,7 +157,7 @@ MODULE PARAM
 
   !PROGRAMMING PARAMETERS
   ! FLOW CONTROLS
-  integer, parameter:: niter = 500
+  integer, parameter:: niter = 700
   integer, parameter:: nupdate = 30
   
   ! TOLERANCE LEVEL
