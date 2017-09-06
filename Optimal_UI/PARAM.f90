@@ -40,7 +40,7 @@ MODULE PARAM
   logical:: do_refine   = .false.
   logical:: want_refine = .true.
   logical:: simul_only  = .false.
-  logical:: want_print  = .false.
+  logical:: want_print  = .true.
 
   !Grid over b
   integer, parameter        :: gridpoints = 1
@@ -59,7 +59,7 @@ MODULE PARAM
   !Initial Guess on Calibrated Parameters
   integer, parameter        :: dims = 3
   !real(8), dimension(dims), parameter   :: guess     = (/ 0.13100000d0, 0.02280000d0, 1.00000000d0 /) !kappa, delta, lambda
-  real(8), dimension(dims), parameter   :: guess     = (/ 0.03507659d0, 0.02000000d0, 1.00000000d0 /)
+  real(8), dimension(dims), parameter   :: guess     = (/ 0.16087150d0, 0.01946000d0, 0.99281934d0 /)
   real(8), dimension(dims), parameter   :: lb        = (/ 0.02000000d0, 0.01000000d0, 0.15000000d0 /)
   real(8), dimension(dims), parameter   :: ub        = (/ 0.20000000d0, 0.03000000d0, 1.00000000d0 /)
   real(8)                               :: kappa, delta, lambda
@@ -68,7 +68,7 @@ MODULE PARAM
   real(8), parameter:: pie = 3.14159265d0
 
   ! GRID ON PV
-  integer, parameter        :: nx = 120
+  integer, parameter        :: nx = 30
   real(8)                   :: xmin,xmax
   real(8), dimension(nx)    :: x
     
@@ -82,7 +82,7 @@ MODULE PARAM
   real(8), dimension(ny,ny) :: py
   
   ! STOCHASTIC IDIOSYNCRATIC PRODUCTIVITY
-  integer, parameter        :: nz = 1
+  integer, parameter        :: nz = 3
   real(8), dimension(nz)    :: z,pzss,Pztilde
   real(8), dimension(nz,nz) :: pz
   
@@ -95,8 +95,8 @@ MODULE PARAM
 
   !Stochastic Expiration of UI benefits
   ! GRID ON UI benefit (past wage+ineligible)
-  integer, parameter        :: ne = 31
-  !integer, parameter        :: ne=1
+  !integer, parameter        :: ne = 31
+  integer, parameter        :: ne=1
   real(8)                   :: emin,emax
   real(8), dimension(ne)    :: e
 
@@ -142,7 +142,7 @@ MODULE PARAM
   real(8), parameter:: sigma = 2.000d0
   
   ! MATCHING TECHNOLOGY, SEARCH, SEPARATION, COST
-  real(8), parameter:: gamma  = 0.3889d0
+  real(8), parameter:: gamma  = 0.5000d0
   !real(8), parameter:: lambda = 1.000d0
   !real(8), parameter:: delta  = 0.026d0
   !real(8), parameter:: kappa  = 0.029d0
