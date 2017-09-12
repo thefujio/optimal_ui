@@ -98,7 +98,7 @@ elseif (nz==3 .and. ny==1) then
   open(105,file=root_dir//out_dir//'empfuns.csv',status='replace')
     write(105,70)
     70 format('V,','J(y1;z1),','J(y1;z2),','J(y1;z3),','w(y1;z1),','w(y1;z2),','w(y1;z3),','dprime(y1),', &
-      'P(y1),','th(y1),','R(y1),','Ptilde(y1),','Ptilde(y2),','Jtilde(y1),','M(y1),')
+      'P(y1),','th(y1),','R(y1),','Ptilde(y1),','Jtilde(y1),','M(y1),')
     do i=1,nx
       write(105,'(<13>(f15.4,","),1(I6,","))') x(i),J1(i,1,1),J1(i,1,2),J1(i,1,3),w(i,1,1),w(i,1,2),w(i,1,3),dprimevec(i,1,1),&
       P(i,1),theta(i,1),R(i,1),Ptilde(i,1),Jtilde(i,1),M(i,1)
@@ -127,7 +127,17 @@ else
   close(105)
 endif
 
-if (nz==2 .and. ny==1) then
+if (nz==3 .and. ny==1) then
+  open(107,file=root_dir//out_dir//'vprime.csv',status='replace')
+    write(107,'((A6,","),<ns*ns>(I6,","))') 'is',1,1,1,2,2,2,3,3,3
+    write(107,'((A6,","),<ns*ns>(I6,","))') 'isp',1,2,3,1,2,3,1,2,3
+    write(107,'((A6,","),<ns*ns>(I6,","))') 'y(isp)', iyfun(1),iyfun(2),iyfun(3),iyfun(1),iyfun(2),iyfun(3),iyfun(1),iyfun(2),iyfun(3)
+    write(107,'((A6,","),<ns*ns>(I6,","))') 'z(isp)', izfun(1), izfun(2),izfun(3),izfun(1),izfun(2),izfun(3),izfun(1),izfun(2),izfun(3)
+    do i=1,nx
+      write(107,'((f15.4,","),<ns*ns>(I6,","))') x(i),iVprime(i,1,1),iVprime(i,1,2),iVprime(i,1,3),iVprime(i,2,1),iVprime(i,2,2),iVprime(i,2,3),iVprime(i,3,1),iVprime(i,3,2),iVprime(i,3,3)
+    enddo
+  close(107)
+else if (nz==2 .and. ny==1) then
   open(107,file=root_dir//out_dir//'vprime.csv',status='replace')
     write(107,'((A6,","),<2*ns>(I6,","))') 'is',1,1,2,2
     write(107,'((A6,","),<2*ns>(I6,","))') 'isp',1,2,1,2
@@ -137,6 +147,17 @@ if (nz==2 .and. ny==1) then
       write(107,'((f15.4,","),<2*ns>(I6,","))') x(i),iVprime(i,1,1),iVprime(i,1,2),iVprime(i,2,1),iVprime(i,2,2)
     enddo
   close(107)
+else if (nz==1 .and. ny==2) then
+  open(107,file=root_dir//out_dir//'vprime.csv',status='replace')
+    write(107,'((A6,","),<2*ns>(I6,","))') 'is',1,1,2,2
+    write(107,'((A6,","),<2*ns>(I6,","))') 'isp',1,2,1,2
+    write(107,'((A6,","),<2*ns>(I6,","))') 'y(isp)', iyfun(1), iyfun(2),iyfun(1), iyfun(2)
+    write(107,'((A6,","),<2*ns>(I6,","))') 'z(isp)', izfun(1), izfun(2), izfun(1), izfun(2)
+    do i=1,nx
+      write(107,'((f15.4,","),<2*ns>(I6,","))') x(i),iVprime(i,1,1),iVprime(i,1,2),iVprime(i,2,1),iVprime(i,2,2)
+    enddo
+  close(107)
+
 else if(nz==1 .and. ny==1) then
   open(107,file=root_dir//out_dir//'vprime.csv',status='replace')
     write(107,'((A6,","),<2*ns>(I6,","))') 'is',1
