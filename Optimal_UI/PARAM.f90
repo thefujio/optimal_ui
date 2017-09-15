@@ -46,8 +46,8 @@ MODULE PARAM
   integer, parameter        :: gridpoints = 1
   integer, parameter        :: bgridpoints = 1
   real(8)                   :: bval
-  real(8)                   :: rrval, ceval, taxval, jfpval, uval, uwgt, umeasure, submktval, submktwgt, submktmeasure, grosswageval, netwageval, urateval, uuval, eeval
-  real(8), dimension(gridpoints) :: psigrid, durgrid, bgrid, rrgrid, cegrid, taxgrid, jfpgrid, uvalgrid, submktgrid, grosswagegrid, netwagegrid, urategrid, uugrid, eegrid
+  real(8)                   :: rrval, ceval, taxval, jfpval, uval, uwgt, umeasure, submktval, submktwgt, submktmeasure, grosswageval, netwageval, urateval, uuval, eeval, trval
+  real(8), dimension(gridpoints) :: psigrid, durgrid, bgrid, rrgrid, cegrid, taxgrid, jfpgrid, uvalgrid, submktgrid, grosswagegrid, netwagegrid, urategrid, uugrid, eegrid, trgrid, hpgrid
   !Flag for whether optimization routine used is going to be unconstrained (1) or bound-constrained (0)
   integer,          parameter:: transform = 0
   !Calibration Targets:
@@ -59,7 +59,7 @@ MODULE PARAM
   !Initial Guess on Calibrated Parameters
   integer, parameter        :: dims = 3
   !real(8), dimension(dims), parameter   :: guess     = (/ 0.13100000d0, 0.02280000d0, 1.00000000d0 /) !kappa, delta, lambda
-  real(8), dimension(dims), parameter   :: guess     = (/ 0.08683515d0, 0.01946000d0, 0.41697092d0 /)
+  real(8), dimension(dims), parameter   :: guess     = (/ 0.10916000d0, 0.01946000d0, 0.45904000d0 /)
   real(8), dimension(dims), parameter   :: lb        = (/ 0.02000000d0, 0.01000000d0, 0.15000000d0 /)
   real(8), dimension(dims), parameter   :: ub        = (/ 0.20000000d0, 0.03000000d0, 1.00000000d0 /)
   real(8)                               :: kappa, delta, lambda
@@ -68,7 +68,7 @@ MODULE PARAM
   real(8), parameter:: pie = 3.14159265d0
 
   ! GRID ON PV
-  integer, parameter        :: nx = 30
+  integer, parameter        :: nx = 40
   real(8)                   :: xmin,xmax
   real(8), dimension(nx)    :: x
     
@@ -95,8 +95,8 @@ MODULE PARAM
 
   !Stochastic Expiration of UI benefits
   ! GRID ON UI benefit (past wage+ineligible)
-  !integer, parameter        :: ne = 31
-  integer, parameter        :: ne=1
+  integer, parameter        :: ne = 1
+  !integer, parameter        :: ne=2
   real(8)                   :: emin,emax
   real(8), dimension(ne)    :: e
 
@@ -157,7 +157,7 @@ MODULE PARAM
 
   !PROGRAMMING PARAMETERS
   ! FLOW CONTROLS
-  integer, parameter:: niter = 500
+  integer, parameter:: niter = 700
   integer, parameter:: nupdate = 30
   
   ! TOLERANCE LEVEL

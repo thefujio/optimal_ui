@@ -54,12 +54,15 @@ PROGRAM MAIN
   endif
 
 
-  !call linspace(bgrid,0.12d0,0.37d0,gridpoints)
+  !call linspace(bgrid,0.0d0,0.37d0,gridpoints)
+  !call linspace(hpgrid,0.43d0,0.78d0,gridpoints)
+
   !call linspace(psigrid,1.0d0,0.0d0,gridpoints)
   !call linspace(durgrid,1.0d0,36.0d0,gridpoints-1)
   !do i=1,gridpoints-1
   !psigrid(i) = 1.0d0/durgrid(i)
   !enddo
+  !psigrid(gridpoints) = 0.0d0
   psigrid = 0.0d0
   bgrid = 0.25d0
   !print*, psigrid
@@ -71,6 +74,7 @@ PROGRAM MAIN
   !For non-calibration testing:
   do j=1,bgridpoints
     do i=1,gridpoints
+      !hp = hpgrid(i)
       bval = bgrid(i)
       psi = psigrid(i)
       Call calfun(dims,paramvec,funcerror)
@@ -85,11 +89,12 @@ PROGRAM MAIN
       urategrid(i) = urateval
       uugrid(i) = uuval
       eegrid(i) = eeval
+      trgrid(i) = trval
       print*,'gridpoint ', i ,' completed'
     end do
 
   do i=1,gridpoints
-    write(gridout,'(<13>(f15.4,","))') psigrid(i),rrgrid(i),cegrid(i),taxgrid(i),jfpgrid(i),uvalgrid(i),submktgrid(i),grosswagegrid(i),netwagegrid(i),urategrid(i),uugrid(i),eegrid(i),bgrid(i)
+    write(gridout,'(<14>(f15.4,","))') psigrid(i),rrgrid(i),cegrid(i),taxgrid(i),jfpgrid(i),uvalgrid(i),submktgrid(i),grosswagegrid(i),netwagegrid(i),urategrid(i),uugrid(i),eegrid(i),bgrid(i),trgrid(i)
   enddo
   enddo !end j grid
   close(gridout)

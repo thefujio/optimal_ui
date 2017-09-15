@@ -88,9 +88,9 @@
     pz(3,1) = 0.25d0
     pz(3,3) = one - pz(3,1)
     call stadist(nz,pz,pzss)
-    z(1) =-0.2d0
+    z(1) =-0.4d0
     z(2) = zero
-    z(3) = 0.2d0
+    z(3) = 0.4d0
     Pztilde = zero
     Pztilde(2) = one
   else if (nz>3) then
