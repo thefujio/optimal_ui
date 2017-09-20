@@ -54,7 +54,7 @@ PROGRAM MAIN
   endif
 
 
-  !call linspace(bgrid,0.0d0,0.37d0,gridpoints)
+  call linspace(bgrid,0.0d0,0.37d0,gridpoints)
   !call linspace(hpgrid,0.43d0,0.78d0,gridpoints)
 
   !call linspace(psigrid,1.0d0,0.0d0,gridpoints)
@@ -64,9 +64,9 @@ PROGRAM MAIN
   !enddo
   !psigrid(gridpoints) = 0.0d0
   psigrid = 0.0d0
-  bgrid = 0.25d0
+  !bgrid = 0.25d0
   !print*, psigrid
-  pause
+  !pause
   print *, "Run bisection method to find tau for each rr in grid"
   open(unit=gridout,  file=root_dir//out_dir//"gridout.txt",  status='replace')
   write(gridout,15)

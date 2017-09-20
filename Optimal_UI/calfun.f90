@@ -141,7 +141,7 @@
     else
       taul=tau
     end if
-    if (dabs(taul-tauu) < tol) EXIT !removed .or. dabs(bd) < tol
+    if (dabs(taul-tauu) < low_tol .or. dabs(bd) < tol) EXIT
   end do
   if (iter.ge.niter) then
     write (*,'(3x,''Bisection did not converge after '',i6,'' iterations '')') iter

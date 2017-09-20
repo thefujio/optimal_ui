@@ -81,12 +81,15 @@
     Pztilde = pzss
   else if (nz==3) then
     pz = zero
-    pz(1,1) = 0.75d0
-    pz(1,3) = one - pz(1,1)
-    pz(2,1) = 0.5d0
-    pz(2,3) = one - pz(2,1)
-    pz(3,1) = 0.25d0
-    pz(3,3) = one - pz(3,1)
+    pz(1,1) = 0.85d0
+    pz(1,2) = 0.10d0
+    pz(1,3) = one - pz(1,1) - pz(1,2)
+    pz(2,2) = 0.85d0
+    pz(2,1) = (one - pz(2,2))/2.0d0
+    pz(2,3) = (one - pz(2,2))/2.0d0
+    pz(3,3) = 0.85d0
+    pz(3,2) = 0.10d0
+    pz(3,1) = one - pz(3,2) - pz(3,3)
     call stadist(nz,pz,pzss)
     z(1) =-0.4d0
     z(2) = zero

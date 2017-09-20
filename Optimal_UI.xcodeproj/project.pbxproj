@@ -311,9 +311,9 @@
 				IFORT_DATA_HEAP_ARRAYS = 100;
 				IFORT_LANG_OPENMP = "";
 				IFORT_MKL = "-mkl=parallel";
-				IFORT_OPT_AUTOPARALLEL_THRESHOLD = 10;
+				IFORT_OPT_AUTOPARALLEL_THRESHOLD = 80;
 				IFORT_OPT_LEVEL = "-O3";
-				IFORT_OPT_VEC_THRESHOLD = 10;
+				IFORT_OPT_VEC_THRESHOLD = 80;
 				IFORT_OTHER_FLAGS = "-parallel -par-report3 -ipo";
 				IFORT_RT_LIBRARY = "";
 				LD_RUNPATH_SEARCH_PATHS = "/Users/fujio/Fortran/Optimal_UI/Optimal_UI /opt/intel/compilers_and_libraries_2017.4.181/mac/mkl/lib /opt/intel/compilers_and_libraries_2017.4.181/mac/compiler/lib";
@@ -343,9 +343,9 @@
 				IFORT_DATA_HEAP_ARRAYS = 100;
 				IFORT_LANG_OPENMP = "";
 				IFORT_MKL = "-mkl=parallel";
-				IFORT_OPT_AUTOPARALLEL_THRESHOLD = 10;
+				IFORT_OPT_AUTOPARALLEL_THRESHOLD = 80;
 				IFORT_OPT_LEVEL = "-O3";
-				IFORT_OPT_VEC_THRESHOLD = 10;
+				IFORT_OPT_VEC_THRESHOLD = 80;
 				IFORT_OTHER_FLAGS = "-parallel -par-report3 -ipo";
 				IFORT_RT_LIBRARY = "";
 				LD_RUNPATH_SEARCH_PATHS = "/Users/fujio/Fortran/Optimal_UI/Optimal_UI /opt/intel/compilers_and_libraries_2017.4.181/mac/mkl/lib /opt/intel/compilers_and_libraries_2017.4.181/mac/compiler/lib";
