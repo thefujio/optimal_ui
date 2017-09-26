@@ -15,13 +15,13 @@
 		47C31B231D6E1C1F00A53C94 /* PARAM.f90 in Sources */ = {isa = PBXBuildFile; fileRef = 47C31B111D6E1C1F00A53C94 /* PARAM.f90 */; };
 		47C31B241D6E1C1F00A53C94 /* MAIN.f90 in Sources */ = {isa = PBXBuildFile; fileRef = 47C31B121D6E1C1F00A53C94 /* MAIN.f90 */; };
 		47C31B251D6E1C1F00A53C94 /* vfi.f90 in Sources */ = {isa = PBXBuildFile; fileRef = 47C31B131D6E1C1F00A53C94 /* vfi.f90 */; };
-		47C31B261D6E1C1F00A53C94 /* sdi.f90 in Sources */ = {isa = PBXBuildFile; fileRef = 47C31B141D6E1C1F00A53C94 /* sdi.f90 */; };
 		47C31B271D6E1C1F00A53C94 /* howard.f90 in Sources */ = {isa = PBXBuildFile; fileRef = 47C31B151D6E1C1F00A53C94 /* howard.f90 */; };
 		47C31B281D6E1C1F00A53C94 /* jprime.f90 in Sources */ = {isa = PBXBuildFile; fileRef = 47C31B161D6E1C1F00A53C94 /* jprime.f90 */; };
 		47C31B291D6E1C1F00A53C94 /* gbd.f90 in Sources */ = {isa = PBXBuildFile; fileRef = 47C31B171D6E1C1F00A53C94 /* gbd.f90 */; };
 		47C31B301D6E1C1F00A53C94 /* UTILITY.f90 in Sources */ = {isa = PBXBuildFile; fileRef = 47C31B1E1D6E1C1F00A53C94 /* UTILITY.f90 */; };
 		47C31B341D6E1C1F00A53C94 /* IOOP.f90 in Sources */ = {isa = PBXBuildFile; fileRef = 47C31B221D6E1C1F00A53C94 /* IOOP.f90 */; };
 		47D12B701DA305F700BEAB74 /* write_output.f90 in Sources */ = {isa = PBXBuildFile; fileRef = 47D12B6F1DA305F700BEAB74 /* write_output.f90 */; };
+		47D1A2271F78E5150068AF3B /* sdi.f90 in Sources */ = {isa = PBXBuildFile; fileRef = 47D1A2261F78E5150068AF3B /* sdi.f90 */; };
 		47D6CE841EF5C6D1001B92FC /* states.f90 in Sources */ = {isa = PBXBuildFile; fileRef = 47D6CE831EF5C6D1001B92FC /* states.f90 */; };
 		47D6CE861EF5D000001B92FC /* calfun.f90 in Sources */ = {isa = PBXBuildFile; fileRef = 47D6CE851EF5D000001B92FC /* calfun.f90 */; };
 		47D6CE881EF5DC3B001B92FC /* POWELL.f90 in Sources */ = {isa = PBXBuildFile; fileRef = 47D6CE871EF5DC3B001B92FC /* POWELL.f90 */; };
@@ -61,13 +61,13 @@
 		47C31B111D6E1C1F00A53C94 /* PARAM.f90 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.fortran.f90; path = PARAM.f90; sourceTree = "<group>"; };
 		47C31B121D6E1C1F00A53C94 /* MAIN.f90 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.fortran.f90; path = MAIN.f90; sourceTree = "<group>"; };
 		47C31B131D6E1C1F00A53C94 /* vfi.f90 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.fortran.f90; path = vfi.f90; sourceTree = "<group>"; };
-		47C31B141D6E1C1F00A53C94 /* sdi.f90 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.fortran.f90; path = sdi.f90; sourceTree = "<group>"; };
 		47C31B151D6E1C1F00A53C94 /* howard.f90 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.fortran.f90; path = howard.f90; sourceTree = "<group>"; };
 		47C31B161D6E1C1F00A53C94 /* jprime.f90 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.fortran.f90; path = jprime.f90; sourceTree = "<group>"; };
 		47C31B171D6E1C1F00A53C94 /* gbd.f90 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.fortran.f90; path = gbd.f90; sourceTree = "<group>"; };
 		47C31B1E1D6E1C1F00A53C94 /* UTILITY.f90 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.fortran.f90; path = UTILITY.f90; sourceTree = "<group>"; };
 		47C31B221D6E1C1F00A53C94 /* IOOP.f90 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.fortran.f90; path = IOOP.f90; sourceTree = "<group>"; };
 		47D12B6F1DA305F700BEAB74 /* write_output.f90 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.fortran.f90; path = write_output.f90; sourceTree = "<group>"; };
+		47D1A2261F78E5150068AF3B /* sdi.f90 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.fortran.f90; path = sdi.f90; sourceTree = "<group>"; };
 		47D6CE831EF5C6D1001B92FC /* states.f90 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.fortran.f90; path = states.f90; sourceTree = "<group>"; };
 		47D6CE851EF5D000001B92FC /* calfun.f90 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.fortran.f90; path = calfun.f90; sourceTree = "<group>"; };
 		47D6CE871EF5DC3B001B92FC /* POWELL.f90 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.fortran.f90; path = POWELL.f90; sourceTree = "<group>"; };
@@ -117,7 +117,7 @@
 				470D2D1F1EF43F1C0087D504 /* jprime_wage.f90 */,
 				47C31B151D6E1C1F00A53C94 /* howard.f90 */,
 				476846EF1D9C615000DF8A66 /* centergrid.f90 */,
-				47C31B141D6E1C1F00A53C94 /* sdi.f90 */,
+				47D1A2261F78E5150068AF3B /* sdi.f90 */,
 				47DB57071D748E790018B48A /* stadist.f90 */,
 				47C31B171D6E1C1F00A53C94 /* gbd.f90 */,
 				471754511DA5A9AF0060E918 /* contractn.f90 */,
@@ -189,6 +189,7 @@
 				47C31B301D6E1C1F00A53C94 /* UTILITY.f90 in Sources */,
 				47C31B341D6E1C1F00A53C94 /* IOOP.f90 in Sources */,
 				47B8485D1EF61A7500B1A73E /* TOOLBOX.f90 in Sources */,
+				47D1A2271F78E5150068AF3B /* sdi.f90 in Sources */,
 				47D6CE881EF5DC3B001B92FC /* POWELL.f90 in Sources */,
 				476846F01D9C615000DF8A66 /* centergrid.f90 in Sources */,
 				47D12B701DA305F700BEAB74 /* write_output.f90 in Sources */,
@@ -196,7 +197,6 @@
 				47C31B241D6E1C1F00A53C94 /* MAIN.f90 in Sources */,
 				470D2D201EF43F1C0087D504 /* jprime_wage.f90 in Sources */,
 				47DB57081D748E790018B48A /* stadist.f90 in Sources */,
-				47C31B261D6E1C1F00A53C94 /* sdi.f90 in Sources */,
 				47C31B251D6E1C1F00A53C94 /* vfi.f90 in Sources */,
 				47C31B291D6E1C1F00A53C94 /* gbd.f90 in Sources */,
 				47D6CE861EF5D000001B92FC /* calfun.f90 in Sources */,
@@ -249,6 +249,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				IFORT_OPT_PARALLEL = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -291,6 +292,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				IFORT_OPT_PARALLEL = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SCAN_ALL_SOURCE_FILES_FOR_INCLUDES = YES;
@@ -313,6 +315,7 @@
 				IFORT_MKL = "-mkl=parallel";
 				IFORT_OPT_AUTOPARALLEL_THRESHOLD = 80;
 				IFORT_OPT_LEVEL = "-O3";
+				IFORT_OPT_PARALLEL = YES;
 				IFORT_OPT_VEC_THRESHOLD = 80;
 				IFORT_OTHER_FLAGS = "-parallel -par-report3 -ipo";
 				IFORT_RT_LIBRARY = "";
@@ -345,6 +348,7 @@
 				IFORT_MKL = "-mkl=parallel";
 				IFORT_OPT_AUTOPARALLEL_THRESHOLD = 80;
 				IFORT_OPT_LEVEL = "-O3";
+				IFORT_OPT_PARALLEL = YES;
 				IFORT_OPT_VEC_THRESHOLD = 80;
 				IFORT_OTHER_FLAGS = "-parallel -par-report3 -ipo";
 				IFORT_RT_LIBRARY = "";

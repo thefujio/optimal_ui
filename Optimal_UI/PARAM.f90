@@ -36,18 +36,20 @@ MODULE PARAM
   ! LOGICAL VARIABLES TO CONTROL INITIAL VALUES AND REFINEMENTS
   logical:: use_old_v   = .false.
   logical:: do_howard   = .false.
-  logical:: want_howard = .false.
+  logical:: want_howard = .true.
   logical:: do_refine   = .false.
   logical:: want_refine = .true.
   logical:: simul_only  = .false.
   logical:: want_print  = .false.
 
   !Grid over b
-  integer, parameter        :: gridpoints = 20
+  integer, parameter        :: gridpoints = 5
   integer, parameter        :: bgridpoints = 1
   real(8)                   :: bval
-  real(8)                   :: rrval, ceval, taxval, jfpval, uval, uwgt, umeasure, submktval, submktwgt, submktmeasure, grosswageval, netwageval, urateval, uuval, eeval, trval
-  real(8), dimension(gridpoints) :: psigrid, durgrid, bgrid, rrgrid, cegrid, taxgrid, jfpgrid, uvalgrid, submktgrid, grosswagegrid, netwagegrid, urategrid, uugrid, eegrid, trgrid, hpgrid
+  real(8)                   :: rrval, ceval, taxval, jfpval, uval, uwgt, umeasure, submktval, submktwgt, submktmeasure, &
+    grosswageval, netwageval, urateval, uuval, eeval, trval
+  real(8), dimension(gridpoints) :: psigrid, durgrid, bgrid, rrgrid, cegrid, taxgrid, jfpgrid, uvalgrid, submktgrid, &
+    grosswagegrid, netwagegrid, urategrid, uugrid, eegrid, trgrid, hpgrid, utilgrid, vfgrid
   !Flag for whether optimization routine used is going to be unconstrained (1) or bound-constrained (0)
   integer,          parameter:: transform = 0
   !Calibration Targets:
@@ -68,7 +70,7 @@ MODULE PARAM
   real(8), parameter:: pie = 3.14159265d0
 
   ! GRID ON PV
-  integer, parameter        :: nx = 150
+  integer, parameter        :: nx = 350
   real(8)                   :: xmin,xmax
   real(8), dimension(nx)    :: x
     
@@ -152,7 +154,7 @@ MODULE PARAM
 
   !Aggregate Statistics
   real(8):: ee,eu,ue,unemp,em,EUflow,EEflow,UEflow
-  real(8):: tot_wage,avg_wage,avg_benefit,transfers,welfare
+  real(8):: tot_wage,avg_wage,tot_util,tot_vf,avg_benefit,transfers,welfare
   integer:: avg_wage_ind
 
   !PROGRAMMING PARAMETERS

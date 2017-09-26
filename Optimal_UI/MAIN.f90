@@ -54,7 +54,7 @@ PROGRAM MAIN
   endif
 
 
-  call linspace(bgrid,0.0d0,0.37d0,gridpoints)
+  call linspace(bgrid,0.17d0,0.20d0,gridpoints)
   !call linspace(hpgrid,0.43d0,0.78d0,gridpoints)
 
   !call linspace(psigrid,1.0d0,0.0d0,gridpoints)
@@ -70,7 +70,8 @@ PROGRAM MAIN
   print *, "Run bisection method to find tau for each rr in grid"
   open(unit=gridout,  file=root_dir//out_dir//"gridout.txt",  status='replace')
   write(gridout,15)
-  15 format('Psi,','RR,','CE,','Tax,','JFP(U),','U VF,','Avg. Open Submkt,','Gross W,','Net W,','Urate,','UU,','EE,','b')
+  15 format('Psi,','RR,','CE,','Tax,','JFP(U),','U VF,','Avg. Open Submkt,','Gross W,','Net W,','Urate,','UU,','EE,','b,',&
+    'transfers,','Utility,','VF')
   !For non-calibration testing:
   do j=1,bgridpoints
     do i=1,gridpoints
@@ -90,11 +91,14 @@ PROGRAM MAIN
       uugrid(i) = uuval
       eegrid(i) = eeval
       trgrid(i) = trval
+      utilgrid(i)=tot_util
+      vfgrid(i)=tot_vf
       print*,'gridpoint ', i ,' completed'
     end do
 
   do i=1,gridpoints
-    write(gridout,'(<14>(f15.4,","))') psigrid(i),rrgrid(i),cegrid(i),taxgrid(i),jfpgrid(i),uvalgrid(i),submktgrid(i),grosswagegrid(i),netwagegrid(i),urategrid(i),uugrid(i),eegrid(i),bgrid(i),trgrid(i)
+    write(gridout,'(<16>(f15.4,","))') psigrid(i),rrgrid(i),cegrid(i),taxgrid(i),jfpgrid(i),uvalgrid(i),submktgrid(i), &
+      grosswagegrid(i),netwagegrid(i),urategrid(i),uugrid(i),eegrid(i),bgrid(i),trgrid(i),utilgrid(i),vfgrid(i)
   enddo
   enddo !end j grid
   close(gridout)

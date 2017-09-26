@@ -13,6 +13,7 @@ SUBROUTINE SDI(J1,U1)
 !  USE INTERFACES
   USE IOOP
   USE PARAM
+  USE UTILITY
   implicit none
   
   INTERFACE
@@ -96,11 +97,13 @@ SUBROUTINE SDI(J1,U1)
 
   call stadist(ns*nx+nu,pimat,muss,muinit)
 
-  !Aggregate Statistics
+  !Aggregate Statistics: flows
   ee=zero
   eu=zero
   ue=zero
   submktval=zero
+  submktmeasure = zero
+  submktwgt = zero
   do is=1,ns
     do ix=1,nx
       do isp=1,ns
@@ -129,12 +132,17 @@ SUBROUTINE SDI(J1,U1)
   EEflow=ee/em
   EUflow=eu/em
 
+  !Aggregate Statistics: stocks
   tot_wage = zero
+  tot_util = zero
+  tot_vf = zero
   do is=1,ns
     iy = iyfun(is)
     iz = izfun(is)
     do ix=1,nx
       tot_wage = tot_wage + muss((is-1)*nx+ix)*w(ix,iy,iz)
+      tot_util = tot_util + muss((is-1)*nx+ix)*Ufunc(w(ix,iy,iz))
+      tot_vf = tot_vf + muss((is-1)*nx+ix)*x(ix)
     end do
   end do
   avg_wage = tot_wage/em
@@ -147,19 +155,20 @@ SUBROUTINE SDI(J1,U1)
   endif
 
   transfers = zero
+  welfare = zero
+  uval = zero
+  uwgt = zero
   do iu=1,nu
-  transfers = transfers + bvec(iuefun(iu))*muss(ns*nx+iu)
+  transfers = transfers + muss(ns*nx+iu)*bvec(iuefun(iu))
+  tot_util = tot_util + muss(ns*nx+iu)*Ufunc(bvec(iuefun(iu)))
+  tot_vf = tot_vf + muss(ns*nx+iu)*U1(iuyfun(iu),iuefun(iu))
+  welfare = welfare + muss(ns*nx+iu)*U1(iuyfun(iu),iuefun(iu))
+  uwgt = uwgt + muss(ns*nx+iu)*U1(iuyfun(iu),iuefun(iu))
+  umeasure = umeasure + muss(ns*nx+iu)
   end do
 
   avg_benefit = transfers/unemp
 
-  welfare = zero
-  uval = zero
-  do iu=1,nu
-    welfare = welfare + U1(iuyfun(iu),iuefun(iu))*muss(ns*nx+iu)
-    uwgt = uwgt + U1(iuyfun(iu),iuefun(iu))*muss(ns*nx+iu)
-    umeasure = umeasure + muss(ns*nx+iu)
-  end do
   uval = uwgt/umeasure
   do is=1,ns
     do ix=1,nx
@@ -173,6 +182,9 @@ SUBROUTINE SDI(J1,U1)
   print*,'unemployment rate: ', unemp
   print*,'average wage: ', avg_wage
   print*,'welfare: ', welfare
+  print*,'vf     : ', tot_vf
+  print*,'inst. util.: ', tot_util
+
 
   !Grid Output
   !uval, submktval calculated in loops above
