@@ -54,24 +54,24 @@ PROGRAM MAIN
   endif
 
 
-  call linspace(bgrid,0.17d0,0.20d0,gridpoints)
+  !call linspace(bgrid,0.07d0,0.32d0,gridpoints)
   !call linspace(hpgrid,0.43d0,0.78d0,gridpoints)
 
   !call linspace(psigrid,1.0d0,0.0d0,gridpoints)
-  !call linspace(durgrid,1.0d0,36.0d0,gridpoints-1)
-  !do i=1,gridpoints-1
-  !psigrid(i) = 1.0d0/durgrid(i)
-  !enddo
-  !psigrid(gridpoints) = 0.0d0
-  psigrid = 0.0d0
-  !bgrid = 0.25d0
+  call linspace(durgrid,1.0d0,36.0d0,gridpoints-1)
+  do i=1,gridpoints-1
+  psigrid(i) = 1.0d0/durgrid(i)
+  enddo
+  psigrid(gridpoints) = 0.0d0
+  !psigrid = 0.0d0
+  bgrid = 0.25d0
   !print*, psigrid
   !pause
   print *, "Run bisection method to find tau for each rr in grid"
   open(unit=gridout,  file=root_dir//out_dir//"gridout.txt",  status='replace')
   write(gridout,15)
-  15 format('Psi,','RR,','CE,','Tax,','JFP(U),','U VF,','Avg. Open Submkt,','Gross W,','Net W,','Urate,','UU,','EE,','b,',&
-    'transfers,','Utility,','VF')
+  15 format('Psi,','RR,','CE,','Tax,','JFP(U),','U VF,','Avg. Open Submkt,','Gross W,','Net W,',&
+  'Urate,','UU,','EE,','b,','transfers,','Utility,','VF','U VF ben,','U VF noben,')
   !For non-calibration testing:
   do j=1,bgridpoints
     do i=1,gridpoints
@@ -93,16 +93,18 @@ PROGRAM MAIN
       trgrid(i) = trval
       utilgrid(i)=tot_util
       vfgrid(i)=tot_vf
+      uvalbengrid(i) = ubenval
+      uvalnobengrid(i) = unobenval
       print*,'gridpoint ', i ,' completed'
     end do
 
   do i=1,gridpoints
-    write(gridout,'(<16>(f15.4,","))') psigrid(i),rrgrid(i),cegrid(i),taxgrid(i),jfpgrid(i),uvalgrid(i),submktgrid(i), &
-      grosswagegrid(i),netwagegrid(i),urategrid(i),uugrid(i),eegrid(i),bgrid(i),trgrid(i),utilgrid(i),vfgrid(i)
+    write(gridout,'(<18>(f15.4,","))') psigrid(i),rrgrid(i),cegrid(i),taxgrid(i),jfpgrid(i),uvalgrid(i), &
+      submktgrid(i), grosswagegrid(i),netwagegrid(i),urategrid(i),uugrid(i),eegrid(i),bgrid(i),trgrid(i), &
+      utilgrid(i),vfgrid(i),uvalbengrid(i),uvalnobengrid(i)
   enddo
   enddo !end j grid
   close(gridout)
-
 
   call CPU_Time(time_end)
   !Timing of the program

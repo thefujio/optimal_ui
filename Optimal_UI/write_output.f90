@@ -207,28 +207,43 @@ open(106,file=root_dir//out_dir//'dist.csv',status='replace')
   enddo
 close(106)
 
-!other parameters, moments
-params(1) = betta
-params(2) = eta
-params(3) = sigma
-params(4) = gamma
-params(5) = lambda
-params(6) = delta
-params(7) = kappa
-params(8) = nx
-params(9) = rr
-params(10)= tau
-params(11)= hp
-params(12)= em
-params(13)= unemp
-params(14)= UEflow
-params(15)= EEflow
-params(16)= EUflow
-params(17)= tot_wage
-params(18)= avg_wage
-params(19)= avg_benefit
-params(20)= transfers
-params(21)= welfare
-call wri2file(nparams,1,params,root_dir//out_dir//"params.txt")
+!Print details of the parameters and environment to detail:
+write (detail,20) nx,ny,nz,ne,y,pyss,z,pzss,hp,bval,psi,tau,betta,kappa,delta,lambda,sigma,gamma,em,unemp,&
+UEflow,EEflow,EUflow,tot_output,avg_wage,avg_benefit,transfers,rrval,welfare
+20 format ('   PARAMETERS'/&
+'----------------'/&
+'nx       = ',I6/&
+'ny       = ',I6/&
+'nz       = ',I6/&
+'ne       = ',I6/&
+'y        = ',(<ny>(f12.8,","))/&
+'y sdist. = ',(<ny>(f12.8,","))/&
+'z        = ',(<nz>(f12.8,","))/&
+'z sdist. = ',(<nz>(f12.8,","))/&
+'hp       = ',f12.8/&
+'b        = ',f12.8/&
+'psi      = ',f12.8/&
+'tau      = ',f12.8/&
+'betta    = ',f12.8/&
+'kappa    = ',f12.8/&
+'delta    = ',f12.8/&
+'lambda   = ',f12.8/&
+'sigma    = ',f12.8/&
+'gamma    = ',f12.8/&
+'   MOMENTS'/&
+'----------------'/&
+
+'em           = ',f12.8/&
+'unemp        = ',f12.8/&
+'UEflow       = ',f12.8/&
+'EEflow       = ',f12.8/&
+'EUflow       = ',f12.8/&
+'tot_output   = ',f12.8/&
+'avg_wage     = ',f12.8/&
+'avg_benefit  = ',f12.8/&
+'transfers    = ',f12.8/&
+'rr           = ',f12.8/&
+'welfare      = ',f12.8///)
+
 
 END SUBROUTINE write_output

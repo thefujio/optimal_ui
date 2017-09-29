@@ -36,7 +36,7 @@ SUBROUTINE SDI(J1,U1)
   integer:: isp,ixp,iyp,izp,iup,ixpojs
   real(8), dimension(ne):: tempe
   real(8), dimension(ns*nx+nu):: muinit
-  real(8):: Pojs,dp,PU
+  real(8):: Pojs,dp,PU, ubenmeasure, unobenmeasure
   
   pimat = zero
   !Building transition matrix
@@ -133,6 +133,7 @@ SUBROUTINE SDI(J1,U1)
   EUflow=eu/em
 
   !Aggregate Statistics: stocks
+  tot_output = zero
   tot_wage = zero
   tot_util = zero
   tot_vf = zero
@@ -140,6 +141,7 @@ SUBROUTINE SDI(J1,U1)
     iy = iyfun(is)
     iz = izfun(is)
     do ix=1,nx
+      tot_output = tot_output + muss((is-1)*nx+ix)*y(iyfun(is))*z(izfun(is))
       tot_wage = tot_wage + muss((is-1)*nx+ix)*w(ix,iy,iz)
       tot_util = tot_util + muss((is-1)*nx+ix)*Ufunc(w(ix,iy,iz))
       tot_vf = tot_vf + muss((is-1)*nx+ix)*x(ix)
@@ -158,6 +160,7 @@ SUBROUTINE SDI(J1,U1)
   welfare = zero
   uval = zero
   uwgt = zero
+  umeasure = zero
   do iu=1,nu
   transfers = transfers + muss(ns*nx+iu)*bvec(iuefun(iu))
   tot_util = tot_util + muss(ns*nx+iu)*Ufunc(bvec(iuefun(iu)))
@@ -170,6 +173,28 @@ SUBROUTINE SDI(J1,U1)
   avg_benefit = transfers/unemp
 
   uval = uwgt/umeasure
+  unobenval = zero
+  ubenval = zero
+  do iu=1,nu
+    ie = iuyfun(iu)
+    ie = iuefun(iu)
+    if (ie < ne) then
+      ubenval = ubenval + muss(ns*nx+iu)*U1(iy,ie)
+      ubenmeasure = ubenmeasure + muss(ns*nx+iu)
+    else
+      unobenval = unobenval + muss(ns*nx+iu)*U1(iy,ie)
+      unobenmeasure = unobenmeasure + muss(ns*nx+iu)
+    end if
+  end do
+
+  if (nu>1) then
+    ubenval = ubenval/ubenmeasure
+    unobenval = unobenval/unobenmeasure
+    else
+    ubenval = U1(1,1)
+    unobenval = U1(1,1)
+  endif
+
   do is=1,ns
     do ix=1,nx
     welfare = welfare + x(ix)*muss((is-1)*nx+ix)
@@ -180,6 +205,7 @@ SUBROUTINE SDI(J1,U1)
   print*,'job-to-job flow: ',EEflow
   print*,'job destruction rate: ',EUflow
   print*,'unemployment rate: ', unemp
+  print*,'output: ', tot_output
   print*,'average wage: ', avg_wage
   print*,'welfare: ', welfare
   print*,'vf     : ', tot_vf

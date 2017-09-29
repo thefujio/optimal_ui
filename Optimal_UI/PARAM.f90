@@ -43,13 +43,13 @@ MODULE PARAM
   logical:: want_print  = .false.
 
   !Grid over b
-  integer, parameter        :: gridpoints = 5
+  integer, parameter        :: gridpoints = 20
   integer, parameter        :: bgridpoints = 1
   real(8)                   :: bval
-  real(8)                   :: rrval, ceval, taxval, jfpval, uval, uwgt, umeasure, submktval, submktwgt, submktmeasure, &
-    grosswageval, netwageval, urateval, uuval, eeval, trval
-  real(8), dimension(gridpoints) :: psigrid, durgrid, bgrid, rrgrid, cegrid, taxgrid, jfpgrid, uvalgrid, submktgrid, &
-    grosswagegrid, netwagegrid, urategrid, uugrid, eegrid, trgrid, hpgrid, utilgrid, vfgrid
+  real(8)                   :: rrval, ceval, taxval, jfpval, uval, ubenval, unobenval, uwgt, umeasure, submktval, submktwgt, &
+    submktmeasure, grosswageval, netwageval, urateval, uuval, eeval, trval
+  real(8), dimension(gridpoints) :: psigrid, durgrid, bgrid, rrgrid, cegrid, taxgrid, jfpgrid, uvalgrid, uvalbengrid, &
+  uvalnobengrid, submktgrid, grosswagegrid, netwagegrid, urategrid, uugrid, eegrid, trgrid, hpgrid, utilgrid, vfgrid
   !Flag for whether optimization routine used is going to be unconstrained (1) or bound-constrained (0)
   integer,          parameter:: transform = 0
   !Calibration Targets:
@@ -70,12 +70,12 @@ MODULE PARAM
   real(8), parameter:: pie = 3.14159265d0
 
   ! GRID ON PV
-  integer, parameter        :: nx = 350
+  integer, parameter        :: nx = 700
   real(8)                   :: xmin,xmax
   real(8), dimension(nx)    :: x
     
   ! STOCHASTIC AGGREGATE PRODUCTIVITY
-  integer, parameter        :: ny = 2
+  integer, parameter        :: ny = 1
   !NBER avg lenght (month) of recession (1945-2009)
   real(8), parameter        :: recession_length = 11.1d0
   !NBER avg lenght (month) of booms (1945-2009)
@@ -97,7 +97,7 @@ MODULE PARAM
 
   !Stochastic Expiration of UI benefits
   ! GRID ON UI benefit (past wage+ineligible)
-  integer, parameter        :: ne = 1
+  integer, parameter        :: ne = 2
   !integer, parameter        :: ne=51
   real(8)                   :: emin,emax
   real(8), dimension(ne)    :: e
@@ -114,7 +114,7 @@ MODULE PARAM
   !About 46% of avg wage
   real(8), parameter:: bmin = 0.250d0
   !Home production plus UI = about 2/3 of avg. wage
-  real(8), parameter:: hp = 0.430d0
+  real(8), parameter:: hp = 0.43d0
   ! CONTRACT SPACE
   integer:: nc
   integer, allocatable:: cont(:,:)
@@ -154,12 +154,12 @@ MODULE PARAM
 
   !Aggregate Statistics
   real(8):: ee,eu,ue,unemp,em,EUflow,EEflow,UEflow
-  real(8):: tot_wage,avg_wage,tot_util,tot_vf,avg_benefit,transfers,welfare
+  real(8):: tot_wage,avg_wage,tot_util,tot_output,tot_vf,avg_benefit,transfers,welfare
   integer:: avg_wage_ind
 
   !PROGRAMMING PARAMETERS
   ! FLOW CONTROLS
-  integer, parameter:: niter = 600
+  integer, parameter:: niter = 700
   integer, parameter:: nupdate = 30
   
   ! TOLERANCE LEVEL
