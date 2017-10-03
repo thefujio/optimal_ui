@@ -43,8 +43,8 @@ MODULE PARAM
   logical:: want_print  = .false.
 
   !Grid over b
-  integer, parameter        :: gridpoints = 20
-  integer, parameter        :: bgridpoints = 1
+  integer, parameter        :: gridpoints = 30
+  integer, parameter        :: bgridpoints = 10
   real(8)                   :: bval
   real(8)                   :: rrval, ceval, taxval, jfpval, uval, ubenval, unobenval, uwgt, umeasure, submktval, submktwgt, &
     submktmeasure, grosswageval, netwageval, urateval, uuval, eeval, trval
