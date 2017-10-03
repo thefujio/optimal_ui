@@ -70,12 +70,12 @@ MODULE PARAM
   real(8), parameter:: pie = 3.14159265d0
 
   ! GRID ON PV
-  integer, parameter        :: nx = 700
+  integer, parameter        :: nx = 400
   real(8)                   :: xmin,xmax
   real(8), dimension(nx)    :: x
     
   ! STOCHASTIC AGGREGATE PRODUCTIVITY
-  integer, parameter        :: ny = 1
+  integer, parameter        :: ny = 2
   !NBER avg lenght (month) of recession (1945-2009)
   real(8), parameter        :: recession_length = 11.1d0
   !NBER avg lenght (month) of booms (1945-2009)
@@ -97,7 +97,7 @@ MODULE PARAM
 
   !Stochastic Expiration of UI benefits
   ! GRID ON UI benefit (past wage+ineligible)
-  integer, parameter        :: ne = 2
+  integer, parameter        :: ne = 1
   !integer, parameter        :: ne=51
   real(8)                   :: emin,emax
   real(8), dimension(ne)    :: e

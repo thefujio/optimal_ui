@@ -68,15 +68,16 @@ if (nz==2 .and. ny==2) then
     40 format('V,','J(y1;z1),','J(y1;z2),','J(y2;z1),','J(y2;z2),','w(y1;z1),','w(y1;z2),','w(y2;z1),','w(y2;z2),','dprime(y1),','dprime(y2),', &
       'P(y1),','P(y2),','th(y1),','th(y2),','R(y1),','R(y2),','Ptilde(y1),','Ptilde(y2),','Jtilde(y1),','Jtilde(y2),','M(y1),','M(y2)')
       do i=1,nx
-        write(105,'(<1+ns*2+ny*6>(f15.4,","),2(I6,","))') x(i),J1(i,1,1),J1(i,1,2),J1(i,2,1),J1(i,2,2),w(i,1,1),w(i,1,2),w(i,2,1),w(i,2,2),dprimevec(i,1,1),dprimevec(i,2,1),&
-        P(i,1),P(i,2),theta(i,1),theta(i,2),R(i,1),R(i,2),Ptilde(i,1),Ptilde(i,2),Jtilde(i,1),Jtilde(i,2),M(i,1),M(i,2)
+        write(105,'(<1+ns*2+ny*6>(f15.4,","),2(I6,","))') x(i),J1(i,1,1),J1(i,1,2),J1(i,2,1),J1(i,2,2),w(i,1,1),w(i,1,2),&
+        w(i,2,1),w(i,2,2),dprimevec(i,1,1),dprimevec(i,2,1),P(i,1),P(i,2),theta(i,1),theta(i,2),R(i,1),R(i,2),&
+        Ptilde(i,1),Ptilde(i,2),Jtilde(i,1),Jtilde(i,2),M(i,1),M(i,2)
       enddo
   close(105)
 elseif (nz==1 .and. ny==2) then
   open(105,file=root_dir//out_dir//'empfuns.csv',status='replace')
     write(105,50)
-    50 format('V,','J(y1),','J(y2),','w(y1),','w(y2),','dprime(y1),','dprime(y2),', &
-      'P(y1),','P(y2),','th(y1),','th(y1),','R(y1),','R(y1),','Ptilde(y),','Ptilde(y2),','Jtilde(y1),','Jtilde(y2),','M(y1),','M(y2),')
+    50 format('V,','J(y1),','J(y2),','w(y1),','w(y2),','dprime(y1),','dprime(y2),','P(y1),','P(y2),','th(y1),','th(y1),',&
+      'R(y1),','R(y1),','Ptilde(y),','Ptilde(y2),','Jtilde(y1),','Jtilde(y2),','M(y1),','M(y2),')
       do i=1,nx
         write(105,'(<17>(f15.4,","),2(I6,","))') x(i),J1(i,1,1),J1(i,2,1),w(i,1,1),w(i,2,1),dprimevec(i,1,1),dprimevec(i,2,1),&
         P(i,1),P(i,2),theta(i,1),theta(i,2),R(i,1),R(i,2),Ptilde(i,1),Ptilde(i,2),Jtilde(i,1),Jtilde(i,2),M(i,1),M(i,2)
@@ -107,8 +108,9 @@ elseif (nz==3 .and. ny==1) then
 elseif (nz==3 .and. ny==2) then
   open(105,file=root_dir//out_dir//'empfuns.csv',status='replace')
     write(105,75)
-    75 format('V,','J(y1;z1),','J(y1;z2),','J(y1;z3),','J(y2;z1),','J(y2;z2),','J(y2;z3),','w(y1;z1),','w(y1;z2),','w(y1;z3),','w(y2;z1),','w(y2;z2),','w(y2;z3),','dprime(y1),','dprime(y2),', &
-      'P(y1),','P(y2),','th(y1),','th(y2),','R(y1),','R(y2),','Ptilde(y1),','Ptilde(y2),','Jtilde(y1),','Jtilde(y2),','M(y1),','M(y2),')
+    75 format('V,','J(y1;z1),','J(y1;z2),','J(y1;z3),','J(y2;z1),','J(y2;z2),','J(y2;z3),','w(y1;z1),','w(y1;z2),','w(y1;z3),',&
+      'w(y2;z1),','w(y2;z2),','w(y2;z3),','dprime(y1),','dprime(y2),', 'P(y1),','P(y2),','th(y1),','th(y2),','R(y1),','R(y2),',&
+      'Ptilde(y1),','Ptilde(y2),','Jtilde(y1),','Jtilde(y2),','M(y1),','M(y2),')
     do i=1,nx
       write(105,'(<25>(f15.4,","),2(I6,","))') x(i),J1(i,1,1),J1(i,1,2),J1(i,1,3),J1(i,2,1),J1(i,2,2),J1(i,2,3),&
       w(i,1,1),w(i,1,2),w(i,1,3),w(i,2,1),w(i,2,2),w(i,2,3),dprimevec(i,1,1),dprimevec(i,2,1), &
@@ -131,10 +133,13 @@ if (nz==3 .and. ny==1) then
   open(107,file=root_dir//out_dir//'vprime.csv',status='replace')
     write(107,'((A6,","),<ns*ns>(I6,","))') 'is',1,1,1,2,2,2,3,3,3
     write(107,'((A6,","),<ns*ns>(I6,","))') 'isp',1,2,3,1,2,3,1,2,3
-    write(107,'((A6,","),<ns*ns>(I6,","))') 'y(isp)', iyfun(1),iyfun(2),iyfun(3),iyfun(1),iyfun(2),iyfun(3),iyfun(1),iyfun(2),iyfun(3)
-    write(107,'((A6,","),<ns*ns>(I6,","))') 'z(isp)', izfun(1), izfun(2),izfun(3),izfun(1),izfun(2),izfun(3),izfun(1),izfun(2),izfun(3)
+    write(107,'((A6,","),<ns*ns>(I6,","))') 'y(isp)', iyfun(1),iyfun(2),iyfun(3),iyfun(1),iyfun(2),&
+    iyfun(3),iyfun(1),iyfun(2),iyfun(3)
+    write(107,'((A6,","),<ns*ns>(I6,","))') 'z(isp)', izfun(1), izfun(2),izfun(3),izfun(1),izfun(2),&
+    izfun(3),izfun(1),izfun(2),izfun(3)
     do i=1,nx
-      write(107,'((f15.4,","),<ns*ns>(I6,","))') x(i),iVprime(i,1,1),iVprime(i,1,2),iVprime(i,1,3),iVprime(i,2,1),iVprime(i,2,2),iVprime(i,2,3),iVprime(i,3,1),iVprime(i,3,2),iVprime(i,3,3)
+      write(107,'((f15.4,","),<ns*ns>(I6,","))') x(i),iVprime(i,1,1),iVprime(i,1,2),iVprime(i,1,3),iVprime(i,2,1),iVprime(i,2,2),&
+      iVprime(i,2,3),iVprime(i,3,1),iVprime(i,3,2),iVprime(i,3,3)
     enddo
   close(107)
 else if (nz==2 .and. ny==1) then
@@ -176,8 +181,8 @@ if (ne>2) then
     90 format('Past Wage,','U(y1),','U(y2),','wtilde(y1;z1),','wtilde(y1;z2),','wtilde(y2;z1),','wtilde(y2;z2),', &
 'PUtilde(y1),','PUtilde(y2),','RU(y1),','RU(y2),','MU(y1),','MU(y2)')
     do i=1,ne
-      write(109,'(<1+ny*nz+ny*3>(f15.4,","),2(I6,","))') e(i),U1(1,i),U1(2,i),w(MU(1,i),1,1),w(MU(1,i),1,2),w(MU(2,i),2,1),w(MU(2,i),2,2), &
-          PUtilde(1,i),PUtilde(2,i),RU(1,i),RU(2,i),MU(1,i),MU(2,i)
+      write(109,'(<1+ny*nz+ny*3>(f15.4,","),2(I6,","))') e(i),U1(1,i),U1(2,i),w(MU(1,i),1,1),w(MU(1,i),1,2),w(MU(2,i),2,1),&
+      w(MU(2,i),2,2),PUtilde(1,i),PUtilde(2,i),RU(1,i),RU(2,i),MU(1,i),MU(2,i)
     enddo
   close(109)
 endif
