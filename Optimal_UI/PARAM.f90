@@ -43,8 +43,8 @@ MODULE PARAM
   logical:: want_print  = .false.
 
   !Grid over b
-  integer, parameter        :: gridpoints = 30
-  integer, parameter        :: bgridpoints = 10
+  integer, parameter        :: gridpoints = 3
+  integer, parameter        :: bgridpoints = 1
   real(8)                   :: bval
   real(8)                   :: rrval, ceval, taxval, jfpval, uval, ubenval, unobenval, uwgt, umeasure, submktval, submktwgt, &
     submktmeasure, grosswageval, netwageval, urateval, uuval, eeval, trval
@@ -70,7 +70,7 @@ MODULE PARAM
   real(8), parameter:: pie = 3.14159265d0
 
   ! GRID ON PV
-  integer, parameter        :: nx = 400
+  integer, parameter        :: nx = 100
   real(8)                   :: xmin,xmax
   real(8), dimension(nx)    :: x
     

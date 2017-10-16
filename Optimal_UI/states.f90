@@ -56,9 +56,8 @@
     py(2,2) = (boom_length-one)/boom_length
     py(2,1) = one - py(2,2)
   call stadist(ny,py,pyss)
-    y(1) = 0.955d0
-    y(2) = (one-pyss(1)*y(1))/pyss(2) !This makes expected output 1 in the LR
-    !y = one
+    y(1) = one/(pyss(1)+pyss(2)*((one+yyval)**2.0d0))
+    y(2) = (one+yyval)**2.0d0 !This makes expected output 1 in the LR
   else
     write (*,'(3x,''This code cannot handle ny>2: Quitting'')')
     STOP

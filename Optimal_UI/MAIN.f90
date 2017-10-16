@@ -58,11 +58,11 @@ PROGRAM MAIN
   !call linspace(hpgrid,0.43d0,0.78d0,gridpoints)
 
   !call linspace(psigrid,1.0d0,0.0d0,gridpoints)
-  call linspace(durgrid,1.0d0,36.0d0,gridpoints-1)
-  do i=1,gridpoints-1
-  psigrid(i) = 1.0d0/durgrid(i)
-  enddo
-  psigrid(gridpoints) = 0.0d0
+  !call linspace(durgrid,1.0d0,36.0d0,gridpoints-1)
+  !durgrid = (/ 6.0d0, (6.0d0*0.95d0), (6.0d0*1.05d0) /)
+  !do i=1,gridpoints
+  !psigrid(i) = 1.0d0/durgrid(i)
+  !enddo
   !psigrid = 0.0d0
   bgrid = 0.25d0
   !print*, psigrid
