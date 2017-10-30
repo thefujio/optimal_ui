@@ -43,10 +43,10 @@ MODULE PARAM
   logical:: want_print  = .false.
 
   !Grid over b
-  integer, parameter        :: gridpoints = 3
+  integer, parameter        :: gridpoints = 50
   integer, parameter        :: bgridpoints = 1
   real(8)                   :: bval
-  real(8)                   :: rrval, ceval, taxval, jfpval, uval, ubenval, unobenval, uwgt, umeasure, submktval, submktwgt, &
+  real(8)                   :: yyval, rrval, ceval, taxval, jfpval, uval, ubenval, unobenval, uwgt, umeasure, submktval, submktwgt, &
     submktmeasure, grosswageval, netwageval, urateval, uuval, eeval, trval
   real(8), dimension(gridpoints) :: psigrid, durgrid, bgrid, rrgrid, cegrid, taxgrid, jfpgrid, uvalgrid, uvalbengrid, &
   uvalnobengrid, submktgrid, grosswagegrid, netwagegrid, urategrid, uugrid, eegrid, trgrid, hpgrid, utilgrid, vfgrid
