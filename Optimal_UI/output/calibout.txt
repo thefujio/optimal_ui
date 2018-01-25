@@ -3,10 +3,10 @@
 kappa                    0.10916000
 delta                    0.01946000
 lambda                   0.30780000
-jfploss                  3.66348795
-urloss                   3.56947187
-j2jloss                 81.94563276
-funcerror             6741.24900196
+jfploss                  3.62410532
+urloss                   3.52950260
+j2jloss                 81.05848771
+funcerror             6596.06995783
 
 
 

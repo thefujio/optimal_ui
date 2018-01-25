@@ -70,12 +70,12 @@ MODULE PARAM
   real(8), parameter:: pie = 3.14159265d0
 
   ! GRID ON PV
-  integer, parameter        :: nx = 150
+  integer, parameter        :: nx = 75
   real(8)                   :: xmin,xmax
   real(8), dimension(nx)    :: x
 
   ! GRID ON PV after VFI
-  integer, parameter        :: ndist = 300
+  integer, parameter        :: ndist = 500
   real(8), dimension(ndist) :: xfine
 
   ! STOCHASTIC AGGREGATE PRODUCTIVITY
