@@ -9,8 +9,13 @@
 /* Begin PBXBuildFile section */
 		470D2D201EF43F1C0087D504 /* jprime_wage.f90 in Sources */ = {isa = PBXBuildFile; fileRef = 470D2D1F1EF43F1C0087D504 /* jprime_wage.f90 */; };
 		471754521DA5A9AF0060E918 /* contractn.f90 in Sources */ = {isa = PBXBuildFile; fileRef = 471754511DA5A9AF0060E918 /* contractn.f90 */; };
+		476128291FBB982200B9C505 /* sdifine.f90 in Sources */ = {isa = PBXBuildFile; fileRef = 476128281FBB982200B9C505 /* sdifine.f90 */; };
 		476846F01D9C615000DF8A66 /* centergrid.f90 in Sources */ = {isa = PBXBuildFile; fileRef = 476846EF1D9C615000DF8A66 /* centergrid.f90 */; };
 		476846F41D9C73AE00DF8A66 /* spline.f90 in Sources */ = {isa = PBXBuildFile; fileRef = 476846F31D9C73AE00DF8A66 /* spline.f90 */; };
+		478829D41FBE40610045082E /* gbdfine.f90 in Sources */ = {isa = PBXBuildFile; fileRef = 478829D31FBE40610045082E /* gbdfine.f90 */; };
+		478829D61FBE40A80045082E /* write_output_fine.f90 in Sources */ = {isa = PBXBuildFile; fileRef = 478829D51FBE40A80045082E /* write_output_fine.f90 */; };
+		479C2F471FA919DE000F69A8 /* refine.f90 in Sources */ = {isa = PBXBuildFile; fileRef = 479C2F461FA919DE000F69A8 /* refine.f90 */; };
+		479C2F491FA97443000F69A8 /* movavg.f90 in Sources */ = {isa = PBXBuildFile; fileRef = 479C2F481FA97443000F69A8 /* movavg.f90 */; };
 		47B8485D1EF61A7500B1A73E /* TOOLBOX.f90 in Sources */ = {isa = PBXBuildFile; fileRef = 47B8485C1EF61A7500B1A73E /* TOOLBOX.f90 */; };
 		47C31B231D6E1C1F00A53C94 /* PARAM.f90 in Sources */ = {isa = PBXBuildFile; fileRef = 47C31B111D6E1C1F00A53C94 /* PARAM.f90 */; };
 		47C31B241D6E1C1F00A53C94 /* MAIN.f90 in Sources */ = {isa = PBXBuildFile; fileRef = 47C31B121D6E1C1F00A53C94 /* MAIN.f90 */; };
@@ -54,8 +59,13 @@
 /* Begin PBXFileReference section */
 		470D2D1F1EF43F1C0087D504 /* jprime_wage.f90 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.fortran.f90; path = jprime_wage.f90; sourceTree = "<group>"; };
 		471754511DA5A9AF0060E918 /* contractn.f90 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.fortran.f90; path = contractn.f90; sourceTree = "<group>"; };
+		476128281FBB982200B9C505 /* sdifine.f90 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.fortran.f90; path = sdifine.f90; sourceTree = "<group>"; };
 		476846EF1D9C615000DF8A66 /* centergrid.f90 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.fortran.f90; path = centergrid.f90; sourceTree = "<group>"; };
 		476846F31D9C73AE00DF8A66 /* spline.f90 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.fortran.f90; path = spline.f90; sourceTree = "<group>"; };
+		478829D31FBE40610045082E /* gbdfine.f90 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.fortran.f90; path = gbdfine.f90; sourceTree = "<group>"; };
+		478829D51FBE40A80045082E /* write_output_fine.f90 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.fortran.f90; path = write_output_fine.f90; sourceTree = "<group>"; };
+		479C2F461FA919DE000F69A8 /* refine.f90 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.fortran.f90; path = refine.f90; sourceTree = "<group>"; };
+		479C2F481FA97443000F69A8 /* movavg.f90 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.fortran.f90; path = movavg.f90; sourceTree = "<group>"; };
 		47AB9D851D54E11300CC84BC /* Optimal_UI */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Optimal_UI; sourceTree = BUILT_PRODUCTS_DIR; };
 		47B8485C1EF61A7500B1A73E /* TOOLBOX.f90 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.fortran.f90; path = TOOLBOX.f90; sourceTree = "<group>"; };
 		47C31B111D6E1C1F00A53C94 /* PARAM.f90 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.fortran.f90; path = PARAM.f90; sourceTree = "<group>"; };
@@ -117,13 +127,18 @@
 				470D2D1F1EF43F1C0087D504 /* jprime_wage.f90 */,
 				47C31B151D6E1C1F00A53C94 /* howard.f90 */,
 				476846EF1D9C615000DF8A66 /* centergrid.f90 */,
+				479C2F461FA919DE000F69A8 /* refine.f90 */,
 				47D1A2261F78E5150068AF3B /* sdi.f90 */,
+				476128281FBB982200B9C505 /* sdifine.f90 */,
 				47DB57071D748E790018B48A /* stadist.f90 */,
 				47C31B171D6E1C1F00A53C94 /* gbd.f90 */,
+				478829D31FBE40610045082E /* gbdfine.f90 */,
 				471754511DA5A9AF0060E918 /* contractn.f90 */,
 				476846F31D9C73AE00DF8A66 /* spline.f90 */,
 				47D12B6F1DA305F700BEAB74 /* write_output.f90 */,
+				478829D51FBE40A80045082E /* write_output_fine.f90 */,
 				47D6CE851EF5D000001B92FC /* calfun.f90 */,
+				479C2F481FA97443000F69A8 /* movavg.f90 */,
 			);
 			path = Optimal_UI;
 			sourceTree = "<group>";
@@ -185,12 +200,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				479C2F471FA919DE000F69A8 /* refine.f90 in Sources */,
 				47C31B231D6E1C1F00A53C94 /* PARAM.f90 in Sources */,
 				47C31B301D6E1C1F00A53C94 /* UTILITY.f90 in Sources */,
 				47C31B341D6E1C1F00A53C94 /* IOOP.f90 in Sources */,
 				47B8485D1EF61A7500B1A73E /* TOOLBOX.f90 in Sources */,
+				478829D41FBE40610045082E /* gbdfine.f90 in Sources */,
+				478829D61FBE40A80045082E /* write_output_fine.f90 in Sources */,
 				47D1A2271F78E5150068AF3B /* sdi.f90 in Sources */,
 				47D6CE881EF5DC3B001B92FC /* POWELL.f90 in Sources */,
+				479C2F491FA97443000F69A8 /* movavg.f90 in Sources */,
 				476846F01D9C615000DF8A66 /* centergrid.f90 in Sources */,
 				47D12B701DA305F700BEAB74 /* write_output.f90 in Sources */,
 				47D6CE841EF5C6D1001B92FC /* states.f90 in Sources */,
@@ -199,6 +218,7 @@
 				47DB57081D748E790018B48A /* stadist.f90 in Sources */,
 				47C31B251D6E1C1F00A53C94 /* vfi.f90 in Sources */,
 				47C31B291D6E1C1F00A53C94 /* gbd.f90 in Sources */,
+				476128291FBB982200B9C505 /* sdifine.f90 in Sources */,
 				47D6CE861EF5D000001B92FC /* calfun.f90 in Sources */,
 				476846F41D9C73AE00DF8A66 /* spline.f90 in Sources */,
 				47C31B281D6E1C1F00A53C94 /* jprime.f90 in Sources */,

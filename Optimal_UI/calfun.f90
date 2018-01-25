@@ -49,31 +49,41 @@
       double precision, dimension(nx,ny,nz), intent(inout):: J1
     END SUBROUTINE VFI
 
-    SUBROUTINE write_output(J1,U1)
+    SUBROUTINE REFINE(J1,U1)
+      USE PARAM
+      USE UTILITY
+      USE TOOLBOX
+      implicit none
+      !Dummy Variable Declarations
+      double precision, dimension(ny,ne), intent(inout):: U1
+      double precision, dimension(nx,ny,nz), intent(inout):: J1
+    END SUBROUTINE REFINE
+
+    SUBROUTINE write_output_fine(J1,U1)
       USE IOOP
       USE PARAM
       implicit none
       !Dummy arguments declarations
       double precision, dimension(ny,ne)      , intent(in):: U1
       double precision, dimension(nx,ny,nz), intent(in):: J1   
-    END SUBROUTINE write_output
+    END SUBROUTINE write_output_fine
 
-    SUBROUTINE SDI(J1,U1)
+    SUBROUTINE SDIFINE(J1,U1)
       USE IOOP
       USE PARAM
       implicit none
       double precision, dimension(ny,ne), intent(in)   :: U1
       double precision, dimension(nx,ny,nz), intent(in):: J1
-    END SUBROUTINE SDI
+    END SUBROUTINE SDIFINE
 
-    REAL(8) FUNCTION GBD(tax,uivec)
+    REAL(8) FUNCTION GBDFINE(tax,uivec)
       USE IOOP
       USE PARAM
       implicit none
       !Dummy arguments declarations
       real(8):: tax
       real(8), dimension(*)   :: uivec
-    END FUNCTION GBD
+    END FUNCTION GBDFINE
 
     SUBROUTINE stadist(m,pimat,pss,initpss)
       implicit none
@@ -116,14 +126,16 @@
   !Evaluate at endpoints taul,tauu
   tau = taul
   call vfi(J,U)
-  call sdi(J,U)
-  fl = gbd(taul,bvec)
+  call refine(J,U)
+  call sdifine(J,U)
+  fl = gbdfine(taul,bvec)
   write (*,'(5x,''Budget Deficit = '',f10.6)') fl
 
   tau = tauu
   call vfi(J,U)
-  call sdi(J,U)
-  fu = gbd(tauu,bvec)
+  call refine(J,U)
+  call sdifine(J,U)
+  fu = gbdfine(tauu,bvec)
   write (*,'(5x,''Budget Deficit = '',f10.6)') fu
   if (fl*fu>zero) then
     write (*,'(3x,''Stop: Bisection not bracketed'')')
@@ -134,8 +146,9 @@
   do iter=1,niter
     tau = half*(taul+tauu)
     call vfi(J,U)
-    call sdi(J,U)
-    bd = gbd(tau,bvec)
+    call refine(J,U)
+    call sdifine(J,U)
+    bd = gbdfine(tau,bvec)
     if (bd>0) then
       tauu=tau
     else
@@ -152,7 +165,7 @@
     write (*,'(5x,''Budget Deficit = '',f10.8)') bd
   end if
 
-  call write_output(J,U)
+  call write_output_fine(J,U)
   deallocate(cont)
   !Calibration Output
   jfploss =  min(1.0d8, abs(100.0d0*(UEflow - jfptarget)/jfptarget))

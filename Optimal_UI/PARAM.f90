@@ -43,7 +43,7 @@ MODULE PARAM
   logical:: want_print  = .false.
 
   !Grid over b
-  integer, parameter        :: gridpoints = 50
+  integer, parameter        :: gridpoints = 1
   integer, parameter        :: bgridpoints = 1
   real(8)                   :: bval
   real(8)                   :: yyval, rrval, ceval, taxval, jfpval, uval, ubenval, unobenval, uwgt, umeasure, submktval, submktwgt, &
@@ -70,12 +70,16 @@ MODULE PARAM
   real(8), parameter:: pie = 3.14159265d0
 
   ! GRID ON PV
-  integer, parameter        :: nx = 100
+  integer, parameter        :: nx = 150
   real(8)                   :: xmin,xmax
   real(8), dimension(nx)    :: x
-    
+
+  ! GRID ON PV after VFI
+  integer, parameter        :: ndist = 300
+  real(8), dimension(ndist) :: xfine
+
   ! STOCHASTIC AGGREGATE PRODUCTIVITY
-  integer, parameter        :: ny = 2
+  integer, parameter        :: ny = 1
   !NBER avg lenght (month) of recession (1945-2009)
   real(8), parameter        :: recession_length = 11.1d0
   !NBER avg lenght (month) of booms (1945-2009)
@@ -120,22 +124,35 @@ MODULE PARAM
   integer, allocatable:: cont(:,:)
   
   ! CURRENT VALUE FUNCTIONS AND POLICY RULES
-  real(8), dimension(nx,ny)   :: theta,P
-  real(8), dimension(nx,ny,ne):: dprimevec
-!  real(8), dimension(nx,ny,nz):: J
-  real(8), dimension(nx,ny,nz):: w
-  integer, dimension(nx,ny,nz):: wind
-  real(8), dimension(nx,ns,ns):: dprime
-  integer, dimension(nx,ns,ns):: iVprime
-  real(8), dimension(nx,ny)   :: R,Ptilde
-  integer, dimension(nx,ny)   :: M
-!  real(8), dimension(ny)      :: U
-  real(8), dimension(ny,ne)   :: RU,PUtilde
-  integer, dimension(ny,ne)   :: MU
-  
-  !STATIONARY DISTRIBUTION
-  real(8), dimension(ns*nx+nu,ns*nx+nu):: pimat
-  real(8), dimension(ns*nx+nu):: muss
+  real(8), dimension(nx,ny)     :: theta,P
+  real(8), dimension(nx,ny,ne)  :: dprimevec
+!  real(8), dimension(nx,ny,nz)  :: J
+  real(8), dimension(nx,ny,nz)  :: w
+  integer, dimension(nx,ny,nz)  :: wind
+  real(8), dimension(nx,ns,ns)  :: dprime
+  integer, dimension(nx,ns,ns)  :: iVprime
+  real(8), dimension(nx,ny)     :: R,Ptilde
+  integer, dimension(nx,ny)     :: M
+!  real(8), dimension(ny)       :: U
+  real(8), dimension(ny,ne)     :: RU,PUtilde
+  integer, dimension(ny,ne)     :: MU
+
+  ! Refined policy functions after interpolation
+  real(8), dimension(ndist,ny,nz) :: Jfine
+  real(8), dimension(ndist,ny)    :: thetafine,Pfine
+  real(8), dimension(ndist,ny,ne) :: dprimevecfine
+  real(8), dimension(ndist,ny,nz) :: wfine
+  integer, dimension(ndist,ny,nz) :: windfine
+  real(8), dimension(ndist,ns,ns) :: dprimefine, Vprimefine
+  integer, dimension(ndist,ns,ns) :: iVprimefine
+  real(8), dimension(ndist,ny)    :: Rfine,Ptildefine
+  integer, dimension(ndist,ny)    :: Mfine
+  real(8), dimension(ny,ne)       :: RUfine,PUtildefine
+  integer, dimension(ny,ne)       :: MUfine
+
+  !STATIONARY DISTRIBUTION (uses ndist, not nx!)
+  real(8), dimension(ns*ndist+nu,ns*ndist+nu):: pimat
+  real(8), dimension(ns*ndist+nu):: muss
   
   ! MODEL PARAMETERS
   ! INDIVIDUALS / PREFERENCES
@@ -163,8 +180,8 @@ MODULE PARAM
   integer, parameter:: nupdate = 30
   
   ! TOLERANCE LEVEL
-  real(8):: tol = 1.0d-8
-  real(8), parameter:: high_tol = 1.0d-6
+  real(8):: tol = 1.0d-6
+  real(8), parameter:: high_tol = 1.0d-4
   real(8), parameter:: low_tol  = 1.0d-10
   real(8), parameter:: errrel   = 1.0d-12
   

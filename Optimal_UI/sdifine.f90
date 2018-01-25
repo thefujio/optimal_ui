@@ -1,4 +1,4 @@
-SUBROUTINE SDI(J1,U1)
+SUBROUTINE SDIFINE(J1,U1)
   !****************************************************************************
   !  SDI.f90
   !  
@@ -35,7 +35,7 @@ SUBROUTINE SDI(J1,U1)
   integer:: is,ix,iy,iz,iu,ie
   integer:: isp,ixp,iyp,izp,iup,ixpojs
   real(8), dimension(ne):: tempe
-  real(8), dimension(ns*nx+nu):: muinit
+  real(8), dimension(ns*ndist+nu):: muinit
   real(8):: Pojs,dp,PU, ubenmeasure, unobenmeasure
   
   pimat = zero
@@ -55,22 +55,27 @@ SUBROUTINE SDI(J1,U1)
   !dealing with employed individuals
   do is=1,ns
     iy = iyfun(is)
-    do ix=1,nx
+    iz = izfun(is)
+    do ix=1,ndist
       do isp=1,ns
         iyp = iyfun(isp)
-        ixp = iVprime(ix,is,isp)
-        dp  = dprime(ix,is,isp)
-        ixpojs = M(ixp,iyp) !this is the market in which (ixp,iyp) searches
-        Pojs   = lambda*Ptilde(ixpojs,iyp) !this is the prob of success of OJS
+        ixp = iVprimefine(ix,is,isp)
+        dp  = dprimefine(ix,is,isp)
+        ixpojs = Mfine(ixp,iyp) !this is the market in which (ixp,iyp) searches
+        Pojs   = lambda*Ptildefine(ixpojs,iyp) !this is the prob of success of OJS
+        !print*, 'pojs', Pojs
+        !print*, 'dp', dp
+        !print*, 'ixpojs', ixpojs
+        !pause
         !transits to contract Vprime
-        pimat((is-1)*nx+ix,(isp-1)*nx+ixp) = pimat((is-1)*nx+ix,(isp-1)*nx+ixp) + &
+        pimat((is-1)*ndist+ix,(isp-1)*ndist+ixp) = pimat((is-1)*ndist+ix,(isp-1)*ndist+ixp) + &
             ps(is,isp)*(1.0d0-dp)*(1.0d0-Pojs)
         !transits to OJS market
-        pimat((is-1)*nx+ix,(isp-1)*nx+ixpojs) = pimat((is-1)*nx+ix,(isp-1)*nx+ixpojs) + &
+        pimat((is-1)*ndist+ix,(isp-1)*ndist+ixpojs) = pimat((is-1)*ndist+ix,(isp-1)*ndist+ixpojs) + &
             ps(is,isp)*(1.0d0-dp)*Pojs
         !transits to unemployment (and eligible for UI)
-        pimat((is-1)*nx+ix,ns*nx+iufun(iyp,wind(ix,iyfun(is),izfun(is)))) = pimat((is-1)*nx+ix,ns*nx+iufun(iyp,wind(ix,iyfun(is),izfun(is)))) + &
-            ps(is,isp)*dp
+        pimat((is-1)*ndist+ix,ns*ndist+iufun(iyp,windfine(ix,iy,iz))) = pimat((is-1)*ndist+ix,ns*ndist + &
+            iufun(iyp,windfine(ix,iy,iz))) + ps(is,isp)*dp
       end do
     end do
   end do
@@ -78,23 +83,27 @@ SUBROUTINE SDI(J1,U1)
   !dealing with unemployed individuals
   do iu=1,nu
     do iup=1,nu
-      ixp = MU(iuyfun(iup),iuefun(iup)) !this is the market in which U(iyp) searches
-      PU = PUtilde(iuyfun(iup),iuefun(iup)) !this is the prob of success of search
+      ixp = MUfine(iuyfun(iup),iuefun(iup)) !this is the market in which U(iyp) searches
+      PU = PUtildefine(iuyfun(iup),iuefun(iup)) !this is the prob of success of search
       !transits back to unemployment
-      pimat(ns*nx+iu,ns*nx+iup) = pimat(ns*nx+iu,ns*nx+iup) + pus(iu,iup)*(one-PU)
+      pimat(ns*ndist+iu,ns*ndist+iup) = pimat(ns*ndist+iu,ns*ndist+iup) + pus(iu,iup)*(one-PU)
       do izp=1,nz
         !transits to market ixp in state isp=(iyp,izp)
         isp = isfun(iuyfun(iup),izp)
-        pimat(ns*nx+iu,(isp-1)*nx+ixp) = pimat(ns*nx+iu,(isp-1)*nx+ixp) + pus(iu,iup)*Pztilde(izp)*PU
+        pimat(ns*ndist+iu,(isp-1)*ndist+ixp) = pimat(ns*ndist+iu,(isp-1)*ndist+ixp) + pus(iu,iup)*Pztilde(izp)*PU
       end do
     end do
   end do
 
+  !print*, pimat(201,:)
+  !print*, sum(pimat(201,:))
+  !pause
+
   !setting initial distribution to all unemployed
   muinit = zero
-  muinit(ns*nx+1:) = one/dble(nu)
+  muinit(ns*ndist+1:) = one/dble(nu)
 
-  call stadist(ns*nx+nu,pimat,muss,muinit)
+  call stadist(ns*ndist+nu,pimat,muss,muinit)
 
   !Aggregate Statistics: flows
   ee=zero
@@ -104,29 +113,29 @@ SUBROUTINE SDI(J1,U1)
   submktmeasure = zero
   submktwgt = zero
   do is=1,ns
-    do ix=1,nx
+    do ix=1,ndist
       do isp=1,ns
-        eu = eu + ps(is,isp)*dprimevec(ix,iyfun(isp),wind(ix,iyfun(is),izfun(is)))*muss((is-1)*nx+ix)
+        eu = eu + ps(is,isp)*dprimevecfine(ix,iyfun(isp),windfine(ix,iyfun(is),izfun(is)))*muss((is-1)*ndist+ix)
         ee = ee + &
-        ps(is,isp)*(1.0d0-dprimevec(ix,iyfun(isp),wind(ix,iyfun(is),izfun(is))))*lambda*Ptilde(ix,iyfun(isp))*muss((is-1)*nx+ix)
-        submktwgt = submktwgt + x(M(ix,iyfun(isp)))*ps(is,isp)* &
-        (1.0d0-dprimevec(ix,iyfun(isp),wind(ix,iyfun(is),izfun(is))))*lambda*Ptilde(ix,iyfun(isp))*muss((is-1)*nx+ix)
+        ps(is,isp)*(1.0d0-dprimevecfine(ix,iyfun(isp),windfine(ix,iyfun(is),izfun(is))))*lambda*Ptildefine(ix,iyfun(isp))*muss((is-1)*ndist+ix)
+        submktwgt = submktwgt + xfine(Mfine(ix,iyfun(isp)))*ps(is,isp)* &
+        (1.0d0-dprimevecfine(ix,iyfun(isp),windfine(ix,iyfun(is),izfun(is))))*lambda*Ptildefine(ix,iyfun(isp))*muss((is-1)*ndist+ix)
         submktmeasure = submktmeasure + ps(is,isp)* &
-        (1.0d0-dprimevec(ix,iyfun(isp),wind(ix,iyfun(is),izfun(is))))*lambda*Ptilde(ix,iyfun(isp))*muss((is-1)*nx+ix)
+        (1.0d0-dprimevecfine(ix,iyfun(isp),windfine(ix,iyfun(is),izfun(is))))*lambda*Ptildefine(ix,iyfun(isp))*muss((is-1)*ndist+ix)
       end do
     end do
   end do
 
   do iu=1,nu
     do iup=1,nu
-      ue = ue + pus(iu,iup)*PUtilde(iuyfun(iup),iuefun(iup))*muss(ns*nx+iu)
-      submktwgt = submktwgt + x(MU(iuyfun(iup),iuefun(iup)))*pus(iu,iup)*PUtilde(iuyfun(iup),iuefun(iup))*muss(ns*nx+iu)
-      submktmeasure = submktmeasure + pus(iu,iup)*PUtilde(iuyfun(iup),iuefun(iup))*muss(ns*nx+iu)
+      ue = ue + pus(iu,iup)*PUtildefine(iuyfun(iup),iuefun(iup))*muss(ns*ndist+iu)
+      submktwgt = submktwgt + xfine(MUfine(iuyfun(iup),iuefun(iup)))*pus(iu,iup)*PUtildefine(iuyfun(iup),iuefun(iup))*muss(ns*ndist+iu)
+      submktmeasure = submktmeasure + pus(iu,iup)*PUtildefine(iuyfun(iup),iuefun(iup))*muss(ns*ndist+iu)
     end do
   end do
   submktval = submktwgt/submktmeasure
-  unemp=SUM(muss(ns*nx+1:))
-  em=SUM(muss(1:ns*nx))
+  unemp=SUM(muss(ns*ndist+1:))
+  em=SUM(muss(1:ns*ndist))
   UEflow=ue/unemp
   EEflow=ee/em
   EUflow=eu/em
@@ -139,11 +148,11 @@ SUBROUTINE SDI(J1,U1)
   do is=1,ns
     iy = iyfun(is)
     iz = izfun(is)
-    do ix=1,nx
-      tot_output = tot_output + muss((is-1)*nx+ix)*(y(iyfun(is))+z(izfun(is)))
-      tot_wage = tot_wage + muss((is-1)*nx+ix)*w(ix,iy,iz)
-      tot_util = tot_util + muss((is-1)*nx+ix)*Ufunc(w(ix,iy,iz))
-      tot_vf = tot_vf + muss((is-1)*nx+ix)*x(ix)
+    do ix=1,ndist
+      tot_output = tot_output + muss((is-1)*ndist+ix)*(y(iyfun(is))+z(izfun(is)))
+      tot_wage = tot_wage + muss((is-1)*ndist+ix)*wfine(ix,iy,iz)
+      tot_util = tot_util + muss((is-1)*ndist+ix)*Ufunc(wfine(ix,iy,iz))
+      tot_vf = tot_vf + muss((is-1)*ndist+ix)*xfine(ix)
     end do
   end do
   avg_wage = tot_wage/em
@@ -161,12 +170,12 @@ SUBROUTINE SDI(J1,U1)
   uwgt = zero
   umeasure = zero
   do iu=1,nu
-  transfers = transfers + muss(ns*nx+iu)*bvec(iuefun(iu))
-  tot_util = tot_util + muss(ns*nx+iu)*Ufunc(bvec(iuefun(iu)))
-  tot_vf = tot_vf + muss(ns*nx+iu)*U1(iuyfun(iu),iuefun(iu))
-  welfare = welfare + muss(ns*nx+iu)*U1(iuyfun(iu),iuefun(iu))
-  uwgt = uwgt + muss(ns*nx+iu)*U1(iuyfun(iu),iuefun(iu))
-  umeasure = umeasure + muss(ns*nx+iu)
+  transfers = transfers + muss(ns*ndist+iu)*bvec(iuefun(iu))
+  tot_util = tot_util + muss(ns*ndist+iu)*Ufunc(bvec(iuefun(iu)))
+  tot_vf = tot_vf + muss(ns*ndist+iu)*U1(iuyfun(iu),iuefun(iu))
+  welfare = welfare + muss(ns*ndist+iu)*U1(iuyfun(iu),iuefun(iu))
+  uwgt = uwgt + muss(ns*ndist+iu)*U1(iuyfun(iu),iuefun(iu))
+  umeasure = umeasure + muss(ns*ndist+iu)
   end do
 
   avg_benefit = transfers/unemp
@@ -178,11 +187,11 @@ SUBROUTINE SDI(J1,U1)
     ie = iuyfun(iu)
     ie = iuefun(iu)
     if (ie < ne) then
-      ubenval = ubenval + muss(ns*nx+iu)*U1(iy,ie)
-      ubenmeasure = ubenmeasure + muss(ns*nx+iu)
+      ubenval = ubenval + muss(ns*ndist+iu)*U1(iy,ie)
+      ubenmeasure = ubenmeasure + muss(ns*ndist+iu)
     else
-      unobenval = unobenval + muss(ns*nx+iu)*U1(iy,ie)
-      unobenmeasure = unobenmeasure + muss(ns*nx+iu)
+      unobenval = unobenval + muss(ns*ndist+iu)*U1(iy,ie)
+      unobenmeasure = unobenmeasure + muss(ns*ndist+iu)
     end if
   end do
 
@@ -195,8 +204,8 @@ SUBROUTINE SDI(J1,U1)
   endif
 
   do is=1,ns
-    do ix=1,nx
-    welfare = welfare + x(ix)*muss((is-1)*nx+ix)
+    do ix=1,ndist
+    welfare = welfare + xfine(ix)*muss((is-1)*ndist+ix)
     end do
   end do
 
@@ -226,4 +235,4 @@ SUBROUTINE SDI(J1,U1)
 
 
   RETURN
-END SUBROUTINE SDI
+END SUBROUTINE SDIFINE
