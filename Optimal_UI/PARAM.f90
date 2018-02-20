@@ -35,6 +35,7 @@ MODULE PARAM
   real(8), dimension(nparams):: params     !To store values of parameters
   ! LOGICAL VARIABLES TO CONTROL INITIAL VALUES AND REFINEMENTS
   logical:: use_old_v   = .false.
+  logical:: want_center = .true.
   logical:: do_howard   = .false.
   logical:: want_howard = .true.
   logical:: do_refine   = .false.
@@ -43,7 +44,7 @@ MODULE PARAM
   logical:: want_print  = .false.
 
   !Grid over b
-  integer, parameter        :: gridpoints = 1
+  integer, parameter        :: gridpoints = 20
   integer, parameter        :: bgridpoints = 1
   real(8)                   :: bval
   real(8)                   :: yyval, rrval, ceval, taxval, jfpval, uval, ubenval, unobenval, uwgt, umeasure, submktval, submktwgt, &
@@ -69,17 +70,17 @@ MODULE PARAM
   real(8), parameter:: spread = 2.000d0
   real(8), parameter:: pie = 3.14159265d0
 
-  ! GRID ON PV
-  integer, parameter        :: nx = 75
+  ! GRID ON P
+  integer, parameter        :: nx = 100
   real(8)                   :: xmin,xmax
   real(8), dimension(nx)    :: x
 
   ! GRID ON PV after VFI
-  integer, parameter        :: ndist = 500
+  integer, parameter        :: ndist = 1000
   real(8), dimension(ndist) :: xfine
 
   ! STOCHASTIC AGGREGATE PRODUCTIVITY
-  integer, parameter        :: ny = 1
+  integer, parameter        :: ny = 2
   !NBER avg lenght (month) of recession (1945-2009)
   real(8), parameter        :: recession_length = 11.1d0
   !NBER avg lenght (month) of booms (1945-2009)
@@ -138,6 +139,7 @@ MODULE PARAM
   integer, dimension(ny,ne)     :: MU
 
   ! Refined policy functions after interpolation
+  real(8), dimension(ny,ne)          :: Ufine
   real(8), dimension(ndist,ny,nz) :: Jfine
   real(8), dimension(ndist,ny)    :: thetafine,Pfine
   real(8), dimension(ndist,ny,ne) :: dprimevecfine
@@ -176,13 +178,14 @@ MODULE PARAM
 
   !PROGRAMMING PARAMETERS
   ! FLOW CONTROLS
-  integer, parameter:: niter = 700
+  integer, parameter:: niter = 1000
   integer, parameter:: nupdate = 30
   
   ! TOLERANCE LEVEL
-  real(8):: tol = 1.0d-6
+  real(8):: tol = 1.0d-8
   real(8), parameter:: high_tol = 1.0d-4
-  real(8), parameter:: low_tol  = 1.0d-10
+  real(8), parameter:: bis_tol  = 5.0d-5
+  real(8), parameter:: low_tol  = 1.0d-8
   real(8), parameter:: errrel   = 1.0d-12
   
 END MODULE PARAM

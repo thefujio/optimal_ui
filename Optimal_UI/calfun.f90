@@ -121,8 +121,8 @@
   !Set up grids and transition matrices
   call states(J,U)
   !Bisection on tax rate
-  taul = 0.0001d0
-  tauu = 0.070d0
+  taul = 0.035d0
+  tauu = 0.055d0
   !Evaluate at endpoints taul,tauu
   tau = taul
   call vfi(J,U)
@@ -149,12 +149,14 @@
     call refine(J,U)
     call sdifine(J,U)
     bd = gbdfine(tau,bvec)
-    if (bd>0) then
+    if (bd>0.0d0) then
       tauu=tau
     else
       taul=tau
     end if
-    if (dabs(taul-tauu) < low_tol .or. dabs(bd) < tol) EXIT
+    write (*,'(5x,''tau = '',f6.5)') tau
+    write (*,'(5x,''Budget Deficit = '',f10.8)') bd
+    if (dabs(taul-tauu) < low_tol .or. dabs(bd) < bis_tol) EXIT
   end do
   if (iter.ge.niter) then
     write (*,'(3x,''Bisection did not converge after '',i6,'' iterations '')') iter

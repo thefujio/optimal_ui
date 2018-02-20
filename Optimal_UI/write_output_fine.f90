@@ -64,6 +64,7 @@ Call wri1file(ny,PUtilde,root_dir//out_dir//"PUtilde.txt")
 Call wri1file(ny,RU,root_dir//out_dir//"RU.txt")
 Call int1file(ny,MUfine,root_dir//out_dir//"MUfine.txt")
 
+Call wri2file(ny,ne,Ufine,root_dir//out_dir//"Ufine.txt")
 Call wri2file(ndist,ny,Pfine,root_dir//out_dir//"Pfine.txt")
 Call wri2file(ndist,ny,thetafine,root_dir//out_dir//"thetafine.txt")
 Call wri2file(ndist,ny,Rfine,root_dir//out_dir//"Rfine.txt")
@@ -71,6 +72,8 @@ Call wri2file(ndist,ny,Ptildefine,root_dir//out_dir//"Ptildefine.txt")
 Call wri2file(ndist,ny,Jtildefine,root_dir//out_dir//"Jtildefine.txt")
 Call wri2file(ndist,ny,dprimevecfine,root_dir//out_dir//"dprimefine.txt")
 Call int2file(ndist,ny,Mfine,root_dir//out_dir//"Mfine.txt")
+
+Call wri1file(ndist,Xfine,root_dir//out_dir//"Xfine.txt")
 
 Call wri3file(ndist,ny,nz,Jfine,root_dir//out_dir//"Jfine.txt")
 !Call wri3file(nx,ny,nz,w,root_dir//out_dir//"w.txt")

@@ -3,10 +3,238 @@
 kappa                    0.10916000
 delta                    0.01946000
 lambda                   0.30780000
-jfploss                  3.62410532
-urloss                   3.52950260
-j2jloss                 81.05848771
-funcerror             6596.06995783
+jfploss                  0.69854907
+urloss                   0.64422884
+j2jloss                 71.16852282
+funcerror             5065.86164203
+
+
+
+   Loss Function
+----------------
+kappa                    0.10916000
+delta                    0.01946000
+lambda                   0.30780000
+jfploss                  1.27341944
+urloss                   1.19841809
+j2jloss                 71.28371696
+funcerror             5084.42610699
+
+
+
+   Loss Function
+----------------
+kappa                    0.10916000
+delta                    0.01946000
+lambda                   0.30780000
+jfploss                  1.52991277
+urloss                   1.44765789
+j2jloss                 72.26390663
+funcerror             5226.50854847
+
+
+
+   Loss Function
+----------------
+kappa                    0.10916000
+delta                    0.01946000
+lambda                   0.30780000
+jfploss                  3.00221895
+urloss                   2.90241774
+j2jloss                 64.23063832
+funcerror             4143.01224636
+
+
+
+   Loss Function
+----------------
+kappa                    0.10916000
+delta                    0.01946000
+lambda                   0.30780000
+jfploss                  2.95840199
+urloss                   2.85852086
+j2jloss                 72.89083552
+funcerror             5329.99718594
+
+
+
+   Loss Function
+----------------
+kappa                    0.10916000
+delta                    0.01946000
+lambda                   0.30780000
+jfploss                  3.19012156
+urloss                   3.09108871
+j2jloss                 64.69632588
+funcerror             4205.34628756
+
+
+
+   Loss Function
+----------------
+kappa                    0.10916000
+delta                    0.01946000
+lambda                   0.30780000
+jfploss                  2.61749999
+urloss                   2.51827201
+j2jloss                 74.68053847
+funcerror             5590.37582696
+
+
+
+   Loss Function
+----------------
+kappa                    0.10916000
+delta                    0.01946000
+lambda                   0.30780000
+jfploss                  2.92042610
+urloss                   2.82050598
+j2jloss                 74.77889078
+funcerror             5608.36664866
+
+
+
+   Loss Function
+----------------
+kappa                    0.10916000
+delta                    0.01946000
+lambda                   0.30780000
+jfploss                  4.03193853
+urloss                   3.94491123
+j2jloss                 74.04299717
+funcerror             5514.18428219
+
+
+
+   Loss Function
+----------------
+kappa                    0.10916000
+delta                    0.01946000
+lambda                   0.30780000
+jfploss                  3.70462963
+urloss                   3.61125936
+j2jloss                 74.35800385
+funcerror             5555.87821208
+
+
+
+   Loss Function
+----------------
+kappa                    0.10916000
+delta                    0.01946000
+lambda                   0.30780000
+jfploss                  4.76261558
+urloss                   4.69755734
+j2jloss                 75.65827766
+funcerror             5768.92452983
+
+
+
+   Loss Function
+----------------
+kappa                    0.10916000
+delta                    0.01946000
+lambda                   0.30780000
+jfploss                  5.94398513
+urloss                   5.93777739
+j2jloss                 75.00298550
+funcerror             5696.03599391
+
+
+
+   Loss Function
+----------------
+kappa                    0.10916000
+delta                    0.01946000
+lambda                   0.30780000
+jfploss                  6.12614724
+urloss                   6.13163342
+j2jloss                 74.67079540
+funcerror             5650.85429377
+
+
+
+   Loss Function
+----------------
+kappa                    0.10916000
+delta                    0.01946000
+lambda                   0.30780000
+jfploss                  5.47031039
+urloss                   5.43699429
+j2jloss                 64.17825947
+funcerror             4178.33419121
+
+
+
+   Loss Function
+----------------
+kappa                    0.10916000
+delta                    0.01946000
+lambda                   0.30780000
+jfploss                  6.95243896
+urloss                   7.01995165
+j2jloss                 74.41366454
+funcerror             5635.00959819
+
+
+
+   Loss Function
+----------------
+kappa                    0.10916000
+delta                    0.01946000
+lambda                   0.30780000
+jfploss                  7.20215684
+urloss                   7.29134841
+j2jloss                 74.76885688
+funcerror             5695.41678441
+
+
+
+   Loss Function
+----------------
+kappa                    0.10916000
+delta                    0.01946000
+lambda                   0.30780000
+jfploss                  6.83150362
+urloss                   6.88901036
+j2jloss                 66.25427326
+funcerror             4483.75663079
+
+
+
+   Loss Function
+----------------
+kappa                    0.10916000
+delta                    0.01946000
+lambda                   0.30780000
+jfploss                  7.72530780
+urloss                   7.86440227
+j2jloss                 76.33758971
+funcerror             5948.95680587
+
+
+
+   Loss Function
+----------------
+kappa                    0.10916000
+delta                    0.01946000
+lambda                   0.30780000
+jfploss                  7.86653239
+urloss                   8.02014895
+j2jloss                 75.58127609
+funcerror             5838.73441600
+
+
+
+   Loss Function
+----------------
+kappa                    0.10916000
+delta                    0.01946000
+lambda                   0.30780000
+jfploss                  8.22580406
+urloss                   8.41839942
+j2jloss                 76.87635176
+funcerror             6048.50676063
 
 
 

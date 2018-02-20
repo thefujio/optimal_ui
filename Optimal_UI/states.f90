@@ -176,8 +176,8 @@
     print*, 'bvec:', bvec
   endif
   !Grid on PVU (x)
-  xmin = Ufunc(hp+bval)/(one-betta)
-  xmax = Ufunc(MAXVAL(y)+MAXVAL(z))/(one-betta)
+  xmin = -22.20d0 !Ufunc(hp+bval)/(one-betta)
+  xmax = -19.25d0 !Ufunc(MAXVAL(y)+MAXVAL(z))/(one-betta)
   print*,'maximum output is: ',MAXVAL(y)+MAXVAL(z)
 
   x(1:nx) = (/ ( &
@@ -187,7 +187,7 @@
 
   !Setting initial conditions for value functions
 
-  U1 = -18.929393939237876d0
+  U1 = -19.80d0
   do iz=1,nz
     do iy=1,ny
       do ix=1,nx

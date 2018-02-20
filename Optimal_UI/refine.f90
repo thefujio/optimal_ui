@@ -43,23 +43,22 @@ real(8), dimension(nx,ns,ns) :: Vprime, Vprimema
 real(8), dimension(nx,ny)    :: Ptildema
 real(8), dimension(nx,ny)    :: Mma
 !real(8), dimension(ny,ne)    :: RUfine,PUtildefine
-real(8), dimension(ny,ne)    :: MUreal,MUma
-real(8), dimension(nx)       :: wvec, wvectemp, Vprimevec, Vptemp, Vpout, dvec, Mvec, Ptildevec, Rvec, thetavec, Pvec, Jtvec
+real(8), dimension(nx)       :: wvec, wvectemp, Vprimevec, dvec, Mvec, Ptildevec, Rvec, thetavec, Pvec, Jtvec
 real(8), dimension(nx)       :: splineb,splinec,splined
-real(8), dimension(ndist)    :: tempM, tempMU, tempiV, tempiw
+real(8), dimension(ndist)    :: tempM, tempiV, tempiw, retfine
+real(8), dimension(nu)       :: ExpUfine
 real(8), dimension(ndist,ny) :: Mfinereal
+integer, dimension(ny,ne)    :: NDind
+integer, dimension(ny)       :: NTind
+
 integer :: i,ii,j,jj,ix,ixx,iy,iz,ie,is,isp, smp
 !Create fine grid on X
 call linspace(xfine,xmin,xmax,ndist)
 
 !smoothing parameter for ma
-smp = 5
+smp = 19
 
 !To interpolate:
-!Leave as is for now:
-PUtildefine = PUtilde
-RUfine = RU
-
 !M(ix,iy)
 do iy=1,ny
   splineb = 0.0d0
@@ -78,28 +77,6 @@ do iy=1,ny
   do ix=1,ndist
     tempM = ABS(Mfinereal(ix,iy)-xfine)
     Mfine(ix,iy) = MINLOC(tempM, DIM=1)
-  end do
-end do
-
-!print*, 'x', x
-!print*, 'xfine', xfine
-!print*, 'M', M
-!print*, 'Mfinereal', Mfinereal
-!print*, 'Mfine', Mfine
-!pause
-
-!MU(y,e)
-!convert to real:
-do ie=1,ne
-  do iy=1,ny
-    MUreal(iy,ie) = x(MU(iy,ie)) !this is the market in which U(iyp) searches
-  end do
-end do
-
-do ie=1,ne
-  do iy=1,ny
-    tempMU = ABS(MUreal(iy,ie)-xfine)
-    MUfine(iy,ie) = MINLOC(tempMU, DIM=1)
   end do
 end do
 
@@ -151,6 +128,27 @@ do iy=1,ny
   enddo
 enddo
 
+
+do ie=1,ne
+  do iy=1,ny
+    do ix=1,ndist
+      retfine(ix) = Pfine(ix,iy)*(xfine(ix)-U1(iy,ie))
+    end do
+    RUfine(iy,ie) = MAXVAL(retfine)
+    MUfine(iy,ie) = MAXLOC(retfine,DIM=1)
+    PUtildefine(iy,ie) = Pfine(MUfine(iy,ie),iy)
+  end do
+end do
+
+!Recalculate U1 on xfine grid
+  do i=1,nu
+    ExpUfine(i) = zero
+    do ii=1,nu
+      ExpUfine(i) = ExpUfine(i) + betta*pus(i,ii)*(U1(iuyfun(ii),iuefun(ii))+RUfine(iuyfun(ii),iuefun(ii)))
+    end do
+    Ufine(iuyfun(i),iuefun(i)) = Ufunc(bvec(iuefun(i))) + ExpUfine(i)
+  end do
+
 !dprimevec(ix,iy,ie) is either delta or 1 - so don't spline, rather set to nearest gridpt value
 do iy=1,ny
   do ie=1,ne
@@ -162,30 +160,31 @@ enddo
 !w and V'
 
 !only smooth where d=delta and theta postitive?
-!do ie = 1,ne
-!  do iy = 1,ny
-!    NDind(iy,ie)=count(dprimevec(:,iy,ie) == 1.0d0)
-!  end do
-!end do
+do ie = 1,ne
+  do iy = 1,ny
+    NDind(iy,ie)=count(dprimevec(:,iy,ie) == 1.0d0)
+  end do
+end do
 
-!do iy = 1,ny
-!  NTind(iy)=count(theta(:,ny) == 0.0d0)
-!end do
+do iy = 1,ny
+  NTind(iy)=count(theta(:,ny) <= 0.0d0)
+end do
 
 do iz=1,nz
   do iy=1,ny
-    call movavg(w(:,iy,iz),wma(:,iy,iz),smp)
+    wma(:,iy,iz) = w(:,iy,iz)
+    call movavg(w(NDind(iy,1):nx-NTind(iy),iy,iz),wma(NDind(iy,1):nx-NTind(iy),iy,iz),smp)
   end do
 end do
 
 do jj=1,ns
   do ii=1,ns
     do ix=1,nx
-    Vprime(ix,ii,jj) = x(iVprime(ix,ii,jj))
+      Vprime(ix,ii,jj) = x(iVprime(ix,ii,jj))
     end do
-    Vptemp = Vprime(:,ii,jj)
-    call movavg(Vptemp,Vpout,smp)
-    Vprimema(:,ii,jj) = Vpout
+    Vprimema(:,ii,jj) = Vprime(:,ii,jj)
+    iy=iyfun(ii)
+    call movavg(Vprime(NDind(iy,1):nx-NTind(iy),ii,jj),Vprimema(NDind(iy,1):nx-NTind(iy),ii,jj),smp)
   end do
 end do
 

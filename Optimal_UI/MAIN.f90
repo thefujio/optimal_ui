@@ -54,7 +54,7 @@ PROGRAM MAIN
   endif
 
 
-  !call linspace(bgrid,0.233333333d0,0.283333333d0,gridpoints)
+  call linspace(bgrid,0.233333333d0,0.283333333d0,gridpoints)
   !call linspace(hpgrid,0.43d0,0.78d0,gridpoints)
 
   !call linspace(psigrid,1.0d0,0.0d0,gridpoints)
@@ -63,8 +63,8 @@ PROGRAM MAIN
   !do i=1,gridpoints
   !psigrid(i) = 1.0d0/durgrid(i)
   !enddo
-  !psigrid = 0.0d0
-  bgrid = 0.25d0
+  psigrid = 0.0d0
+  !bgrid = 0.25d0
   yyval = 0.02d0
   !print*, psigrid
   !pause
@@ -79,7 +79,9 @@ PROGRAM MAIN
       !hp = hpgrid(i)
       bval = bgrid(i)
       psi = psigrid(i)
+      !
       Call calfun(dims,paramvec,funcerror)
+      !
       rrgrid(i) = rrval
       cegrid(i) = ceval
       taxgrid(i) = taxval

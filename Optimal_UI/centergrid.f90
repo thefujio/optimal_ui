@@ -28,15 +28,15 @@ NT0=count(theta(:,ny) == 0.0d0)
 if (want_print) then
 print*, 'Submkts w/theta=0:',NT0
 endif
-if (ND1 >= 15) then
+if (ND1 >= 20) then
 xl = xl + 0.05d0*gridstep*real(ND1,8)
-else if (ND1<=10) then
+else if (ND1<=15) then
 xl = xl - 2.0d0*(real(nx,8)/30.0d0)*gridstep
 end if
 
-if (NT0 >= 15) then
+if (NT0 >= 20) then
 xu = xu - 0.05d0*gridstep*real(NT0,8)
-else if (NT0<=10) then
+else if (NT0<=15) then
 xu = xu + 0.50d0*(real(nx,8)/30.0d0)*gridstep
 end if
 

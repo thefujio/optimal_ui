@@ -172,9 +172,9 @@ SUBROUTINE SDIFINE(J1,U1)
   do iu=1,nu
   transfers = transfers + muss(ns*ndist+iu)*bvec(iuefun(iu))
   tot_util = tot_util + muss(ns*ndist+iu)*Ufunc(bvec(iuefun(iu)))
-  tot_vf = tot_vf + muss(ns*ndist+iu)*U1(iuyfun(iu),iuefun(iu))
-  welfare = welfare + muss(ns*ndist+iu)*U1(iuyfun(iu),iuefun(iu))
-  uwgt = uwgt + muss(ns*ndist+iu)*U1(iuyfun(iu),iuefun(iu))
+  tot_vf = tot_vf + muss(ns*ndist+iu)*Ufine(iuyfun(iu),iuefun(iu))
+  welfare = welfare + muss(ns*ndist+iu)*Ufine(iuyfun(iu),iuefun(iu))
+  uwgt = uwgt + muss(ns*ndist+iu)*Ufine(iuyfun(iu),iuefun(iu))
   umeasure = umeasure + muss(ns*ndist+iu)
   end do
 
@@ -187,10 +187,10 @@ SUBROUTINE SDIFINE(J1,U1)
     ie = iuyfun(iu)
     ie = iuefun(iu)
     if (ie < ne) then
-      ubenval = ubenval + muss(ns*ndist+iu)*U1(iy,ie)
+      ubenval = ubenval + muss(ns*ndist+iu)*Ufine(iy,ie)
       ubenmeasure = ubenmeasure + muss(ns*ndist+iu)
     else
-      unobenval = unobenval + muss(ns*ndist+iu)*U1(iy,ie)
+      unobenval = unobenval + muss(ns*ndist+iu)*Ufine(iy,ie)
       unobenmeasure = unobenmeasure + muss(ns*ndist+iu)
     end if
   end do
@@ -199,8 +199,8 @@ SUBROUTINE SDIFINE(J1,U1)
     ubenval = ubenval/ubenmeasure
     unobenval = unobenval/unobenmeasure
     else
-    ubenval = U1(1,1)
-    unobenval = U1(1,1)
+    ubenval = Ufine(1,1)
+    unobenval = Ufine(1,1)
   endif
 
   do is=1,ns
