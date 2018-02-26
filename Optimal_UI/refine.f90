@@ -16,10 +16,21 @@ double precision, dimension(nx,ny,nz), intent(inout):: J1
 
 INTERFACE
   SUBROUTINE movavg(invec,outvec,pd)
+    implicit none
     real*8, dimension(:), intent(in) :: invec
     integer, intent(in) ::pd
     real*8, dimension(:), intent(out) :: outvec
   END SUBROUTINE movavg
+
+  SUBROUTINE q_fit(xin,yin,outvec)
+    real*8, dimension(:), intent(in) :: xin, yin
+    real*8, dimension(:), intent(out) :: outvec
+  END SUBROUTINE q_fit
+
+  SUBROUTINE ols_fit(xin,yin,outvec)
+    real*8, dimension(:), intent(in) :: xin, yin
+    real*8, dimension(:), intent(out) :: outvec
+  END SUBROUTINE ols_fit
 
   SUBROUTINE spline(xvec,yvec,b,c,d,n)
     integer:: n
@@ -36,7 +47,7 @@ INTERFACE
 
 END INTERFACE
 
-real(8), dimension(nx,ny,nz) :: wma
+real(8), dimension(nx,ny,nz) :: wma, wqa
 real(8), dimension(nx,ny,nz) :: windreal,windma
 real(8), dimension(nx,ns,ns) :: dprimema
 real(8), dimension(nx,ns,ns) :: Vprime, Vprimema
@@ -48,15 +59,16 @@ real(8), dimension(nx)       :: splineb,splinec,splined
 real(8), dimension(ndist)    :: tempM, tempiV, tempiw, retfine
 real(8), dimension(nu)       :: ExpUfine
 real(8), dimension(ndist,ny) :: Mfinereal
-integer, dimension(ny,ne)    :: NDind
+integer, dimension(ns,ns)    :: NVind
+integer, dimension(ny,nz)    :: NDind
 integer, dimension(ny)       :: NTind
 
-integer :: i,ii,j,jj,ix,ixx,iy,iz,ie,is,isp, smp
+integer :: i,ii,j,jj,ix,ixx,iy,iyp,iz,ie,is,isp, smp
 !Create fine grid on X
 call linspace(xfine,xmin,xmax,ndist)
 
 !smoothing parameter for ma
-smp = 19
+smp = 13
 
 !To interpolate:
 !M(ix,iy)
@@ -158,11 +170,30 @@ do iy=1,ny
 enddo
 
 !w and V'
+do jj=1,ns
+  do ii=1,ns
+    do ix=1,nx
+      Vprime(ix,ii,jj) = x(iVprime(ix,ii,jj))
+    end do
+  end do
+end do
 
-!only smooth where d=delta and theta postitive?
-do ie = 1,ne
-  do iy = 1,ny
-    NDind(iy,ie)=count(dprimevec(:,iy,ie) == 1.0d0)
+!only smooth where V'>U and theta postitive
+do is=1,ns
+  do isp=1,ns
+    iy = iyfun(is)
+    iyp = iyfun(isp)
+    NVind(is,isp)=count(Vprime(:,is,isp) <= U1(iyp,1)+1.0d-4) - 1
+    if (NVind(is,isp) <= 0) then
+      NVind(is,isp) = 1
+    endif
+  end do
+end do
+
+do iy=1,ny
+  do iz=1,nz
+    is = isfun(iy,iz)
+    NDind(iy,iz) = minval(NVind(isfun(iy,iz),:))
   end do
 end do
 
@@ -170,21 +201,31 @@ do iy = 1,ny
   NTind(iy)=count(theta(:,ny) <= 0.0d0)
 end do
 
+print*,'NVind: ', NVind
+print*,'NDind: ', NDind
+print*,'NTind: ', NTind
+
+!Smooth w using ma:
+!do iz=1,nz
+!  do iy=1,ny
+!    wma(:,iy,iz) = w(:,iy,iz)
+!    call movavg(w(NDind(iy,1):nx-NTind(iy),iy,iz),wma(NDind(iy,1):nx-NTind(iy),iy,iz),smp)
+!  end do
+!end do
+
+!Smooth w using fitted, endpoint-preserving quadratic fn
 do iz=1,nz
   do iy=1,ny
-    wma(:,iy,iz) = w(:,iy,iz)
-    call movavg(w(NDind(iy,1):nx-NTind(iy),iy,iz),wma(NDind(iy,1):nx-NTind(iy),iy,iz),smp)
+    wqa(:,iy,iz) = w(:,iy,iz)
+    call q_fit(x(NDind(iy,1):nx-NTind(iy)),w(NDind(iy,1):nx-NTind(iy),iy,iz),wqa(NDind(iy,1):nx-NTind(iy),iy,iz))
   end do
 end do
 
 do jj=1,ns
   do ii=1,ns
-    do ix=1,nx
-      Vprime(ix,ii,jj) = x(iVprime(ix,ii,jj))
-    end do
     Vprimema(:,ii,jj) = Vprime(:,ii,jj)
     iy=iyfun(ii)
-    call movavg(Vprime(NDind(iy,1):nx-NTind(iy),ii,jj),Vprimema(NDind(iy,1):nx-NTind(iy),ii,jj),smp)
+    call movavg(Vprime(NVind(ii,jj):nx-NTind(iy),ii,jj),Vprimema(NVind(ii,jj):nx-NTind(iy),ii,jj),smp)
   end do
 end do
 
@@ -195,7 +236,7 @@ do iz=1,nz
   splineb = 0.0d0
   splinec = 0.0d0
   splined = 0.0d0
-  wvec = wma(:,iy,iz)
+  wvec = wqa(:,iy,iz)
   call spline(x,wvec,splineb,splinec,splined,nx)
     do ix=1,ndist
     wfine(ix,iy,iz) = ispline(xfine(ix), x, wvec, splineb, splinec, splined, nx)

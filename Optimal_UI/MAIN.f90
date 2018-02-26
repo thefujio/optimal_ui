@@ -26,6 +26,22 @@ PROGRAM MAIN
 !  USE omp_lib
 !  USE isnan_int
   implicit none
+  INTERFACE
+    SUBROUTINE ols_fit(xin,yin,outvec)
+      implicit none
+      real*8, dimension(:), intent(in) :: xin,yin
+      real*8, dimension(:), intent(out) :: outvec
+    END SUBROUTINE ols_fit
+
+    SUBROUTINE tau_eval(n,xvec,tax,fval)
+      implicit none
+      integer, intent(IN):: n
+      real*8, intent(IN), dimension(n):: xvec
+      real*8, intent(IN):: tax
+      real*8, intent(OUT):: fval
+    END SUBROUTINE
+  END INTERFACE
+
   !Variables declarations
   real(8):: time_begin,time_end            !Used to keep track of time
 !  real(8):: start_iter, end_iter           !Used to keep track of time
@@ -53,7 +69,7 @@ PROGRAM MAIN
     print*,paramvec
   endif
 
-
+  !0.233333333d0
   call linspace(bgrid,0.233333333d0,0.283333333d0,gridpoints)
   !call linspace(hpgrid,0.43d0,0.78d0,gridpoints)
 
@@ -68,7 +84,7 @@ PROGRAM MAIN
   yyval = 0.02d0
   !print*, psigrid
   !pause
-  print *, "Run bisection method to find tau for each rr in grid"
+  print *, "Run secant method to find tau for each rr in grid"
   open(unit=gridout,  file=root_dir//out_dir//"gridout.txt",  status='replace')
   write(gridout,15)
   15 format('Psi,','RR,','CE,','Tax,','JFP(U),','U VF,','Avg. Open Submkt,','Gross W,','Net W,',&
@@ -108,6 +124,52 @@ PROGRAM MAIN
   enddo
   enddo !end j grid
   close(gridout)
+
+!  !Smooth the tax and run at each point in grid:
+  call ols_fit(bgrid,taxgrid,taxgrid_smooth)
+  print*,'taxgrid_smooth',taxgrid_smooth
+  print *, "Run for final smoothed tau for each rr in grid"
+  open(unit=gridout_smooth,  file=root_dir//out_dir//"gridout_smooth.txt",  status='replace')
+  write(gridout_smooth,19)
+  19 format('Psi,','RR,','CE,','Tax,','JFP(U),','U VF,','Avg. Open Submkt,','Gross W,','Net W,',&
+  'Urate,','UU,','EE,','b,','transfers,','Utility,','VF','U VF ben,','U VF noben,')
+  !For non-calibration testing:
+  do j=1,bgridpoints
+    do i=1,gridpoints
+      !hp = hpgrid(i)
+      bval = bgrid(i)
+      psi = psigrid(i)
+      tau = taxgrid_smooth(i)
+      !
+      Call tau_eval(dims,paramvec,tau,funcerror)
+      !
+      rrgrid(i) = rrval
+      cegrid(i) = ceval
+      taxgrid(i) = taxval
+      jfpgrid(i) = jfpval
+      uvalgrid(i) = uval
+      submktgrid(i) = submktval
+      grosswagegrid(i) = grosswageval
+      netwagegrid(i) = netwageval
+      urategrid(i) = urateval
+      uugrid(i) = uuval
+      eegrid(i) = eeval
+      trgrid(i) = trval
+      utilgrid(i)=tot_util
+      vfgrid(i)=tot_vf
+      uvalbengrid(i) = ubenval
+      uvalnobengrid(i) = unobenval
+      print*,'gridpoint ', i ,' completed'
+    end do
+
+  do i=1,gridpoints
+    write(gridout_smooth,'(<19>(f15.4,","))') yyval, psigrid(i),rrgrid(i),cegrid(i),taxgrid(i),jfpgrid(i),uvalgrid(i), &
+      submktgrid(i), grosswagegrid(i),netwagegrid(i),urategrid(i),uugrid(i),eegrid(i),bgrid(i),trgrid(i), &
+      utilgrid(i),vfgrid(i),uvalbengrid(i),uvalnobengrid(i)
+  enddo
+  enddo !end j grid
+  close(gridout_smooth)
+
 
   call CPU_Time(time_end)
   !Timing of the program

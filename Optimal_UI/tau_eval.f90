@@ -1,4 +1,4 @@
-  SUBROUTINE calfun(n,xvec,fval)
+  SUBROUTINE tau_eval(n,xvec,tax,fval)
   !****************************************************************************
   !  MAIN.f90 - Entry point of console application.
   !
@@ -97,16 +97,14 @@
 
   integer, intent(IN):: n
   real*8, intent(IN), dimension(n):: xvec
+  real*8, intent(IN):: tax
   real*8, intent(OUT):: fval
   real(8), dimension(ny,ne)     :: U
   real(8), dimension(nx,ny,nz)  :: J
 
   integer:: iter                      !Generic indexes
-  real(8):: fl,fu
+  real(8):: f
   real(8):: bd,jfploss,urloss,j_jloss
-
-  ! TAX CODE - upper and lower bound tax rates for bisection
-  real(8):: taul,tauu,tau0,tau1,f0,f1
 
   if (transform == 1) then
     kappa = restrict(xvec(1),lb(1),ub(1),spread)
@@ -120,68 +118,17 @@
 
   !Set up grids and transition matrices
   call states(J,U)
-  !Bisection on tax rate
-  taul = 0.035d0
-  tauu = 0.055d0
-  !Evaluate at endpoints taul,tauu
-  tau = taul
+  !Set tax rate
+  tau = tax
   call vfi(J,U)
   call refine(J,U)
   call sdifine(J,U)
-  fl = gbdfine(taul,bvec)
-  write (*,'(5x,''Budget Deficit = '',f10.6)') fl
-  tau0 = tau
-  f0 = fl
-
-  tau = tauu
-  call vfi(J,U)
-  call refine(J,U)
-  call sdifine(J,U)
-  fu = gbdfine(tauu,bvec)
-  write (*,'(5x,''Budget Deficit = '',f10.6)') fu
-  tau1 = tau
-  f1=fu
-  if (fl*fu>zero) then
-    write (*,'(3x,''Stop: Root not bracketed'')')
-    !PAUSE
-  end if
-
-  !Secant loop
-  do iter=1,biter
-    !tau = half*(taul+tauu)
-    tau = tau1 - f1*((tau1-tau0)/(f1-f0))
-    call vfi(J,U)
-    call refine(J,U)
-    call sdifine(J,U)
-    bd = gbdfine(tau,bvec)
-!    if (bd>0.0d0) then
-!      tauu=tau
-!    else
-!      taul=tau
-!    end if
-
-    tau0 = tau1
-    f0 = f1
-    tau1 = tau
-    f1 = bd
-
-    write (*,'(5x,''tau = '',f6.5)') tau
-    write (*,'(5x,''Budget Deficit = '',f10.8)') bd
-    if (dabs(tau1-tau0) < low_tol .or. dabs(bd) < bis_tol) EXIT
-
-  end do
-  if (iter.ge.niter) then
-    write (*,'(3x,''Bisection did not converge after '',i6,'' iterations '')') iter
-    write (*,'(5x,''Budget Deficit = '',f6.5)') bd
-  else
-    write (*,'(3x,''Bisection converged after '',i6,'' iterations '')') iter
-    write (*,'(5x,''tau = '',f6.5)') tau
-    write (*,'(5x,''Budget Deficit = '',f10.8)') bd
-  end if
-
+  f = gbdfine(tau,bvec)
+  write (*,'(5x,''Tax Rate = '',f10.6)') tau
+  write (*,'(5x,''Budget Deficit = '',f10.6)') f
   call write_output_fine(J,U)
-  deallocate(cont)
 
+  deallocate(cont)
   !Calibration Output
   jfploss =  min(1.0d8, abs(100.0d0*(UEflow - jfptarget)/jfptarget))
   urloss = min(1.0d8, abs(100.0d0*(unemp - urtarget)/urtarget))
@@ -206,4 +153,4 @@
   "j2jloss          ",f18.8/&
   "funcerror        ",f18.8///)
 
-  END SUBROUTINE calfun
+  END SUBROUTINE tau_eval

@@ -25,6 +25,9 @@
 		47C31B291D6E1C1F00A53C94 /* gbd.f90 in Sources */ = {isa = PBXBuildFile; fileRef = 47C31B171D6E1C1F00A53C94 /* gbd.f90 */; };
 		47C31B301D6E1C1F00A53C94 /* UTILITY.f90 in Sources */ = {isa = PBXBuildFile; fileRef = 47C31B1E1D6E1C1F00A53C94 /* UTILITY.f90 */; };
 		47C31B341D6E1C1F00A53C94 /* IOOP.f90 in Sources */ = {isa = PBXBuildFile; fileRef = 47C31B221D6E1C1F00A53C94 /* IOOP.f90 */; };
+		47C72E76203C90BE00D20187 /* tau_eval.f90 in Sources */ = {isa = PBXBuildFile; fileRef = 47C72E75203C90BE00D20187 /* tau_eval.f90 */; };
+		47C72E7A203E02E000D20187 /* ols_fit.f90 in Sources */ = {isa = PBXBuildFile; fileRef = 47C72E79203E02E000D20187 /* ols_fit.f90 */; };
+		47C72E7C203E3F3900D20187 /* q_fit.f90 in Sources */ = {isa = PBXBuildFile; fileRef = 47C72E7B203E3F3900D20187 /* q_fit.f90 */; };
 		47D12B701DA305F700BEAB74 /* write_output.f90 in Sources */ = {isa = PBXBuildFile; fileRef = 47D12B6F1DA305F700BEAB74 /* write_output.f90 */; };
 		47D1A2271F78E5150068AF3B /* sdi.f90 in Sources */ = {isa = PBXBuildFile; fileRef = 47D1A2261F78E5150068AF3B /* sdi.f90 */; };
 		47D6CE841EF5C6D1001B92FC /* states.f90 in Sources */ = {isa = PBXBuildFile; fileRef = 47D6CE831EF5C6D1001B92FC /* states.f90 */; };
@@ -76,6 +79,9 @@
 		47C31B171D6E1C1F00A53C94 /* gbd.f90 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.fortran.f90; path = gbd.f90; sourceTree = "<group>"; };
 		47C31B1E1D6E1C1F00A53C94 /* UTILITY.f90 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.fortran.f90; path = UTILITY.f90; sourceTree = "<group>"; };
 		47C31B221D6E1C1F00A53C94 /* IOOP.f90 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.fortran.f90; path = IOOP.f90; sourceTree = "<group>"; };
+		47C72E75203C90BE00D20187 /* tau_eval.f90 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.fortran.f90; path = tau_eval.f90; sourceTree = "<group>"; };
+		47C72E79203E02E000D20187 /* ols_fit.f90 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.fortran.f90; path = ols_fit.f90; sourceTree = "<group>"; };
+		47C72E7B203E3F3900D20187 /* q_fit.f90 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.fortran.f90; path = q_fit.f90; sourceTree = "<group>"; };
 		47D12B6F1DA305F700BEAB74 /* write_output.f90 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.fortran.f90; path = write_output.f90; sourceTree = "<group>"; };
 		47D1A2261F78E5150068AF3B /* sdi.f90 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.fortran.f90; path = sdi.f90; sourceTree = "<group>"; };
 		47D6CE831EF5C6D1001B92FC /* states.f90 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.fortran.f90; path = states.f90; sourceTree = "<group>"; };
@@ -139,6 +145,9 @@
 				478829D51FBE40A80045082E /* write_output_fine.f90 */,
 				47D6CE851EF5D000001B92FC /* calfun.f90 */,
 				479C2F481FA97443000F69A8 /* movavg.f90 */,
+				47C72E75203C90BE00D20187 /* tau_eval.f90 */,
+				47C72E79203E02E000D20187 /* ols_fit.f90 */,
+				47C72E7B203E3F3900D20187 /* q_fit.f90 */,
 			);
 			path = Optimal_UI;
 			sourceTree = "<group>";
@@ -212,8 +221,10 @@
 				479C2F491FA97443000F69A8 /* movavg.f90 in Sources */,
 				476846F01D9C615000DF8A66 /* centergrid.f90 in Sources */,
 				47D12B701DA305F700BEAB74 /* write_output.f90 in Sources */,
+				47C72E7C203E3F3900D20187 /* q_fit.f90 in Sources */,
 				47D6CE841EF5C6D1001B92FC /* states.f90 in Sources */,
 				47C31B241D6E1C1F00A53C94 /* MAIN.f90 in Sources */,
+				47C72E76203C90BE00D20187 /* tau_eval.f90 in Sources */,
 				470D2D201EF43F1C0087D504 /* jprime_wage.f90 in Sources */,
 				47DB57081D748E790018B48A /* stadist.f90 in Sources */,
 				47C31B251D6E1C1F00A53C94 /* vfi.f90 in Sources */,
@@ -223,6 +234,7 @@
 				476846F41D9C73AE00DF8A66 /* spline.f90 in Sources */,
 				47C31B281D6E1C1F00A53C94 /* jprime.f90 in Sources */,
 				47C31B271D6E1C1F00A53C94 /* howard.f90 in Sources */,
+				47C72E7A203E02E000D20187 /* ols_fit.f90 in Sources */,
 				471754521DA5A9AF0060E918 /* contractn.f90 in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

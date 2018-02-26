@@ -34,9 +34,9 @@ else if (ND1<=15) then
 xl = xl - 2.0d0*(real(nx,8)/30.0d0)*gridstep
 end if
 
-if (NT0 >= 20) then
+if (NT0 >= 25) then
 xu = xu - 0.05d0*gridstep*real(NT0,8)
-else if (NT0<=15) then
+else if (NT0<=20) then
 xu = xu + 0.50d0*(real(nx,8)/30.0d0)*gridstep
 end if
 

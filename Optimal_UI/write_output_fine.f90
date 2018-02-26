@@ -62,8 +62,20 @@ end if
 Call wri1file(ny,U1,root_dir//out_dir//"U.txt")
 Call wri1file(ny,PUtilde,root_dir//out_dir//"PUtilde.txt")
 Call wri1file(ny,RU,root_dir//out_dir//"RU.txt")
-Call int1file(ny,MUfine,root_dir//out_dir//"MUfine.txt")
+Call int1file(ny,MU,root_dir//out_dir//"MU.txt")
+Call wri2file(nx,ny,P,root_dir//out_dir//"P.txt")
+Call wri2file(nx,ny,theta,root_dir//out_dir//"theta.txt")
+Call wri2file(nx,ny,R,root_dir//out_dir//"R.txt")
+Call wri2file(nx,ny,Ptilde,root_dir//out_dir//"Ptilde.txt")
+!Call wri2file(nx,ny,Jtilde,root_dir//out_dir//"Jtilde.txt")
+Call wri2file(nx,ny,dprimevec,root_dir//out_dir//"dprime.txt")
+Call int2file(nx,ny,M,root_dir//out_dir//"M.txt")
+Call wri3file(nx,ny,nz,J1,root_dir//out_dir//"J.txt")
 
+
+Call wri1file(ny,PUtildefine,root_dir//out_dir//"PUtildefine.txt")
+Call wri1file(ny,RUfine,root_dir//out_dir//"RUfine.txt")
+Call int1file(ny,MUfine,root_dir//out_dir//"MUfine.txt")
 Call wri2file(ny,ne,Ufine,root_dir//out_dir//"Ufine.txt")
 Call wri2file(ndist,ny,Pfine,root_dir//out_dir//"Pfine.txt")
 Call wri2file(ndist,ny,thetafine,root_dir//out_dir//"thetafine.txt")
@@ -78,7 +90,7 @@ Call wri1file(ndist,Xfine,root_dir//out_dir//"Xfine.txt")
 Call wri3file(ndist,ny,nz,Jfine,root_dir//out_dir//"Jfine.txt")
 !Call wri3file(nx,ny,nz,w,root_dir//out_dir//"w.txt")
 if (nz==2 .and. ny==2) then
-  open(105,file=root_dir//out_dir//'empfuns.csv',status='replace')
+  open(105,file=root_dir//out_dir//'empfuns_fine.csv',status='replace')
     write(105,40)
     40 format('V,','J(y1;z1),','J(y1;z2),','J(y2;z1),','J(y2;z2),','w(y1;z1),','w(y1;z2),','w(y2;z1),','w(y2;z2),','dprime(y1),','dprime(y2),', &
       'P(y1),','P(y2),','th(y1),','th(y2),','R(y1),','R(y2),','Ptilde(y1),','Ptilde(y2),','M(y1),','M(y2)')
@@ -89,7 +101,7 @@ if (nz==2 .and. ny==2) then
       enddo
   close(105)
 elseif (nz==1 .and. ny==2) then
-  open(105,file=root_dir//out_dir//'empfuns.csv',status='replace')
+  open(105,file=root_dir//out_dir//'empfuns_fine.csv',status='replace')
     write(105,50)
     50 format('V,','J(y1),','J(y2),','w(y1),','w(y2),','dprime(y1),','dprime(y2),','P(y1),','P(y2),','th(y1),','th(y1),',&
       'R(y1),','R(y1),','Ptilde(y),','Ptilde(y2),','M(y1),','M(y2),')
@@ -101,7 +113,7 @@ elseif (nz==1 .and. ny==2) then
   close(105)
 
 elseif (nz==2 .and. ny==1) then
-  open(105,file=root_dir//out_dir//'empfuns.csv',status='replace')
+  open(105,file=root_dir//out_dir//'empfuns_fine.csv',status='replace')
     write(105,60)
     60 format('V,','J(y1;z1),','J(y1;z2),','w(y1;z1),','w(y1;z2),','dprime(y1),', &
       'P(y1),','th(y1),','R(y1),','Ptilde(y1),','M(y1),')
@@ -112,7 +124,7 @@ elseif (nz==2 .and. ny==1) then
   close(105)
 
 elseif (nz==3 .and. ny==1) then
-  open(105,file=root_dir//out_dir//'empfuns.csv',status='replace')
+  open(105,file=root_dir//out_dir//'empfuns_fine.csv',status='replace')
     write(105,70)
     70 format('V,','J(y1;z1),','J(y1;z2),','J(y1;z3),','w(y1;z1),','w(y1;z2),','w(y1;z3),','dprime(y1),', &
       'P(y1),','th(y1),','R(y1),','Ptilde(y1),','M(y1),')
@@ -122,7 +134,7 @@ elseif (nz==3 .and. ny==1) then
     enddo
   close(105)
 elseif (nz==3 .and. ny==2) then
-  open(105,file=root_dir//out_dir//'empfuns.csv',status='replace')
+  open(105,file=root_dir//out_dir//'empfuns_fine.csv',status='replace')
     write(105,75)
     75 format('V,','J(y1;z1),','J(y1;z2),','J(y1;z3),','J(y2;z1),','J(y2;z2),','J(y2;z3),','w(y1;z1),','w(y1;z2),','w(y1;z3),',&
       'w(y2;z1),','w(y2;z2),','w(y2;z3),','dprime(y1),','dprime(y2),', 'P(y1),','P(y2),','th(y1),','th(y2),','R(y1),','R(y2),',&
@@ -134,7 +146,7 @@ elseif (nz==3 .and. ny==2) then
     enddo
   close(105)
 else
-  open(105,file=root_dir//out_dir//'empfuns.csv',status='replace')
+  open(105,file=root_dir//out_dir//'empfuns_fine.csv',status='replace')
     write(105,80)
     80 format('V,','J,','w,','dprime,', &
     'P,','th,','R,','Ptilde(y1),','M,')
@@ -146,7 +158,7 @@ else
 endif
 
 if (nz==3 .and. ny==1) then
-  open(107,file=root_dir//out_dir//'vprime.csv',status='replace')
+  open(107,file=root_dir//out_dir//'vprime_fine.csv',status='replace')
     write(107,'((A6,","),<ns*ns>(I6,","))') 'is',1,1,1,2,2,2,3,3,3
     write(107,'((A6,","),<ns*ns>(I6,","))') 'isp',1,2,3,1,2,3,1,2,3
     write(107,'((A6,","),<ns*ns>(I6,","))') 'y(isp)', iyfun(1),iyfun(2),iyfun(3),iyfun(1),iyfun(2),&
@@ -159,7 +171,7 @@ if (nz==3 .and. ny==1) then
     enddo
   close(107)
 else if (nz==2 .and. ny==1) then
-  open(107,file=root_dir//out_dir//'vprime.csv',status='replace')
+  open(107,file=root_dir//out_dir//'vprime_fine.csv',status='replace')
     write(107,'((A6,","),<2*ns>(I6,","))') 'is',1,1,2,2
     write(107,'((A6,","),<2*ns>(I6,","))') 'isp',1,2,1,2
     write(107,'((A6,","),<2*ns>(I6,","))') 'y(isp)', iyfun(1), iyfun(2),iyfun(1), iyfun(2)
@@ -169,7 +181,7 @@ else if (nz==2 .and. ny==1) then
     enddo
   close(107)
 else if (nz==1 .and. ny==2) then
-  open(107,file=root_dir//out_dir//'vprime.csv',status='replace')
+  open(107,file=root_dir//out_dir//'vprime_fine.csv',status='replace')
     write(107,'((A6,","),<2*ns>(I6,","))') 'is',1,1,2,2
     write(107,'((A6,","),<2*ns>(I6,","))') 'isp',1,2,1,2
     write(107,'((A6,","),<2*ns>(I6,","))') 'y(isp)', iyfun(1), iyfun(2),iyfun(1), iyfun(2)
@@ -180,7 +192,7 @@ else if (nz==1 .and. ny==2) then
   close(107)
 
 else if(nz==1 .and. ny==1) then
-  open(107,file=root_dir//out_dir//'vprime.csv',status='replace')
+  open(107,file=root_dir//out_dir//'vprime_fine.csv',status='replace')
     write(107,'((A6,","),<2*ns>(I6,","))') 'is',1
     write(107,'((A6,","),<2*ns>(I6,","))') 'isp',1
     write(107,'((A6,","),<2*ns>(I6,","))') 'y(isp)', iyfun(1)
@@ -192,13 +204,13 @@ else if(nz==1 .and. ny==1) then
 endif
 
 if (ne>2) then
-  open(109,file=root_dir//out_dir//'ufuns.csv',status='replace')
+  open(109,file=root_dir//out_dir//'ufuns_fine.csv',status='replace')
     write(109,90)
     90 format('Past Wage,','U(y1),','U(y2),','wtilde(y1;z1),','wtilde(y1;z2),','wtilde(y2;z1),','wtilde(y2;z2),', &
 'PUtilde(y1),','PUtilde(y2),','RU(y1),','RU(y2),','MU(y1),','MU(y2)')
     do i=1,ne
       write(109,'(<1+ny*nz+ny*3>(f15.4,","),2(I6,","))') e(i),U1(1,i),U1(2,i),wfine(MUfine(1,i),1,1),wfine(MUfine(1,i),1,2),wfine(MUfine(2,i),2,1),&
-      wfine(MUfine(2,i),2,2),PUtilde(1,i),PUtilde(2,i),RU(1,i),RU(2,i),MUfine(1,i),MUfine(2,i)
+      wfine(MUfine(2,i),2,2),PUtildefine(1,i),PUtildefine(2,i),RUfine(1,i),RUfine(2,i),MUfine(1,i),MUfine(2,i)
     enddo
   close(109)
 endif
