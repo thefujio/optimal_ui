@@ -70,7 +70,7 @@ PROGRAM MAIN
   endif
 
   !0.233333333d0
-  call linspace(bgrid,0.233333333d0,0.283333333d0,gridpoints)
+  call linspace(bgrid,0.2150d0,0.2650d0,gridpoints)
   !call linspace(hpgrid,0.43d0,0.78d0,gridpoints)
 
   !call linspace(psigrid,1.0d0,0.0d0,gridpoints)

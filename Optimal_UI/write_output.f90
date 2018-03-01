@@ -187,68 +187,68 @@ if (ne>2) then
   close(109)
 endif
 
-!Stationary Distribution
-Call wri1file(ns*nx+nu,muss,root_dir//out_dir//"muss.txt")
-!Collapsed to Rows of length nx+1: U is 1st element of muvec
-muvec = zero
-do iu=1,nu
-  muvec(iu) = muss(ns*nx+iu)
-enddo
-
-do is=1,ns
-  do ix=1,nx
-  muvec(nu+ix) = muvec(nu+ix) + muss((is-1)*nx+ix)
-  enddo
-enddo
-
-open(106,file=root_dir//out_dir//'dist.csv',status='replace')
-  write(106,30)
-  30 format('V,','dist')
-  do iu=1,nu
-    write(106,'(2(f15.4,","))') U1(iuyfun(iu),iuefun(iu)),muvec(iu)
-  enddo
-  do ix=1,nx
-    write(106,'(2(f15.4,","))') x(ix),muvec(ix+nu)
-  enddo
-close(106)
-
-!Print details of the parameters and environment to detail:
-write (detail,20) nx,ny,nz,ne,y,pyss,z,pzss,hp,bval,psi,tau,betta,kappa,delta,lambda,sigma,gamma,em,unemp,&
-UEflow,EEflow,EUflow,tot_output,avg_wage,avg_benefit,transfers,rrval,welfare
-20 format ('   PARAMETERS'/&
-'----------------'/&
-'nx       = ',I6/&
-'ny       = ',I6/&
-'nz       = ',I6/&
-'ne       = ',I6/&
-'y        = ',(<ny>(f12.8,","))/&
-'y sdist. = ',(<ny>(f12.8,","))/&
-'z        = ',(<nz>(f12.8,","))/&
-'z sdist. = ',(<nz>(f12.8,","))/&
-'hp       = ',f12.8/&
-'b        = ',f12.8/&
-'psi      = ',f12.8/&
-'tau      = ',f12.8/&
-'betta    = ',f12.8/&
-'kappa    = ',f12.8/&
-'delta    = ',f12.8/&
-'lambda   = ',f12.8/&
-'sigma    = ',f12.8/&
-'gamma    = ',f12.8/&
-'   MOMENTS'/&
-'----------------'/&
-
-'em           = ',f12.8/&
-'unemp        = ',f12.8/&
-'UEflow       = ',f12.8/&
-'EEflow       = ',f12.8/&
-'EUflow       = ',f12.8/&
-'tot_output   = ',f12.8/&
-'avg_wage     = ',f12.8/&
-'avg_benefit  = ',f12.8/&
-'transfers    = ',f12.8/&
-'rr           = ',f12.8/&
-'welfare      = ',f12.8///)
+!!Stationary Distribution
+!Call wri1file(ns*nx+nu,muss,root_dir//out_dir//"muss.txt")
+!!Collapsed to Rows of length nx+1: U is 1st element of muvec
+!muvec = zero
+!do iu=1,nu
+!  muvec(iu) = muss(ns*nx+iu)
+!enddo
+!
+!do is=1,ns
+!  do ix=1,nx
+!  muvec(nu+ix) = muvec(nu+ix) + muss((is-1)*nx+ix)
+!  enddo
+!enddo
+!
+!open(106,file=root_dir//out_dir//'dist.csv',status='replace')
+!  write(106,30)
+!  30 format('V,','dist')
+!  do iu=1,nu
+!    write(106,'(2(f15.4,","))') U1(iuyfun(iu),iuefun(iu)),muvec(iu)
+!  enddo
+!  do ix=1,nx
+!    write(106,'(2(f15.4,","))') x(ix),muvec(ix+nu)
+!  enddo
+!close(106)
+!
+!!Print details of the parameters and environment to detail:
+!write (detail,20) nx,ny,nz,ne,y,pyss,z,pzss,hp,bval,psi,tau,betta,kappa,delta,lambda,sigma,gamma,em,unemp,&
+!UEflow,EEflow,EUflow,tot_output,avg_wage,avg_benefit,transfers,rrval,welfare
+!20 format ('   PARAMETERS'/&
+!'----------------'/&
+!'nx       = ',I6/&
+!'ny       = ',I6/&
+!'nz       = ',I6/&
+!'ne       = ',I6/&
+!'y        = ',(<ny>(f12.8,","))/&
+!'y sdist. = ',(<ny>(f12.8,","))/&
+!'z        = ',(<nz>(f12.8,","))/&
+!'z sdist. = ',(<nz>(f12.8,","))/&
+!'hp       = ',f12.8/&
+!'b        = ',f12.8/&
+!'psi      = ',f12.8/&
+!'tau      = ',f12.8/&
+!'betta    = ',f12.8/&
+!'kappa    = ',f12.8/&
+!'delta    = ',f12.8/&
+!'lambda   = ',f12.8/&
+!'sigma    = ',f12.8/&
+!'gamma    = ',f12.8/&
+!'   MOMENTS'/&
+!'----------------'/&
+!
+!'em           = ',f12.8/&
+!'unemp        = ',f12.8/&
+!'UEflow       = ',f12.8/&
+!'EEflow       = ',f12.8/&
+!'EUflow       = ',f12.8/&
+!'tot_output   = ',f12.8/&
+!'avg_wage     = ',f12.8/&
+!'avg_benefit  = ',f12.8/&
+!'transfers    = ',f12.8/&
+!'rr           = ',f12.8/&
+!'welfare      = ',f12.8///)
 
 
 END SUBROUTINE write_output

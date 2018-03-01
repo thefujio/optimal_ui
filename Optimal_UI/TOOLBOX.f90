@@ -160,4 +160,135 @@ SUBROUTINE nearest_interp ( nd, xd, yd, ni, xi, yi )
   return
 END SUBROUTINE nearest_interp
 
+subroutine pwl_value_1d ( nd, xd, yd, ni, xi, yi )
+
+!*****************************************************************************80
+!
+!! PWL_VALUE_1D evaluates the piecewise linear interpolant.
+!
+!  Discussion:
+!
+!    The piecewise linear interpolant L(ND,XD,YD)(X) is the piecewise
+!    linear function which interpolates the data (XD(I),YD(I)) for I = 1
+!    to ND.
+!
+!  Licensing:
+!
+!    This code is distributed under the GNU LGPL license.
+!
+!  Modified:
+!
+!    22 September 2012
+!
+!  Author:
+!
+!    John Burkardt
+!
+!  Parameters:
+!
+!    Input, integer ( kind = 4 ) ND, the number of data points.
+!    ND must be at least 1.
+!
+!    Input, real ( kind = 8 ) XD(ND), the data points.
+!
+!    Input, real ( kind = 8 ) YD(ND), the data values.
+!
+!    Input, integer ( kind = 4 ) NI, the number of interpolation points.
+!
+!    Input, real ( kind = 8 ) XI(NI), the interpolation points.
+!
+!    Output, real ( kind = 8 ) YI(NI), the interpolated values.
+!
+  implicit none
+
+  integer ( kind = 4 ) nd
+  integer ( kind = 4 ) ni
+
+  integer ( kind = 4 ) i
+  integer ( kind = 4 ) k
+  real ( kind = 8 ) t
+  real ( kind = 8 ) xd(nd)
+  real ( kind = 8 ) yd(nd)
+  real ( kind = 8 ) xi(ni)
+  real ( kind = 8 ) yi(ni)
+
+  yi(1:ni) = 0.0D+00
+
+  if ( nd == 1 ) then
+    yi(1:ni) = yd(1)
+    return
+  end if
+
+  do i = 1, ni
+
+    if ( xi(i) <= xd(1) ) then
+
+      t = ( xi(i) - xd(1) ) / ( xd(2) - xd(1) )
+      yi(i) = ( 1.0D+00 - t ) * yd(1) + t * yd(2)
+
+    else if ( xd(nd) <= xi(i) ) then
+
+      t = ( xi(i) - xd(nd-1) ) / ( xd(nd) - xd(nd-1) )
+      yi(i) = ( 1.0D+00 - t ) * yd(nd-1) + t * yd(nd)
+
+    else
+
+      do k = 2, nd
+
+        if ( xd(k-1) <= xi(i) .and. xi(i) <= xd(k) ) then
+
+          t = ( xi(i) - xd(k-1) ) / ( xd(k) - xd(k-1) )
+          yi(i) = ( 1.0D+00 - t ) * yd(k-1) + t * yd(k)
+          exit
+
+        end if
+
+      end do
+
+    end if
+
+  end do
+  
+  return
+end subroutine pwl_value_1d
+
+SUBROUTINE ergodic(p,s)
+! Purpose: Compute ergodic distribution s of Markov transition matrix p
+IMPLICIT NONE
+REAL*8, DIMENSION(:,:), INTENT(IN) :: p
+REAL*8, DIMENSION(:), INTENT(OUT) :: s
+REAL*8, DIMENSION(size(s),size(s)) :: ip,VL,VR
+REAL*8, DIMENSION(size(s)) :: WR,WI,DW
+INTEGER :: m,uw,w1(1),LWKOPT,INFO
+INTEGER, PARAMETER :: LWORK = 50000
+REAL*8 :: ds,DUMMY(1,1),WORK(LWORK)
+
+
+m=size(s)
+IF (size(p,dim=1)/=m .or. size(p,dim=2)/=m) THEN
+  PRINT '(a,i3,a,i3)', 'sd: p must be a square matrix of size ',m,' x ',m
+  STOP 'program terminated by sd'
+END IF
+ip=p
+CALL DGEEV('V','V',m,ip,m,WR,WI,VL,m,VR,m,WORK,LWORK,INFO)
+LWKOPT = WORK(1)
+DW=abs(sqrt(WR*WR+WI*WI)-1)
+w1=minloc(DW)
+uw=count(DW<1000*epsilon(DW))
+IF (uw<1) PRINT '(a)', 'Warning: No unitary eigenvalue is found. Stationary distribution of Markov chain does not exist.'
+IF (uw>1) PRINT '(a)', 'Warning: More than one unitary eigenvalue is found. Stationary distribution of Markov chain is not unique.'
+IF (uw<1 .or. uw>1) PRINT *, 'Using eigenvalue ', WR(w1(1)),'+i',WI(w1(1))
+s=vl(:,w1(1))/sum(vl(:,w1(1)))
+IF (any(s<0)) THEN
+  PRINT '(a)', 'The stationary distribution of Markov chain has negative values. Rebalancing...'
+  ds=sum(s,mask=s<0)/count(s>=0)
+  WHERE(s<0)
+  s=0
+  ELSEWHERE
+  s=s+ds
+  ENDWHERE
+END IF
+
+END SUBROUTINE ergodic
+
 END MODULE TOOLBOX

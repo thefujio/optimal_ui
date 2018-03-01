@@ -21,7 +21,7 @@ SUBROUTINE stadist(m,pimat,pss,initpss)
   
   !Local variables declarations
   integer                         :: i,j,iter
-  integer, parameter              :: niter = 1000
+  integer, parameter              :: siter = 2000
   double precision, dimension (m) :: pn,pnp1
   double precision                :: psstot,temp
   double precision, parameter     :: tol = 0.1d-12
@@ -50,7 +50,7 @@ SUBROUTINE stadist(m,pimat,pss,initpss)
   end if
   temp = one
   iter = 1
-  do while (iter.le.niter .and. dabs(temp)>tol)
+  do while (iter.le.siter .and. dabs(temp)>tol)
     pn = pnp1
     temp = zero
     do j=1,m
@@ -65,12 +65,12 @@ SUBROUTINE stadist(m,pimat,pss,initpss)
 !  write (*,fmt='(''supnorm(pnp1-pn) = '',f10.8)') temp
   
   !Making sure pn has converged
-  if (iter.ge.niter) then
+  if (iter.ge.siter) then
     write (*,'(''Stationary distribution did not converge after '',&
                &i4,'' iterations:'',/,5x,''supnorm = '',f14.12)') iter,temp
   else
     write (*,'(''Stationary distribution converged after '',&
-               &i3,'' iterations: supnorm = '',f14.12)') iter,temp
+               &i4,'' iterations: supnorm = '',f14.12)') iter,temp
   end if
   
   pss = pnp1

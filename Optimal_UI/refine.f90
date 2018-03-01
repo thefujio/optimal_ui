@@ -50,7 +50,7 @@ END INTERFACE
 real(8), dimension(nx,ny,nz) :: wma, wqa
 real(8), dimension(nx,ny,nz) :: windreal,windma
 real(8), dimension(nx,ns,ns) :: dprimema
-real(8), dimension(nx,ns,ns) :: Vprime, Vprimema
+real(8), dimension(nx,ns,ns) :: Vprime, Vprimema, Vprimetemp
 real(8), dimension(nx,ny)    :: Ptildema
 real(8), dimension(nx,ny)    :: Mma
 !real(8), dimension(ny,ne)    :: RUfine,PUtildefine
@@ -63,13 +63,16 @@ integer, dimension(ns,ns)    :: NVind
 integer, dimension(ny,nz)    :: NDind
 integer, dimension(ny)       :: NTind
 
-integer :: i,ii,j,jj,ix,ixx,iy,iyp,iz,ie,is,isp, smp
+integer :: i,ii,j,jj,ix,ixx,iy,iyp,iz,ie,is,isp,hnx,smp,hmp
+real(8) :: gw
 !Create fine grid on X
 call linspace(xfine,xmin,xmax,ndist)
 
 !smoothing parameter for ma
-smp = 13
-
+smp = 9
+hmp = smp/2
+hnx = nx/1.6d0
+gw = x(2)-x(1)
 !To interpolate:
 !M(ix,iy)
 do iy=1,ny
@@ -183,7 +186,7 @@ do is=1,ns
   do isp=1,ns
     iy = iyfun(is)
     iyp = iyfun(isp)
-    NVind(is,isp)=count(Vprime(:,is,isp) <= U1(iyp,1)+1.0d-4) - 1
+    NVind(is,isp)=count(Vprime(:,is,isp) <= (Vprime(1,is,isp)+gw))
     if (NVind(is,isp) <= 0) then
       NVind(is,isp) = 1
     endif
@@ -193,7 +196,7 @@ end do
 do iy=1,ny
   do iz=1,nz
     is = isfun(iy,iz)
-    NDind(iy,iz) = minval(NVind(isfun(iy,iz),:))
+    NDind(iy,iz) = maxval(NVind(isfun(iy,iz),:)) - 1
   end do
 end do
 
@@ -225,7 +228,9 @@ do jj=1,ns
   do ii=1,ns
     Vprimema(:,ii,jj) = Vprime(:,ii,jj)
     iy=iyfun(ii)
-    call movavg(Vprime(NVind(ii,jj):nx-NTind(iy),ii,jj),Vprimema(NVind(ii,jj):nx-NTind(iy),ii,jj),smp)
+    call movavg(Vprime(hnx-hmp:nx-NTind(iy),ii,jj),Vprimetemp(hnx-hmp:nx-NTind(iy),ii,jj),smp)
+    Vprimema(hnx:nx-NTind(iy),ii,jj) = Vprimetemp(hnx:nx-NTind(iy),ii,jj)
+    call q_fit(x(NVind(ii,jj):hnx),Vprimema(NVind(ii,jj):hnx,ii,jj),Vprimema(NVind(ii,jj):hnx,ii,jj))
   end do
 end do
 
@@ -245,16 +250,22 @@ do iz=1,nz
 enddo
 
 
+!do is=1,ns
+!  do isp=1,ns
+!  splineb = 0.0d0
+!  splinec = 0.0d0
+!  splined = 0.0d0
+!  Vprimevec = Vprimema(:,is,isp)
+!  call spline(x,Vprimevec,splineb,splinec,splined,nx)
+!    do ix=1,ndist
+!    Vprimefine(ix,is,isp) = ispline(xfine(ix), x, Vprimevec, splineb, splinec, splined, nx)
+!    enddo
+!  enddo
+!enddo
 do is=1,ns
   do isp=1,ns
-  splineb = 0.0d0
-  splinec = 0.0d0
-  splined = 0.0d0
-  Vprimevec = Vprimema(:,is,isp)
-  call spline(x,Vprimevec,splineb,splinec,splined,nx)
-    do ix=1,ndist
-    Vprimefine(ix,is,isp) = ispline(xfine(ix), x, Vprimevec, splineb, splinec, splined, nx)
-    enddo
+    Vprimevec = Vprimema(:,is,isp)
+    call pwl_value_1d(nx, x, Vprimevec, ndist, xfine, Vprimefine(:,is,isp))
   enddo
 enddo
 

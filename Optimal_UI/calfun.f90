@@ -121,7 +121,7 @@
   !Set up grids and transition matrices
   call states(J,U)
   !Bisection on tax rate
-  taul = 0.035d0
+  taul = 0.030d0
   tauu = 0.055d0
   !Evaluate at endpoints taul,tauu
   tau = taul
@@ -165,20 +165,21 @@
     tau1 = tau
     f1 = bd
 
-    write (*,'(5x,''tau = '',f6.5)') tau
+    write (*,'(5x,''tau = '',f10.8)') tau
     write (*,'(5x,''Budget Deficit = '',f10.8)') bd
     if (dabs(tau1-tau0) < low_tol .or. dabs(bd) < bis_tol) EXIT
 
   end do
   if (iter.ge.niter) then
     write (*,'(3x,''Bisection did not converge after '',i6,'' iterations '')') iter
-    write (*,'(5x,''Budget Deficit = '',f6.5)') bd
+    write (*,'(5x,''Budget Deficit = '',f10.8)') bd
   else
     write (*,'(3x,''Bisection converged after '',i6,'' iterations '')') iter
-    write (*,'(5x,''tau = '',f6.5)') tau
+    write (*,'(5x,''tau = '',f10.8)') tau
     write (*,'(5x,''Budget Deficit = '',f10.8)') bd
   end if
 
+  call write_output(J,U)
   call write_output_fine(J,U)
   deallocate(cont)
 

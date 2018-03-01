@@ -14,6 +14,7 @@ SUBROUTINE SDIFINE(J1,U1)
   USE IOOP
   USE PARAM
   USE UTILITY
+  USE TOOLBOX
   implicit none
   
   INTERFACE
@@ -37,7 +38,7 @@ SUBROUTINE SDIFINE(J1,U1)
   real(8), dimension(ne):: tempe
   real(8), dimension(ns*ndist+nu):: muinit
   real(8):: Pojs,dp,PU, ubenmeasure, unobenmeasure
-  
+
   pimat = zero
   !Building transition matrix
     !pimat is (nx+1)*ny + nx*nz by (nx+1)*ny + nx*nz, or
@@ -103,7 +104,7 @@ SUBROUTINE SDIFINE(J1,U1)
   muinit = zero
   muinit(ns*ndist+1:) = one/dble(nu)
 
-  call stadist(ns*ndist+nu,pimat,muss,muinit)
+call stadist(ns*ndist+nu,pimat,muss,muinit)
 
   !Aggregate Statistics: flows
   ee=zero

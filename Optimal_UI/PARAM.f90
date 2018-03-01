@@ -78,7 +78,7 @@ MODULE PARAM
   real(8), dimension(nx)    :: x
 
   ! GRID ON PV after VFI
-  integer, parameter        :: ndist = 2000
+  integer, parameter        :: ndist = 3000
   real(8), dimension(ndist) :: xfine
 
   ! STOCHASTIC AGGREGATE PRODUCTIVITY
@@ -187,7 +187,7 @@ MODULE PARAM
   ! TOLERANCE LEVEL
   real(8):: tol = 1.0d-8
   real(8), parameter:: high_tol = 1.0d-4
-  real(8), parameter:: bis_tol  = 1.0d-5
+  real(8), parameter:: bis_tol  = 2.0d-5
   real(8), parameter:: low_tol  = 1.0d-8
   real(8), parameter:: errrel   = 1.0d-12
   
