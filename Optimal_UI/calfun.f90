@@ -100,8 +100,8 @@
   real*8, intent(OUT):: fval
   real(8), dimension(ny,ne)     :: U
   real(8), dimension(nx,ny,nz)  :: J
-
-  integer:: iter                      !Generic indexes
+  real(8), dimension(biter)     :: bdvec,tauvec
+  integer:: iter,tauind                      !Generic indexes
   real(8):: fl,fu
   real(8):: bd,jfploss,urloss,j_jloss
 
@@ -121,14 +121,15 @@
   !Set up grids and transition matrices
   call states(J,U)
   !Bisection on tax rate
-  taul = 0.030d0
+  taul = 0.015d0
   tauu = 0.055d0
   !Evaluate at endpoints taul,tauu
-  tau = taul
+  100 tau = taul
   call vfi(J,U)
   call refine(J,U)
   call sdifine(J,U)
   fl = gbdfine(taul,bvec)
+  write (*,'(5x,''Tax lower = '',f10.6)') tau
   write (*,'(5x,''Budget Deficit = '',f10.6)') fl
   tau0 = tau
   f0 = fl
@@ -138,6 +139,7 @@
   call refine(J,U)
   call sdifine(J,U)
   fu = gbdfine(tauu,bvec)
+  write (*,'(5x,''Tax upper = '',f10.6)') tau
   write (*,'(5x,''Budget Deficit = '',f10.6)') fu
   tau1 = tau
   f1=fu
@@ -146,6 +148,8 @@
     !PAUSE
   end if
 
+  tauvec=1.0d0
+  bdvec=1.0d0
   !Secant loop
   do iter=1,biter
     !tau = half*(taul+tauu)
@@ -167,18 +171,37 @@
 
     write (*,'(5x,''tau = '',f10.8)') tau
     write (*,'(5x,''Budget Deficit = '',f10.8)') bd
-    if (dabs(tau1-tau0) < low_tol .or. dabs(bd) < bis_tol) EXIT
+    write (*,'(5x,''iteration = '',i4)') iter
 
-  end do
-  if (iter.ge.niter) then
-    write (*,'(3x,''Bisection did not converge after '',i6,'' iterations '')') iter
-    write (*,'(5x,''Budget Deficit = '',f10.8)') bd
+    tauvec(iter)=tau
+    bdvec(iter)=bd
+
+    if (dabs(tau1-tau0) < tol .or. dabs(bd) < bis_tol) EXIT
+
+  end do !end of iter loop
+
+  if (iter.ge.biter) then
+    write (*,'(3x,''Bisection did not converge after '',i6,'' iterations, choosing closest value '')') iter
+      tauind = minloc(abs(bdvec),DIM=1)
+      write (*,'(5x,''Recalculating at range of closest tau = '',f10.8)') tauvec(tauind)
+      write (*,'(5x,''With Budget Deficit = '',f10.8)') bdvec(tauind)
+      tauu = tauvec(tauind) + 0.005d0
+      taul = tauvec(tauind) - 0.005d0
+      GO TO 100
+      !tau = tauvec(tauind)
+      !call vfi(J,U)
+      !call refine(J,U)
+      !call sdifine(J,U)
+      !bd = gbdfine(tau,bvec)
+      !write (*,'(5x,''tau = '',f10.8)') tau
+      !write (*,'(5x,''Budget Deficit = '',f10.8)') bd
   else
     write (*,'(3x,''Bisection converged after '',i6,'' iterations '')') iter
     write (*,'(5x,''tau = '',f10.8)') tau
     write (*,'(5x,''Budget Deficit = '',f10.8)') bd
   end if
 
+  bdval = bd
   call write_output(J,U)
   call write_output_fine(J,U)
   deallocate(cont)

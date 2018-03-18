@@ -70,7 +70,7 @@ PROGRAM MAIN
   endif
 
   !0.233333333d0
-  call linspace(bgrid,0.2150d0,0.2650d0,gridpoints)
+  call linspace(bgrid,0.210d0,0.270d0,gridpoints)
   !call linspace(hpgrid,0.43d0,0.78d0,gridpoints)
 
   !call linspace(psigrid,1.0d0,0.0d0,gridpoints)
@@ -79,9 +79,8 @@ PROGRAM MAIN
   !do i=1,gridpoints
   !psigrid(i) = 1.0d0/durgrid(i)
   !enddo
-  psigrid = 0.0d0
+  call linspace(yygrid,0.00d0,0.10d0,bgridpoints)
   !bgrid = 0.25d0
-  yyval = 0.02d0
   !print*, psigrid
   !pause
   print *, "Run secant method to find tau for each rr in grid"
@@ -93,6 +92,7 @@ PROGRAM MAIN
   do j=1,bgridpoints
     do i=1,gridpoints
       !hp = hpgrid(i)
+      yyval = yygrid(j)
       bval = bgrid(i)
       psi = psigrid(i)
       !
@@ -101,6 +101,7 @@ PROGRAM MAIN
       rrgrid(i) = rrval
       cegrid(i) = ceval
       taxgrid(i) = taxval
+      bdgrid(i) = bdval
       jfpgrid(i) = jfpval
       uvalgrid(i) = uval
       submktgrid(i) = submktval
@@ -118,9 +119,9 @@ PROGRAM MAIN
     end do
 
   do i=1,gridpoints
-    write(gridout,'(<19>(f15.4,","))') yyval, psigrid(i),rrgrid(i),cegrid(i),taxgrid(i),jfpgrid(i),uvalgrid(i), &
+    write(gridout,'(<20>(f15.4,","))') yyval, psigrid(i),rrgrid(i),cegrid(i),taxgrid(i),jfpgrid(i),uvalgrid(i), &
       submktgrid(i), grosswagegrid(i),netwagegrid(i),urategrid(i),uugrid(i),eegrid(i),bgrid(i),trgrid(i), &
-      utilgrid(i),vfgrid(i),uvalbengrid(i),uvalnobengrid(i)
+      utilgrid(i),vfgrid(i),uvalbengrid(i),uvalnobengrid(i),bdgrid(i)
   enddo
   enddo !end j grid
   close(gridout)
@@ -137,6 +138,7 @@ PROGRAM MAIN
   do j=1,bgridpoints
     do i=1,gridpoints
       !hp = hpgrid(i)
+      yyval = yygrid(j)
       bval = bgrid(i)
       psi = psigrid(i)
       tau = taxgrid_smooth(i)
@@ -146,6 +148,7 @@ PROGRAM MAIN
       rrgrid(i) = rrval
       cegrid(i) = ceval
       taxgrid(i) = taxval
+      bdgrid(i) = bdval
       jfpgrid(i) = jfpval
       uvalgrid(i) = uval
       submktgrid(i) = submktval
@@ -163,9 +166,9 @@ PROGRAM MAIN
     end do
 
   do i=1,gridpoints
-    write(gridout_smooth,'(<19>(f15.4,","))') yyval, psigrid(i),rrgrid(i),cegrid(i),taxgrid(i),jfpgrid(i),uvalgrid(i), &
+    write(gridout_smooth,'(<20>(f15.4,","))') yyval, psigrid(i),rrgrid(i),cegrid(i),taxgrid(i),jfpgrid(i),uvalgrid(i), &
       submktgrid(i), grosswagegrid(i),netwagegrid(i),urategrid(i),uugrid(i),eegrid(i),bgrid(i),trgrid(i), &
-      utilgrid(i),vfgrid(i),uvalbengrid(i),uvalnobengrid(i)
+      utilgrid(i),vfgrid(i),uvalbengrid(i),uvalnobengrid(i),bdgrid(i)
   enddo
   enddo !end j grid
   close(gridout_smooth)

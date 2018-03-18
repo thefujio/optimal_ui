@@ -69,9 +69,9 @@ real(8) :: gw
 call linspace(xfine,xmin,xmax,ndist)
 
 !smoothing parameter for ma
-smp = 9
+smp = 11
 hmp = smp/2
-hnx = nx/1.6d0
+hnx = nx/1.5d0
 gw = x(2)-x(1)
 !To interpolate:
 !M(ix,iy)
