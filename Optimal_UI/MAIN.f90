@@ -70,7 +70,7 @@ PROGRAM MAIN
   endif
 
   !0.233333333d0
-  call linspace(bgrid,0.210d0,0.270d0,gridpoints)
+  call linspace(bgrid,0.21d0,0.28d0,gridpoints)
   !call linspace(hpgrid,0.43d0,0.78d0,gridpoints)
 
   !call linspace(psigrid,1.0d0,0.0d0,gridpoints)
@@ -79,18 +79,21 @@ PROGRAM MAIN
   !do i=1,gridpoints
   !psigrid(i) = 1.0d0/durgrid(i)
   !enddo
-  call linspace(yygrid,0.00d0,0.10d0,bgridpoints)
+  call linspace(yygrid,0.0d0,0.10d0,bgridpoints)
   !bgrid = 0.25d0
-  !print*, psigrid
+  psigrid = zero
+  !yygrid = 0.0250d0
+  !print*, yygrid
   !pause
   print *, "Run secant method to find tau for each rr in grid"
   open(unit=gridout,  file=root_dir//out_dir//"gridout.txt",  status='replace')
   write(gridout,15)
-  15 format('Psi,','RR,','CE,','Tax,','JFP(U),','U VF,','Avg. Open Submkt,','Gross W,','Net W,',&
-  'Urate,','UU,','EE,','b,','transfers,','Utility,','VF','U VF ben,','U VF noben,')
+  15 format('Shock Spread,','Psi','RR,','CE,','Tax,','JFP(U),','U VF,','Avg. Open Submkt,','Gross W,','Net W,',&
+  'Urate,','UU,','EE,','b,','transfers,','Utility,','VF','U VF ben,','U VF noben,','budget deficit')
   !For non-calibration testing:
-  do j=1,bgridpoints
-    do i=1,gridpoints
+  do i=1,gridpoints
+    do j=1,bgridpoints
+
       !hp = hpgrid(i)
       yyval = yygrid(j)
       bval = bgrid(i)
@@ -115,11 +118,9 @@ PROGRAM MAIN
       vfgrid(i)=tot_vf
       uvalbengrid(i) = ubenval
       uvalnobengrid(i) = unobenval
-      print*,'gridpoint ', i ,' completed'
-    end do
+      print*,'gridpoint ', i ,j,' completed'
 
-  do i=1,gridpoints
-    write(gridout,'(<20>(f15.4,","))') yyval, psigrid(i),rrgrid(i),cegrid(i),taxgrid(i),jfpgrid(i),uvalgrid(i), &
+    write(gridout,'(<20>(f15.8,","))') yygrid(j), psigrid(i),rrgrid(i),cegrid(i),taxgrid(i),jfpgrid(i),uvalgrid(i), &
       submktgrid(i), grosswagegrid(i),netwagegrid(i),urategrid(i),uugrid(i),eegrid(i),bgrid(i),trgrid(i), &
       utilgrid(i),vfgrid(i),uvalbengrid(i),uvalnobengrid(i),bdgrid(i)
   enddo
@@ -133,10 +134,10 @@ PROGRAM MAIN
   open(unit=gridout_smooth,  file=root_dir//out_dir//"gridout_smooth.txt",  status='replace')
   write(gridout_smooth,19)
   19 format('Psi,','RR,','CE,','Tax,','JFP(U),','U VF,','Avg. Open Submkt,','Gross W,','Net W,',&
-  'Urate,','UU,','EE,','b,','transfers,','Utility,','VF','U VF ben,','U VF noben,')
+  'Urate,','UU,','EE,','b,','transfers,','Utility,','VF','U VF ben,','U VF noben,','budget deficit')
   !For non-calibration testing:
-  do j=1,bgridpoints
-    do i=1,gridpoints
+  do i=1,gridpoints
+    do j=1,bgridpoints
       !hp = hpgrid(i)
       yyval = yygrid(j)
       bval = bgrid(i)
@@ -162,11 +163,9 @@ PROGRAM MAIN
       vfgrid(i)=tot_vf
       uvalbengrid(i) = ubenval
       uvalnobengrid(i) = unobenval
-      print*,'gridpoint ', i ,' completed'
-    end do
+      print*,'gridpoint ', i,j ,' completed'
 
-  do i=1,gridpoints
-    write(gridout_smooth,'(<20>(f15.4,","))') yyval, psigrid(i),rrgrid(i),cegrid(i),taxgrid(i),jfpgrid(i),uvalgrid(i), &
+    write(gridout_smooth,'(<20>(f15.8,","))') yygrid(j), psigrid(i),rrgrid(i),cegrid(i),taxgrid(i),jfpgrid(i),uvalgrid(i), &
       submktgrid(i), grosswagegrid(i),netwagegrid(i),urategrid(i),uugrid(i),eegrid(i),bgrid(i),trgrid(i), &
       utilgrid(i),vfgrid(i),uvalbengrid(i),uvalnobengrid(i),bdgrid(i)
   enddo

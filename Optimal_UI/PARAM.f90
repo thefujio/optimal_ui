@@ -47,12 +47,13 @@ MODULE PARAM
 
   !Grid over b
   integer, parameter        :: gridpoints = 20
-  integer, parameter        :: bgridpoints = 6
+  integer, parameter        :: bgridpoints = 5
   real(8)                   :: bval
   real(8)                   :: yyval, rrval, ceval, taxval, jfpval, uval, ubenval, unobenval, uwgt, umeasure, submktval, submktwgt, &
     submktmeasure, grosswageval, netwageval, urateval, uuval, eeval, trval, bdval
-  real(8), dimension(gridpoints) :: yygrid, psigrid, durgrid, bgrid, rrgrid, cegrid, taxgrid, bdgrid, jfpgrid, uvalgrid, uvalbengrid, &
+  real(8), dimension(gridpoints) :: psigrid, durgrid, bgrid, rrgrid, cegrid, taxgrid, bdgrid, jfpgrid, uvalgrid, uvalbengrid, &
   uvalnobengrid, submktgrid, grosswagegrid, netwagegrid, urategrid, uugrid, eegrid, trgrid, hpgrid, utilgrid, vfgrid, taxgrid_smooth
+real(8), dimension(bgridpoints) :: yygrid
   !Flag for whether optimization routine used is going to be unconstrained (1) or bound-constrained (0)
   integer,          parameter:: transform = 0
   !Calibration Targets:
@@ -73,7 +74,7 @@ MODULE PARAM
   real(8), parameter:: pie = 3.14159265d0
 
   ! GRID ON
-  integer, parameter        :: nx = 150
+  integer, parameter        :: nx = 200
   real(8)                   :: xmin,xmax
   real(8), dimension(nx)    :: x
 
@@ -182,12 +183,12 @@ MODULE PARAM
   ! FLOW CONTROLS
   integer, parameter:: niter = 1000
   integer, parameter:: nupdate = 30
-  integer, parameter:: biter = 30
+  integer, parameter:: biter = 20
 
   ! TOLERANCE LEVEL
   real(8):: tol = 1.0d-8
   real(8), parameter:: high_tol = 1.0d-4
-  real(8), parameter:: bis_tol  = 1.0d-5
+  real(8), parameter:: bis_tol  = 2.0d-5
   real(8), parameter:: low_tol  = 1.0d-8
   real(8), parameter:: errrel   = 1.0d-12
   

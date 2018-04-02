@@ -49,7 +49,7 @@ do i=1,n
 outvec(i) = a*xin(i)**2.0d0 + b*xin(i) + c
 if (isnan(outvec(i))) then
 print*,'outvec',i,' is not a number'
-pause
+!pause
 endif
 enddo
 

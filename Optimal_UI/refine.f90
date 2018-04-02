@@ -71,7 +71,7 @@ call linspace(xfine,xmin,xmax,ndist)
 !smoothing parameter for ma
 smp = 11
 hmp = smp/2
-hnx = nx/1.5d0
+hnx = nx/1.7d0
 gw = x(2)-x(1)
 !To interpolate:
 !M(ix,iy)
@@ -231,6 +231,7 @@ do jj=1,ns
     call movavg(Vprime(hnx-hmp:nx-NTind(iy),ii,jj),Vprimetemp(hnx-hmp:nx-NTind(iy),ii,jj),smp)
     Vprimema(hnx:nx-NTind(iy),ii,jj) = Vprimetemp(hnx:nx-NTind(iy),ii,jj)
     call q_fit(x(NVind(ii,jj):hnx),Vprimema(NVind(ii,jj):hnx,ii,jj),Vprimema(NVind(ii,jj):hnx,ii,jj))
+    !call movavg(Vprime(NVind(ii,jj):nx-NTind(iy),ii,jj),Vprimema(NVind(ii,jj):nx-NTind(iy),ii,jj),smp)
   end do
 end do
 

@@ -180,13 +180,13 @@
 
   end do !end of iter loop
 
-  if (iter.ge.biter) then
+  if ((iter.ge.biter) .and. (tot_vf>-100.0d0))  then
     write (*,'(3x,''Bisection did not converge after '',i6,'' iterations, choosing closest value '')') iter
       tauind = minloc(abs(bdvec),DIM=1)
       write (*,'(5x,''Recalculating at range of closest tau = '',f10.8)') tauvec(tauind)
       write (*,'(5x,''With Budget Deficit = '',f10.8)') bdvec(tauind)
-      tauu = tauvec(tauind) + 0.005d0
-      taul = tauvec(tauind) - 0.005d0
+      tauu = tauvec(tauind) + 0.002d0
+      taul = tauvec(tauind) - 0.002d0
       GO TO 100
       !tau = tauvec(tauind)
       !call vfi(J,U)
