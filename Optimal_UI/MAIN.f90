@@ -70,7 +70,7 @@ PROGRAM MAIN
   endif
 
   !0.233333333d0
-  call linspace(bgrid,0.21d0,0.28d0,gridpoints)
+  call linspace(bgrid,0.20d0,0.28d0,gridpoints)
   !call linspace(hpgrid,0.43d0,0.78d0,gridpoints)
 
   !call linspace(psigrid,1.0d0,0.0d0,gridpoints)
@@ -79,7 +79,7 @@ PROGRAM MAIN
   !do i=1,gridpoints
   !psigrid(i) = 1.0d0/durgrid(i)
   !enddo
-  call linspace(yygrid,0.0d0,0.10d0,bgridpoints)
+  call linspace(yygrid,0.0d0,0.20d0,bgridpoints)
   !bgrid = 0.25d0
   psigrid = zero
   !yygrid = 0.0250d0

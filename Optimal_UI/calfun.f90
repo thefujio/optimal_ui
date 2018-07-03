@@ -122,7 +122,7 @@
   call states(J,U)
   !Bisection on tax rate
   taul = 0.015d0
-  tauu = 0.055d0
+  tauu = 0.065d0
   !Evaluate at endpoints taul,tauu
   100 tau = taul
   call vfi(J,U)
@@ -185,8 +185,8 @@
       tauind = minloc(abs(bdvec),DIM=1)
       write (*,'(5x,''Recalculating at range of closest tau = '',f10.8)') tauvec(tauind)
       write (*,'(5x,''With Budget Deficit = '',f10.8)') bdvec(tauind)
-      tauu = tauvec(tauind) + 0.002d0
-      taul = tauvec(tauind) - 0.002d0
+      tauu = tauvec(tauind) + 0.001d0
+      taul = tauvec(tauind) - 0.001d0
       GO TO 100
       !tau = tauvec(tauind)
       !call vfi(J,U)

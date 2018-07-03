@@ -74,12 +74,12 @@ real(8), dimension(bgridpoints) :: yygrid
   real(8), parameter:: pie = 3.14159265d0
 
   ! GRID ON
-  integer, parameter        :: nx = 200
+  integer, parameter        :: nx = 300
   real(8)                   :: xmin,xmax
   real(8), dimension(nx)    :: x
 
   ! GRID ON PV after VFI
-  integer, parameter        :: ndist = 2000
+  integer, parameter        :: ndist = 1200
   real(8), dimension(ndist) :: xfine
 
   ! STOCHASTIC AGGREGATE PRODUCTIVITY
@@ -181,14 +181,15 @@ real(8), dimension(bgridpoints) :: yygrid
 
   !PROGRAMMING PARAMETERS
   ! FLOW CONTROLS
-  integer, parameter:: niter = 1000
+  integer, parameter:: niter = 2500
   integer, parameter:: nupdate = 30
   integer, parameter:: biter = 20
 
   ! TOLERANCE LEVEL
-  real(8):: tol = 1.0d-8
+  real(8):: tol = 1.0d-10
   real(8), parameter:: high_tol = 1.0d-4
-  real(8), parameter:: bis_tol  = 2.0d-5
+
+  real(8), parameter:: bis_tol  = 1.0d-5
   real(8), parameter:: low_tol  = 1.0d-8
   real(8), parameter:: errrel   = 1.0d-12
   
